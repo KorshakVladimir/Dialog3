@@ -1,0 +1,41 @@
+{% extends "gameplace.html" %}
+
+{% block game_history %} 
+  <div>
+    <table class="table table-striped table-bg">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Слова покупателя</th>
+          <th>Ваши слова</th>
+          <th>Лучший ответ</th>
+          <th>Очки</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for entry in history_entry %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ entry.answer_output }} </td>
+          <td>{{ entry.question_output }} </td>
+          <td>{{ entry.best_choise }} </td>
+          <td>{{ entry.point }} </td>
+        </tr>
+
+      {%endfor%}
+      <tr>
+          <th class="invisible">1</th>
+          <td class="invisible">1</td>
+          <td class="invisible">1</td>
+          <td ><h4>Итого:</h4> </td>
+          <td ><h4>{{ total_point }}</h4> </td>
+        </tr>
+      
+       
+      </tbody>
+    </table>
+      
+  </div>
+  
+
+{% endblock %}

@@ -1,0 +1,169 @@
+
+{% extends "gameplace.html" %}
+
+
+{% block progres_bar_left %}
+	
+{% endblock %}
+
+{% block progres_bar_right %}
+	
+{% endblock %}
+
+{% block partmiddle %}
+
+  <div role="tabpanel" data-example-id="togglable-tabs">
+      <ul id="myTab" class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Игра</a></li>
+          <li role="presentation" class=""><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Журнал</a></li>
+        
+      </ul>
+      <div id="myTabContent" class="tab-content">
+          
+      {% block game %}
+        <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+        <div class="main-div">
+          <div class="row" >
+                  
+            <div class="col-md-5">
+
+              {% block progres_bar_left %}
+              {# <p class="budge-left">Очки</p> #}
+              
+              <img   id ="badge-left" src="{% static "game_01_img/points.png" %}" alt="Очки" > 
+              
+              <div id= "right-progres-bar" class="  for_progress_bar progress ">
+
+                  
+                    <div id = "points" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{ point }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ point }}%">
+                    
+                    </div>
+              </div>
+              {% endblock %}
+            </div>  
+            
+            <div class="col-md-2">
+                
+            </div>
+            
+            <div class="col-md-5">
+              {% block progres_bar_right %}
+              {# <p class="budge-right">Емоции</p> #}
+              <img   id ="badge-right" src="{% static "game_01_img/emotions_3.png" %}" alt="эмоции" > 
+              <div class="pull-right for_progress_bar progress">
+                  <div id="emotions" class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ emo }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ emo }}%">
+                   
+                  </div>
+              </div>
+              {% endblock %}  
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+              <div id ="main_pop"  class="display_main_popover popover left" >
+                  <div id = "arrow_left" class="arrow"></div>
+          
+                    <div class="popover-content">
+                      <p style="margin-bottom: 10px;margin-top: 10px;">{{answer.text_answer}}</p>
+                    </div>
+              
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div >
+              <img class="women" src="/static/game_01_img/women4.png">
+              </div>
+            </div>
+
+            <div class="col-md-1"></div>
+          </div>
+
+
+          <div class="row" >
+            <div class="col-md-12" >
+            <div id = "place-botton" >
+              
+                {% for question in questions %}
+                  <a id= "menu" class=" btn btn-default btn-lg "   href="/tree/{{ question.question_answer  }}" 
+                  {% if question.text_questions == 'Предложить товар'  %}
+                    data-toggle="modal" data-target="#myProd"
+                  {%endif%}
+                   > <span id="badge-pos" class=" badge pull-left">{{ forloop.counter }}</span>{{question.text_questions}}</a>
+                  {% if question.text_questions == 'Предложить товар'  %}
+                    <!-- Modal -->
+
+                    <div class="modal fade" id="myProd" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div id = "modal_dialog" class="modal-dialog ">
+                        <div class="modal-content_1">
+                        
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Выберите товар</h4>
+                         </div>
+                         {% include 'tree/part_for_product.html' %}
+                          
+                        </div> 
+                      </div>
+                    </div>
+                  {%endif%}
+                {%endfor%}
+              
+            </div>
+
+            </div>  
+            
+          </div>
+
+        </div>
+        </div>
+      {% endblock %}
+          
+        {% block game_history %} 
+          <div role="tabpanel" class="tab-pane fade active in" id="profile" aria-labelledby="profile-tab">
+            <div>
+              <table class="table table-striped table-bg">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Слова покупателя</th>
+                    <th>Ваши слова</th>
+                    <th>Лучший ответ</th>
+                    <th>Очки</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for entry in history_entry %}
+                  <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ entry.answer_output }} </td>
+                    <td>{{ entry.question_output }} </td>
+                    <td>{{ entry.best_choise }} </td>
+                    <td>{{ entry.point }} </td>
+                  </tr>
+
+                {%endfor%}
+                <tr>
+                    <th class="invisible">1</th>
+                    <td class="invisible">1</td>
+                    <td class="invisible">1</td>
+                    <td ><h4>Итого:</h4> </td>
+                    <td ><h4>{{ total_point }}</h4> </td>
+                  </tr>
+                
+                 
+                </tbody>
+              </table>
+                
+            </div>
+            
+          </div>
+        {% endblock %}
+      </div>
+  </div>
+
+{% endblock %}
+
+
+	

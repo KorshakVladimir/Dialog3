@@ -1,0 +1,36 @@
+<!-- PART LEFT START -->
+<ul class="nav" id="side-menu">
+	<li class="nav-header">
+		<div class="dropdown profile-element">
+			<span><a href="index.html"><img alt="image" class="img-circle" src="/static/img/profile_small.jpg" /></a></span>
+			<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+				<span class="clear">
+					<span class="block m-t-xs">
+						<strong class="font-bold"><span id="cur_user_fullname" name="cur_user_fullname">{{ request.user.last_name }}</span></strong>
+					</span>
+					<span class="text-muted text-xs block">
+						<span id="cur_user_posname" name="cur_user_posname"></span>
+						<b class="caret"></b>
+					</span>
+				</span>
+			</a>
+			<ul class="dropdown-menu animated fadeInRight m-t-xs">
+				<li><a href="#" onclick="sessionStorage['csnCentralZoneID']='own_profile'; get_central_zone();">Профиль</a></li>
+				<li class="divider"></li>
+				<li><a href="{% url 'cgm.auth.logout' %}">Выход</a></li>
+			</ul>
+		</div>
+		<div class="logo-element">
+			CGM+
+		</div>
+	</li>
+	<li class="active">
+		<a href="index.html"><i class="fa fa-wrench"></i> <span class="nav-label">Доступные игры</span> </a>
+		<ul class="nav nav-second-level">
+			<li><a href="/tree"><i class="fa fa-flash"></i>Игра А</a></li>
+			<li><a href="#"><i class="fa fa-flash"></i>Игра Б</a></li>
+		</ul>
+	</li>
+</ul>
+
+<!-- PART LEFT END -->

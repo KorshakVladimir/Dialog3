@@ -1,0 +1,404 @@
+from django.conf import settings
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render_to_response, get_object_or_404
+from django.template import RequestContext
+from cgm import forms as myforms
+#from csn import util
+from cgm.models import UserProfile  # , Language, Message #Invite,
+# from cgm.models import Comment, SubComment, Album, Event #Picture,
+#from cgm.models import EventInvite, Group
+#from csn.groups import GroupUpdates
+
+import datetime
+
+
+def index(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/gameplace')
+    else:
+        return HttpResponseRedirect('/login')
+
+
+@login_required
+def gameplace(request):
+    now = datetime.datetime.now()
+    week = datetime.timedelta(days=7)
+    last_week = now - week
+    user = request.user
+
+    #updates = []
+    # Add user's status updates and comments from friends to user
+    #my_comments = user.get_profile().comments.filter(sent__gte=last_week)
+    #up = []
+    # for c in my_comments:
+    #    up.append(c)
+    #me = GroupUpdates()
+    #me.name = 'Me'
+    #me.updates = up
+    # updates.append(me)
+
+    # Add user's friends' status updates
+    #friends = list(user.get_profile().friends.all())
+    #subs = list(user.get_profile().subscriptions.all())
+    #groups = user.get_profile().groups.all()
+    # for g in groups:
+    #    up = []
+    #    members = g.members.all()
+    #    for f in members:
+    #        us = f.get_profile().comments.filter(author=f, sent__gte=last_week)
+    #        for u in us:
+    #            up.append(u)
+    #        f = User.objects.get(username=f)
+    # Remove f from list, so they don't end up in uncategorized
+    #        friends.remove(f)
+    #    up.sort(key=lambda x: x.sent, reverse=True)
+    #    gu = GroupUpdates()
+    #    gu.name = g
+    #    gu.updates = up
+    #    updates.append(gu)
+
+    # reset up in case friends is empty
+    #up = []
+    # for f in friends:
+    #    comments = f.get_profile().comments.filter(sent__gte=last_week)
+    #    for c in comments:
+    #        up.append(c)
+    # ungrouped subscriptions
+    # for s in subs:
+    # make sure public=True, we don't want to leak private updates.
+    #    comments = s.get_profile().comments.filter(public=True, sent__gte=last_week)
+    #    for c in comments:
+    #        up.append(c)
+
+    #up.sort(key=lambda x: x.sent, reverse=True)
+    #ng = GroupUpdates()
+    #ng.name = 'No Group'
+    #ng.updates = up
+    # updates.append(ng)
+
+    #form = myforms.CommentForm()
+    # return render_to_response('dashboard.html', {'updates': updates, 'form':
+    # form},
+    return render_to_response('stub.html', {}, context_instance=RequestContext(request))
+
+
+@login_required
+def settings(request):
+    # save this in case the url is invalid
+    old_url = request.user.get_profile().url
+    form = myforms.SettingsForm(instance=request.user.get_profile())
+
+    if request.method == 'POST':
+        form = myforms.SettingsForm(
+            request.POST, instance=request.user.get_profile())
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/dashboard/')
+        else:
+            # if the url is invalid, the session user will still
+            # try to use the invalid url, so we need to reload
+            # the session user from the database.
+            profile = UserProfile.objects.get(url=old_url)
+            request.user = profile.user
+
+    return render_to_response('settings/settings.html', {'form': form},
+                              context_instance=RequestContext(request))
+
+
+@login_required
+def manage_friends(request):
+    return render_to_response('settings/friends.html', {},
+                              context_instance=RequestContext(request))
+
+
+@login_required
+def manage_friend(request, id):
+    other_user = get_object_or_404(User, pk=id)
+    return render_to_response('settings/friend.html', {'friend': other_user},
+                              context_instance=RequestContext(request))
+
+
+@login_required
+def new_group(request):
+    user = request.user
+    if request.method == 'POST':
+        form = myforms.GroupForm(request.POST, user=user)
+        if form.is_valid():
+            g = form.save()
+            user.get_profile().groups.add(g)
+            return HttpResponseRedirect('/settings/friends/')
+
+    form = myforms.GroupForm(user=user)
+    return render_to_response('settings/group.html', {'form': form},
+                              context_instance=RequestContext(request))
+
+
+@login_required
+def edit_group(request, id):
+    group = Group.objects.get(id=id)
+    user = request.user
+    if request.method == 'POST':
+        form = myforms.GroupForm(request.POST, instance=group, user=user)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/settings/friends/')
+
+    form = myforms.GroupForm(instance=group, user=user)
+    return render_to_response('settings/group.html', {'form': form},
+                              context_instance=RequestContext(request))
+
+
+def sort_group(request):
+    if request.method == 'POST':
+        groups = request.POST.getlist('group[]')
+        counter = 1
+        for i in groups:
+            g = Group.objects.get(id=i)
+            g.priority = counter
+            counter += 1
+            g.save()
+
+    return HttpResponse('')
+
+
+@login_required
+def change_pass(request):
+    form = myforms.ChangePassForm()
+    if request.method == 'POST':
+        form = myforms.ChangePassForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            if not auth.models.check_password(form.cleaned_data['old_pass'], user.password):
+                form._errors['old_pass'] = [u'Old password is incorrect']
+            else:
+                user.set_password(form.cleaned_data['new_pass1'])
+                user.save()
+                return HttpResponseRedirect('/dashboard/')
+
+    return render_to_response('settings/change_pass.html', {'form': form},
+                              context_instance=RequestContext(request))
+
+
+def profile(request, url):
+    user = request.user
+    prof = get_object_or_404(UserProfile, url=url)
+    other_user = prof.user
+
+    form = None
+    age = None
+    invited = False
+
+    if user.is_authenticated():
+        # check if we've invited the user to be our friend
+        try:
+            inv = other_user.get_profile().invites.get(sender=user)
+            invited = True
+        except Invite.DoesNotExist:
+            invited = False
+
+        age = util.get_age(other_user.get_profile().birthdate)
+
+        # post a comment
+        if util.can_users_interract(user, other_user):
+            form = myforms.CommentForm()
+        else:
+            form = None
+
+    return render_to_response('profile/profile.html', {'other_user': other_user,
+                                                       'form': form, 'invited': invited, 'age': age},
+                              context_instance=RequestContext(request))
+
+
+@login_required
+def subscribe(request, url):
+    user = request.user
+    #prof = user.get_profile()
+    other_user_prof = UserProfile.objects.get(url=url)
+    other_user = other_user_prof.user
+    # prof.subscriptions.add(other_user)
+
+    return HttpResponseRedirect('/dashboard/')
+
+
+@login_required
+def view_friends(request, url):
+    user = request.user
+    prof = get_object_or_404(UserProfile, url=url)
+    other_user = prof.user
+
+    if util.can_users_interract(user, other_user):
+        return render_to_response('profile/friends.html', {'other_user': other_user},
+                                  context_instance=RequestContext(request))
+
+
+@login_required
+def invite(request, url):
+    sender = request.user
+    prof = get_object_or_404(UserProfile, url=url)
+    other_user = prof.user
+
+    # check for existing invites
+    try:
+        inv = prof.invites.get(sender=sender)
+    except Invite.DoesNotExist:
+        inv = Invite.objects.create(
+            sender=sender,
+            user=other_user,
+            sent=datetime.datetime.now(),
+        )
+        prof.invites.add(inv)
+
+    # Go back to user's profile
+    return HttpResponseRedirect('/profile/' + prof.url + '/')
+
+
+@login_required
+def accept_inv(request, url):
+    user = request.user
+    prof = UserProfile.objects.get(url=url)
+    sender = prof.user
+
+    inv = Invite.objects.get(user=user, sender=sender)
+    user.get_profile().friends.add(sender)
+    sender.get_profile().friends.add(user)
+    inv.delete()
+    return HttpResponseRedirect('/dashboard/')
+
+
+@login_required
+def ignore_inv(request, url):
+    user = request.user
+    prof = User.objects.get(url=url)
+    sender = prof.user
+    inv = Invite.objects.get(user=user, sender=sender)
+    inv.delete()
+    return HttpResponseRedirect('/dashboard/')
+
+
+@login_required
+def events(request):
+    events = request.user.get_profile().events
+    return render_to_response('events/events.html', {'events': events},
+                              context_instance=RequestContext(request))
+
+
+@login_required
+def create_event(request):
+    user = request.user
+    form = myforms.EventForm()
+    if request.method == 'POST':
+        event = Event(author=user)
+        form = myforms.EventForm(request.POST, instance=event)
+        if form.is_valid():
+            event = form.save()
+            event.attending.add(user)
+            user.get_profile().events.add(event)
+            return HttpResponseRedirect('/events/%d/' % event.id)
+
+    return render_to_response('events/new_event.html', {'form': form},
+                              context_instance=RequestContext(request))
+
+
+@login_required
+def event_view(request, event_id):
+    user = request.user
+    event = get_object_or_404(Event, id=event_id)
+
+    # Get list of users not invited yet
+    invitable = set(user.get_profile().friends.all())
+    invitable = invitable.difference(set(event.attending.all()))
+    invitable = invitable.difference(set(event.maybe.all()))
+    invitable = invitable.difference(set(event.not_attending.all()))
+    invitable = invitable.difference(set(event.awaiting.all()))
+
+    if request.method == 'POST':
+        to_invite = request.POST.getlist('invites')
+        now = datetime.datetime.now()
+        for u in to_invite:
+            other_user = User.objects.get(id=u)
+            inv = EventInvite.objects.create(
+                user=other_user, sent=now, event=event)
+            inv.save()
+            event.awaiting.add(other_user)
+            other_user.get_profile().event_invites.add(inv)
+
+    return render_to_response('events/event.html', {'event': event, 'invitable': invitable},
+                              context_instance=RequestContext(request))
+
+
+@login_required
+def event_accept(request, event_id):
+    user = request.user
+    event = Event.objects.get(id=event_id)
+    # make sure the user is actually invited
+    for i in user.get_profile().event_invites.all():
+        if i.event == event:
+            event.attending.add(user)
+            event.awaiting.remove(user)
+            user.get_profile().events.add(event)
+            i.delete()
+
+    return HttpResponseRedirect('/dashboard')
+
+
+@login_required
+def event_maybe(request, event_id):
+    user = request.user
+    event = Event.objects.get(id=event_id)
+    # make sure the user is actually invited
+    for i in user.get_profile().event_invites.all():
+        if i.event == event:
+            event.maybe.add(user)
+            event.awaiting.remove(user)
+            user.get_profile().events.add(event)
+            i.delete()
+
+    return HttpResponseRedirect('/dashboard')
+
+
+@login_required
+def event_decline(request, event_id):
+    user = request.user
+    event = Event.objects.get(id=event_id)
+    # make sure the user is actually invited
+    for i in user.get_profile().event_invites.all():
+        if i.event == event:
+            event.not_attending.add(user)
+            event.awaiting.remove(user)
+            i.delete()
+
+    return HttpResponseRedirect('/dashboard')
+
+
+@login_required
+def search(request):
+    form = myforms.SearchForm()
+    results = None
+    if request.method == 'POST':
+        form = myforms.SearchForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            name = form.cleaned_data['name']
+            if email:
+                results = User.objects.filter(email=email)
+            elif name:
+                try:
+                    name_l = name.split(' ')
+                    first_name = name_l[0]
+                    last_name = name_l[1]
+                except IndexError:
+                    first_name = ''
+                    last_name = ''
+                results = User.objects.filter(first_name__iexact=first_name,
+                                              last_name__iexact=last_name)
+
+    return render_to_response('search.html', {'form': form, 'results': results},
+                              context_instance=RequestContext(request))
+
+
+def philosophy(request):
+    return render_to_response('philosophy.html', {},
+                              context_instance=RequestContext(request))

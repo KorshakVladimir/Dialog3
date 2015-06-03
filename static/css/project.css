@@ -1,0 +1,270 @@
+.btn-weight{
+	width: 90%;
+	background: #CACED5;
+	margin-right: auto;
+	margin-left: auto;
+
+	
+}
+.answer{
+	width: 300px;
+	white-space: normal;
+	position: absolute;
+	top :110px;
+	left: 50px;
+}
+#main_pop{
+  margin-top: 58px;
+  margin-left: auto;
+  max-width: 100%;
+  font-size: 23px;
+  border: 3px solid #322F2F;
+  background: linear-gradient(to bottom, rgba(86, 103, 124, 1), #304461);
+  color: #fff;
+}
+
+#img_customer{
+	  margin-top: -7%;
+}
+.display_main_popover{
+	display: block;
+	position: relative;
+	text-align: center;
+	}
+.display_popover{
+	display: block;
+	position: relative;
+	max-width: 100%;
+
+}
+.for_progress_bar{
+  margin-top: 24px;
+  width: 250px;
+  margin-right: 15px;
+  margin-left: 82px;
+  border: 3px outset rgb(244, 244, 244);
+  background-color: rgba(176, 183, 195, 1);
+  background: linear-gradient(to bottom, #595A76, #0F101D);
+  height: 44px;
+
+}
+
+.budge-left{
+	margin-left: 15px;
+	margin-top: 5px;
+	font-size: 20px;
+	position: absolute;
+	left: 15px;
+}
+.budge-right{
+
+	margin-top: 5px;
+	font-size: 20px;
+	position: absolute;
+	right: 193px;
+}
+
+.table-bg{
+	background-color: rgba(197, 197, 197, 0.86);
+	
+  	margin-left: auto;
+  	margin-right: auto;
+}
+.table-width{
+	width: 300px;
+}
+
+td{
+	text-align: left;
+}
+.border_no_bottom{
+	border-bottom: none !important;
+	background-color:#fff;
+}
+
+.selected .nav-tabs {
+  background-color: #fff;
+  border-radius: 3px 3px 0 0;
+  color: #333;
+  line-height: 36px;
+  opacity: 1 !important;
+}
+.text-color{
+	color: #002839 !important;
+}
+
+.main-div{
+	background-image: url("/static/game_01_img/location_my.png") ;
+
+	min-height: 600px;
+	background-size:cover;
+}
+#backg{
+ /*opacity: 0.75; */
+}
+
+.women{
+	/*background-image: url("/static/game_01_img/women3.png") ;*/
+	width: 188px;
+}
+#arrow-popover{
+	margin-left: -30%
+}
+.footer_progres{
+	background-color:inherit !important;
+	border-top:inherit !important;
+}
+
+.text-align{
+	text-align: center;
+	/*background: linear-gradient(to top, #fefcea, #E4E2E1);*/
+}
+#menu{
+  background-color: rgba(0, 132, 87, 1);
+  background: linear-gradient(to bottom, #07743B, #074F2E);
+  margin-left: 10%;
+  margin-right: 1%;
+  
+  border-radius: 39px;
+  text-align: center;
+  display: block;
+  margin-bottom: 2px
+  /*overflow-x: auto;*/
+
+}
+#emotions{
+	background-color: #EDE545;
+	background: linear-gradient(to bottom, #EFE411, #C3A406);
+}
+#place-botton{
+  max-height: 190px;
+  overflow-y: auto;
+  margin-right: 7%;
+}
+#badge-pos{
+	top: 3px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background: 0 0;
+  border-color: #ddd #ddd transparent;
+  border-bottom: #f3f3f4;
+  border-image: none;
+  border-style: solid;
+  border-width: 1px;
+  background-color:#fff;
+  cursor: default;
+}
+
+#myTabContent{
+	border-left: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}
+.modal-content_1{
+  background-clip: padding-box;
+  background-color: #FFF;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  outline: 0;
+  position: relative;
+  min-height: 600px;
+}
+
+#badge-left{
+
+  position: absolute;
+  top: 12px;
+  left: 38px;
+  /* height: 90px; */
+  width: 72px;
+}
+#badge-right{
+
+  /*position: absolute;
+  top: 10px;
+  left: 96px;
+  height: 90px;
+  width: 72px;
+*/
+  position: absolute;
+  top: 14px;
+  left: 111px;
+  /* height: 90px; */
+  width: 72px;
+}
+
+#points{
+	background: linear-gradient(to bottom, #3192EB, #1C67BE);	
+}
+
+/* Let's get this party started */
+#place-botton::-webkit-scrollbar {
+    width: 8px;
+    background: #000; 
+}
+ 
+/* Track */
+#place-botton::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+#place-botton::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(179,0,0,1); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0); 
+}
+#place-botton::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,0,0); 
+}
+
+#arrow_left:after {
+  border-left-color: #322F2F;
+  }
+#product-img{
+  width: 79px;
+  height: 128px;
+  margin-left: 17%;
+}
+.el_product{
+  max-width: 90px;
+  float: left;
+  margin: 23px;
+
+}
+.div-name{
+  height: 45px;
+  margin-left: 15px;
+
+}
+.product_property{
+  position: relative;
+  top: -204px;
+  left: 100px;
+  min-width: 450px;
+}
+
+#menu2{
+  padding: 15px;
+  text-align: center;
+  font-weight: 600;
+
+}
+.descript{
+  text-align: left;
+}
+.top_border_table{
+  border-top: 1px solid #000;
+}
+#modal_dialog{
+  max-width: 429px;
+}

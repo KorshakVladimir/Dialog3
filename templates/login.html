@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Coloris Game | Login</title>
+	    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		{% load staticfiles %}
+		<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+		
+		
+	    <link href="{% static "font-awesome/css/font-awesome.css" %}" rel="stylesheet">
+
+		<link href="{% static "css/animate.css" %}" rel="stylesheet">
+	    <link href="{% static "css/style.min.css" %}" rel="stylesheet">
+
+		<!-- Mainly scripts -->
+	    <script src="{% static "js/jquery-2.1.1.js" %}"></script>
+		<script src="{% static "js/bootstrap.min.js" %}"></script>
+	</head>
+
+	<body class="gray-bg">
+	    <div class="middle-box text-center loginscreen animated fadeInDown">
+		    <div>
+			    <div>
+	                <h1 class="logo-name">CGM</h1>
+	            </div>
+		        <h3>Welcome to CGM</h3>
+			    <!--<p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
+				    Continually expanded and constantly improved Inspinia Admin Them (IN+)
+				</p>
+	            <p>Укажите ваши учетные данные</p>-->
+		        <form class="m-t" id="loginform" name="loginform" role="form" method="post" action="">
+					{% csrf_token %}
+					{% include "base_form.html"%}
+				    <button type="submit" class="btn btn-primary block full-width m-b">Войти</button>
+
+					<a href="#"><small>Забыли пароль?</small></a>
+	                <!--<p class="text-muted text-center"><small>Do not have an account?</small></p>
+		            <a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a>-->
+			    </form>
+				<p class="m-t"> <small>Coloris &copy; 2015</small> </p>
+	        </div>
+		</div>
+
+		<script type="text/javascript">
+			try
+			{
+				var obj = {{ obj_as_json }};
+				var obj_type = obj.type;
+				$('document').ready(function()
+				{
+					$('#FaildModal').modal(obj_type);
+				});
+
+			}
+			catch (e)
+			{
+				$('document').ready(function()
+				{
+					$('#FaildModal').modal('inmodal');
+				});
+			}
+		</script>
+
+		<!--MODAL START-->								
+		<div class="modal inmodal" id="FaildModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content animated fadeIn">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+						<i class="fa fa-laptop modal-icon"></i>
+						<h4 class="modal-title">Ошибка авторизации</h4>
+						<small class="font-bold"></small>
+					</div>
+					<div class="modal-body">
+						<p><strong>Логин или пароль</strong> указан не верно.</p>
+						<div class="form-group"><label></label></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-white" data-dismiss="modal">Закрыть</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--MODAL END-->
+	</body>
+</html>

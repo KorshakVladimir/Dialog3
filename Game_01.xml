@@ -1,0 +1,1115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+		<Levels>
+			<Level>
+				<Id>l1</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Здравствуйте!</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Добрый день!~Вам что то подсказать?~</Text>
+								<Target>l2</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Здравствуйте,~могу ли я вам чем-то помочь?~</Text>
+								<Target>l18</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Здрасъте...~хотите что-то купить?~</Text>
+								<Target>l22</Target>
+								<Point>-20</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Добрый день!~Разрешите узнать,~что Вас заинтересовало?</Text>
+								<Target>l25</Target>
+								<Point>+10</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l2</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Да, вот присматриваю телефон.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>А какие функции~в телефоне Вам интересны?~</Text>
+								<Target>l3</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Вы для себя присматриваете~или в подарок?~</Text>
+								<Target>l5</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Есть ли какие-нибудь~пожелания к телефону?~</Text>
+								<Target>l6</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Если не секрет,~на какую сумму~рассчитываете?~</Text>
+								<Target>l7</Target>
+								<Point>-10</Point>
+							</Answer>
+							<Answer>
+								<Id>a005</Id>
+								<Player>p002</Player>
+								<Text>Вы будете пользоваться~интернетом на телефоне?~</Text>
+								<Target>l8</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a006</Id>
+								<Player>p002</Player>
+								<Text>Есть требования~к объему памяти?~</Text>
+								<Target>l9</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l3</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Честно говоря, даже не знаю. Хотелось бы современный телефон, но при этом прочный и небольшого размера.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Вы для себя присматриваете~или в подарок?~</Text>
+								<Target>l5</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Есть ли какие-нибудь~пожелания к телефону?~</Text>
+								<Target>l6</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Если не секрет,~на какую сумму рассчитываете?~</Text>
+								<Target>l7</Target>
+								<Point>-10</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Вы будете пользоваться~интернетом на телефоне?~</Text>
+								<Target>l8</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a005</Id>
+								<Player>p002</Player>
+								<Text>Есть требования~к объему памяти?~</Text>
+								<Target>l9</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a006</Id>
+								<Player>p002</Player>
+								<Text>Может вам интересен~телефон с точки зрения~развлечений: игры.~</Text>
+								<Target>l10</Target>
+								<Point>+10</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l5</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Себе, хочу старый заменить, в последнее время совсем плохо работает.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Есть ли какие-нибудь~пожелания к телефону?~</Text>
+								<Target>l6</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Если не секрет,~на какую сумму рассчитываете?~</Text>
+								<Target>l7</Target>
+								<Point>-10</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Вы будете пользоваться~интернетом на телефоне?~</Text>
+								<Target>l8</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Есть требования~к объему памяти?~</Text>
+								<Target>l9</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a005</Id>
+								<Player>p002</Player>
+								<Text>Может вам интересен~телефон с точки зрения~развлечений: игры.~</Text>
+								<Target>l10</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a006</Id>
+								<Player>p002</Player>
+								<Text>Какая модель была у телефона?~Вас все устраивало или~не хватало функций?~</Text>
+								<Target>l11</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l6</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Раздражает, когда батарейка быстро садится, а так. наверное. Больше ничего.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Если не секрет,~на какую сумму рассчитываете?~</Text>
+								<Target>l7</Target>
+								<Point>-10</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Вы будете пользоваться~интернетом на телефоне?~</Text>
+								<Target>l8</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Есть требования~к объему памяти?~</Text>
+								<Target>l9</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Может вам интересен~телефон с точки зрения~развлечений: игры.~</Text>
+								<Target>l10</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a005</Id>
+								<Player>p002</Player>
+								<Text>Какая модель была у телефона?~Вас все устраивало или~не хватало функций?~</Text>
+								<Target>l11</Target>
+								<Point>+10</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l7</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Ну-у. хотелось бы в 10 тысяч уложиться.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Вы будете пользоваться~интернетом на телефоне?~</Text>
+								<Target>l8</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Есть требования~к объему памяти?~</Text>
+								<Target>l9</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Может вам интересен~телефон с точки зрения~развлечений: игры.~</Text>
+								<Target>l10</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Какая модель была у телефона?~Вас все устраивало или~не хватало функций?~</Text>
+								<Target>l11</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a005</Id>
+								<Player>p002</Player>
+								<Text>К сожалению,~мне нечего вам предложить.~</Text>
+								<Target>l12</Target>
+								<Point>-100</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l8</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Да. Я хочу закачивать фото из телефона в "Одноклассники".</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Есть требования~к объему памяти?~</Text>
+								<Target>l9</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Может вам интересен~телефон с точки зрения~развлечений: игры.~</Text>
+								<Target>l10</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Какая модель была у телефона?~Вас все устраивало или~не хватало функций?~</Text>
+								<Target>l11</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>К сожалению,~мне нечего вам предложить.~</Text>
+								<Target>l12</Target>
+								<Point>-100</Point>
+							</Answer>
+							<Answer>
+								<Id>a005</Id>
+								<Player>p002</Player>
+								<Text>Какую выбираете~операционную систему?~</Text>
+								<Target>l15</Target>
+								<Point>+10</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l9</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Да, нет особых, кино я на нем не собираюсь смотреть, а плеер у меня есть.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Может вам интересен телефон~с точки зрения развлечений: игры.~</Text>
+								<Target>l10</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Какая модель была у телефона?~Вас всеустраивало или~нехватало функций?~</Text>
+								<Target>l11</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>К сожалению,~мне нечего вампредложить.~</Text>
+								<Target>l12</Target>
+								<Point>-100</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Какую выбираете~операционную систему?~</Text>
+								<Target>l15</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a005</Id>
+								<Player>p002</Player>
+								<Text>Будете ли на телефоне~просматривать видео?~</Text>
+								<Target>l13</Target>
+								<Point>+10</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l10</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Ну, игры самые простейшие, скайп и выход в интернет.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Какая модель была у телефона?~Вас всеустраивало или~нехватало функций?~</Text>
+								<Target>l11</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>К сожалению,~мне нечего вампредложить.~</Text>
+								<Target>l12</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Какую выбираете~операционную систему?~</Text>
+								<Target>l15</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Будете ли на телефоне~просматривать видео?~</Text>
+								<Target>l13</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l11</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>«Nokia» старая модель, в нем почти ничего не было. Но мне как-то сделали, чтобы две симки работали</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>К сожалению,~мне нечего вампредложить.~</Text>
+								<Target>l12</Target>
+								<Point>-100</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Какую выбираете~операционную систему?~</Text>
+								<Target>l15</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Будете ли на телефоне~просматривать видео?~</Text>
+								<Target>l13</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Вам важно качество фотографий,~сделанных спомощью телефона?~</Text>
+								<Target>l14</Target>
+								<Point>+10</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l12</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Очень жаль.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Выход!</Text>
+								<Target>0</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l13</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Неа, чего там на маленьком экране увидишь-то.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Выход!</Text>
+								<Target>0</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l14</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Да, хотелось бы делать хорошие фотографии и снимать видео.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Выход!</Text>
+								<Target>0</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l15</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Ой, а я вообще в них не понимаю ничего...</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Выход!</Text>
+								<Target>0</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l18</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Нет, вроде, не нужно.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Как хотите.~Мое дело — предложить.~</Text>
+								<Target>l19</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Если у вас возникнут вопросы,~обращайтесь, я с удовольствием.~</Text>
+								<Target>l20</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Позовите меня,~когда что-то понравится.~</Text>
+								<Target>l23</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Я могу продемонстрировать~модель, которая Вам интересна.~</Text>
+								<Target>l23</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l19</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>До свидания!</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Выход!</Text>
+								<Target>0</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l20</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Я хочу выбрать телефон.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>А какие функции в~телефоне Вам интересны?~</Text>
+								<Target>l3</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Вы для себя присматриваете~или в подарок?~</Text>
+								<Target>l5</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Есть ли какие-нибудь~пожелания ктелефону?~</Text>
+								<Target>l6</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Если не секрет,~на какую сумму рассчитываете?~</Text>
+								<Target>l7</Target>
+								<Point>-10</Point>
+							</Answer>
+							<Answer>
+								<Id>a005</Id>
+								<Player>p002</Player>
+								<Text>Вы будете пользоваться~интернетом на телефоне?~</Text>
+								<Target>l8</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a006</Id>
+								<Player>p002</Player>
+								<Text>Есть требования~к объему памяти?~</Text>
+								<Target>l9</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a007</Id>
+								<Player>p002</Player>
+								<Text>Сейчас есть телефоны споддержкой 2-х сим карт.~Можнопользоваться разными тарифами или~вообще разными операторами.</Text>
+								<Target>l21</Target>
+								<Point>+10</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l21</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Отлично, это то, что нужно.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Выход!</Text>
+								<Target>0</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l22</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Я пока просто смотрю.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Как хотите.~Мое дело — предложить.~</Text>
+								<Target>l19</Target>
+								<Point>-80</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Если у вас возникнут вопросы,~обращайтесь, я с удовольствием~отвечу.</Text>
+								<Target>l2</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Позовите меня,~когда что-то понравится.~</Text>
+								<Target>l2</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Я могу продемонстрировать~модель, которая Вам интересна.~</Text>
+								<Target>l2</Target>
+								<Point>+10</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l23</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Мне сложно выбрать</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>А какие функции в~телефоне Вам интересны?~</Text>
+								<Target>l3</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Вы для себя присматриваете~или в подарок?~</Text>
+								<Target>l5</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Есть ли какие-нибудь~пожелания ктелефону?~</Text>
+								<Target>l6</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Если не секрет,~на какую сумму рассчитываете?~</Text>
+								<Target>l7</Target>
+								<Point>-10</Point>
+							</Answer>
+							<Answer>
+								<Id>a005</Id>
+								<Player>p002</Player>
+								<Text>Вы будете пользоваться~интернетом на телефоне?~</Text>
+								<Target>l8</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a006</Id>
+								<Player>p002</Player>
+								<Text>Есть требования~к объему памяти?~</Text>
+								<Target>l9</Target>
+								<Point>+10</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l25</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Знаете, мне нужен мобильный, удобный и качественный</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>А какие функции в~телефоне Вам интересны?~</Text>
+								<Target>l3</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Вы для себя присматриваете~или в подарок?~</Text>
+								<Target>l5</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Есть ли какие-нибудь~пожелания ктелефону?~</Text>
+								<Target>l6</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Если не секрет,~на какую сумму рассчитываете?~</Text>
+								<Target>l7</Target>
+								<Point>-10</Point>
+							</Answer>
+							<Answer>
+								<Id>a005</Id>
+								<Player>p002</Player>
+								<Text>Вы будете пользоваться~интернетом на телефоне?~</Text>
+								<Target>l8</Target>
+								<Point>+10</Point>
+							</Answer>
+							<Answer>
+								<Id>a006</Id>
+								<Player>p002</Player>
+								<Text>Есть требования~к объему памяти?~</Text>
+								<Target>l9</Target>
+								<Point>+10</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l28</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Это слишком дорого для телефона.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Его качество оправдает ваши затраты.~По критериям надежности удобности и~современности этому телефону нет конкурентов</Text>
+								<Target>l29</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Этот телефон освободит вас от необходимости пользоваться~плеером, GPS-навигатором, ридером и~даже компьютером. Он содержит в себе функции о которых вы даже не знаете.</Text>
+								<Target>l29</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Не знаю, где Вы найдете модный и~качественный телефон по~низким ценам</Text>
+								<Target>l12</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Конечно, цена зателефон~должна быть разумной! Давайте посмотрим модели~других поставщиков</Text>
+								<Target>l25</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l29</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Странно, мне уже это предлагали и я согласилась.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Вы можете купить~дополнительную гарантию~на телефон</Text>
+								<Target>l30</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>В случае необходимости~этот товар можно приобрести~в кредит</Text>
+								<Target>l32</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Хочу вам предложить~новый тарифный план~</Text>
+								<Target>l33</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a004</Id>
+								<Player>p002</Player>
+								<Text>Что то еще желаете</Text>
+								<Target>l34</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l30</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>А что она дает?</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Профессиональное консультирование~по вопросам эксплуатации техники, бесплатная диагностика и ремонт~в течение всего срока действия сертификата.</Text>
+								<Target>l31</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>При необходимости,доставку~крупногабаритной бытовой~техники к месту ремонта и обратно.</Text>
+								<Target>l31</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Сертификат дает массу преимуществ,~это очень выгодное предложение.~</Text>
+								<Target>l31</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l31</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Интересное предложение</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>В случае необходимости~этот товар можно приобрести~в кредит</Text>
+								<Target>l32</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Хочу вам предложить~новый тарифный план~</Text>
+								<Target>l33</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a003</Id>
+								<Player>p002</Player>
+								<Text>Что то еще желаете?</Text>
+								<Target>l34</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l32</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Нет спасибо оплачу его сразу</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Хочу вам предложить~новый тарифный план~</Text>
+								<Target>l33</Target>
+								<Point>+0</Point>
+							</Answer>
+							<Answer>
+								<Id>a002</Id>
+								<Player>p002</Player>
+								<Text>Что то еще желаете?</Text>
+								<Target>l34</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l33</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Нет. спасибо, у меня уже есть симка. менять не собираюсь.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Выход!</Text>
+								<Target>0</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l34</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Спасибо, нет.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Выход!</Text>
+								<Target>0</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l35</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Нет, думаю, он нам не подходит.</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Выход!</Text>
+								<Target>0</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+			<Level>
+				<Id>l36</Id>
+				<Text></Text>
+				<Questions>
+					<Question>
+						<Id>q001</Id>
+						<Player>p001</Player>
+						<Text>Он мне нравится, давайте я его возьму</Text>
+						<Answers>
+							<Answer>
+								<Id>a001</Id>
+								<Player>p002</Player>
+								<Text>Момент</Text>
+								<Target>l29</Target>
+								<Point>+0</Point>
+							</Answer>
+						</Answers>
+					</Question>
+				</Questions>
+			</Level>
+		</Levels>

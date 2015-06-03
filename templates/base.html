@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+{% block html_declare %}
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+{% endblock %}
+	<head>
+		<title>{% block title %}{% endblock %} | {{ request.user.username }}</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		{% load staticfiles %}
+		<link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+	    <link href="{% static "font-awesome/css/font-awesome.css" %}" rel="stylesheet">
+
+		<link href="{% static "css/animate.css" %}" rel="stylesheet">
+	    <link href="{% static "css/style.min.css" %}" rel="stylesheet">
+	    <link href="{% static "css/project.css" %}" rel="stylesheet">
+		<!-- Mainly scripts -->
+		<script src="{% static "js/jquery-2.1.1.js" %}"></script>
+		<script src="{% static "js/bootstrap.min.js" %}"></script>
+		<script src="{% static "js/plugins/metisMenu/jquery.metisMenu.js" %}"></script>
+		<script src="{% static "js/plugins/slimscroll/jquery.slimscroll.min.js" %}"></script>
+
+		<!-- Custom and plugin javascript -->
+		<script src="{% static "js/inspinia.js" %}"></script>
+		<script src="{% static "js/plugins/pace/pace.min.js" %}"></script>
+
+		<!-- Peity -->
+		<script src="{% static "js/plugins/peity/jquery.peity.min.js" %}"></script>
+
+		{% block extra_head %}
+		{% endblock %}
+	</head>
+	
+	<body class="pace-done fixed-nav">
+		{% block extra_body %}
+		{% endblock %}
+		<div id="wrapper">
+			<nav class="navbar-default navbar-static-side" role="navigation">
+		        <div class="sidebar-collapse">
+					{% block partleft %}
+					{% endblock %}
+			    </div>
+			</nav>
+			<div id="page-wrapper">
+				<div class="row ">
+					<nav class="navbar navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+						<div class="navbar-header">
+				            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+				        </div>
+						{% block parttop %}
+						{% endblock %}
+					</nav>
+				</div>
+				
+				
+				{% block partmiddle %}
+				{% endblock %}
+				{% block partright %}
+				{% endblock %}
+				<div class="footer footer_progres ">
+					{% block partfooter %}
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+
+		<!-- iCheck -->
+		<script src="{% static "js/plugins/iCheck/icheck.min.js" %}"></script>
+		<script>
+			$(document).ready(function () {
+				$('.i-checks').iCheck({
+					checkboxClass: 'icheckbox_square-green',
+					radioClass: 'iradio_square-green',
+				});
+			});
+		</script>
+	</body>
+</html>
+
