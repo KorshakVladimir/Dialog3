@@ -6,17 +6,80 @@ from . models import *
 import hashlib
 import random
 
+def make_game(context):
+    context["active_game"] = 'active'
+    context["active_jurnal"] = ''
+    context["active_game_in"] = 'active in'
+    context["active_jurnal_in"] = ''
+    return context
+
+
+def tying_product(request,id_tying=0):
+    context = {}
+    context['point'] = request.session.get('point')
+    context['emo'] = request.session.get('emo')
+    inst_answer = Answer.objects.get(id = 47)
+    context["answer"] = inst_answer
+    id_tying = int(id_tying)
+    s_tyings = request.session.get('s_tyings')
+    list_tying = []
+    if s_tyings:
+
+        list_tying = list(map(lambda x :int(x),s_tyings.split(",")))
+    # import pdb
+    # pdb.set_trace()
+
+    if id_tying in list_tying:
+        
+        list_tying.remove(id_tying)
+        s_tyings = ",".join(map(lambda x :str(x),list_tying))
+        request.session["s_tyings"] = s_tyings
+
+    tying_instans = Tying_products.objects.filter(id__in = list_tying)
+
+    if not id_tying == 0 and not id_tying == 1 :
+        tying = Tying_products.objects.get(id  = id_tying)
+        rezult = User_rezult(session_output=request.session.get('GUID'),
+                 user_output=request.user,
+                 question_output = tying.name,
+                 money = tying.price,
+                 answer_output = inst_answer
+                 )
+        rezult.save()
+
+    context["tying_instans"] = tying_instans
+    context = for_history(request, context)
+    bay_quest = Tying_products.objects.get(id = 1)
+    context["bay_quest"] = bay_quest
+    context = make_game(context)
+
+    
+    
+    if int(id_tying) == 1:
+        return game_history(request, request.session.get('GUID'))
+    else:
+        return render(request,"tree/tying.html", context)
+
 
 def res_product(request, id_prod, id_quest):
+    
+    questions = Questions.objects.get(id =id_quest)
+    answer = Answer.objects.get(id = int(questions.question_answer))
     prod = Products.objects.get(id=id_prod)
+    tyings = Relations_tying_products.objects.filter(product = prod)
+    list_id = [str(x.tying_product.id) for x in tyings]
+    s_tyings = ",".join(list_id)
+    
+    request.session["s_tyings"] = s_tyings
+    
     guid = request.session.get('GUID')
     answers = [
         x.answer_output for x in User_rezult.objects.filter(session_output=guid)]
     proper_s = Essential_prop.objects.filter(relation_answer__in=answers)
-    answer_exit = Answer.objects.get(id=48)
-    quest_exit = Questions.objects.get(id=id_quest)
+
     # import pdb
     # pdb.set_trace()
+    count_point =0
     if proper_s:
 
         count_prop = 100 // len(proper_s)
@@ -28,15 +91,15 @@ def res_product(request, id_prod, id_quest):
                 if req_prop[0].value_property == i.value_property:
                     count_point += count_prop
 
-        rezult = User_rezult(session_output=request.session.get('GUID'),
+    rezult = User_rezult(session_output=request.session.get('GUID'),
                              user_output=request.user,
                              point=count_point,
-                             product=prod,
-                             question_output=quest_exit,
-                             answer_output=answer_exit
+                             question_output=prod.name,
+                             money = prod.price,
+                             answer_output = answer,
                              )
-        rezult.save()
-    return index(request, 48, id_quest)
+    rezult.save()
+    return tying_product(request)
 
 
 def for_game(request, answer_id, id_quest, context):
@@ -82,10 +145,11 @@ def for_game(request, answer_id, id_quest, context):
 
         rezult = User_rezult(session_output=request.session.get('GUID'),
                              user_output=request.user,
+                             
                              answer_output=ansver_output,
                              point=question_output.point_answer,
-                             question_output=question_output,
-                             best_choise=best_choise.id
+                             question_output=question_output.text_questions,
+                             best_choise=best_choise.text_questions
                              )
         rezult.save()
     if question_output:
@@ -125,10 +189,7 @@ def index(request, answer_id=1081, id_quest=0):
     context = {}
     context = for_game(request, answer_id, id_quest, context)
     context = for_history(request, context)
-    context["active_game"] = 'active'
-    context["active_jurnal"] = ''
-    context["active_game_in"] = 'active in'
-    context["active_jurnal_in"] = ''
+    context = make_game(context)
     if int(answer_id) == 48:
 
         return game_history(request, request.session.get('GUID'))
@@ -159,13 +220,14 @@ def for_game_history(request, guid, context):
     history_entry = User_rezult.objects.filter(session_output=guid)
     order_history = history_entry.order_by('date_create')
     total_point = 0
+    total_money = 0
     for i in order_history:
-        if i.best_choise:
-            best_choise = Questions.objects.get(id=int(i.best_choise))
-        else:
-            best_choise = ""
+
+        best_choise = i.best_choise
+
         # print(best_choise)
         total_point += i.point
+        total_money += i.money
         entry_order_history = i.displaying()
         # import pdb
         # pdb.set_trace()
@@ -173,9 +235,11 @@ def for_game_history(request, guid, context):
                              "question_output": entry_order_history["question_output"],
                              "best_choise": best_choise,
                              "point": entry_order_history["point"],
+                             "money": entry_order_history["money"],
                              })
     context['history_entry'] = list_history
     context['total_point'] = total_point
+    context['total_money'] = total_money
     return context
 
 

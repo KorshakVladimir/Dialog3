@@ -105,7 +105,10 @@ td{
 
 .women{
 	/*background-image: url("/static/game_01_img/women3.png") ;*/
-	width: 188px;
+  width: 477px;
+  position: absolute;
+  right: 0px;
+  top: -20px;
 }
 #arrow-popover{
 	margin-left: -30%

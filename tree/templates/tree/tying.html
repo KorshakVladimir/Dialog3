@@ -1,0 +1,18 @@
+{% extends "gameplace.html" %}
+
+{% block main_bottom %}
+<div class="row" >
+	<div class="col-md-12" >
+		<div id = "place-botton" >
+			
+			{% for tying_instan in tying_instans %}
+			<a id= "menu" class=" btn btn-default btn-lg "   href="/tree/tying/{{tying_instan.id}}" > <span id="badge-pos" class=" badge pull-left">{{ forloop.counter }}</span>{{tying_instan.name}}</a>
+				
+			{%endfor%}
+			<a id= "menu" class=" btn btn-default btn-lg "   href="/tree/tying/1" > <span id="badge-pos" class=" badge pull-left">X</span>{{bay_quest.name}}</a>
+		</div>
+
+	</div>	
+		
+</div>
+{% endblock %}

@@ -72,15 +72,15 @@
 							</div>
 						</div>
 						<div class="col-md-3">
-							<div >
-							<img class="women" src="/static/game_01_img/women4.png">
+							<div style="height: 302px;" >
+							<img class="women" src="/static/game_01_img/women3.png">
 							</div>
 						</div>
 
 						<div class="col-md-1"></div>
 					</div>
 
-
+					{% block main_bottom %}
 					<div class="row" >
 				 		<div class="col-md-12" >
 				 		<div id = "place-botton" >
@@ -115,7 +115,7 @@
 				 		</div>	
 				 		
 				 	</div>
-
+				 	{% endblock %}
 				</div>
 				</div>
 			{% endblock %}
@@ -132,6 +132,3 @@
 {% endblock %}
 
 
-{% block partfooter %}
-	{% include 'part_footer.html' %}
-{% endblock %}

@@ -50,6 +50,7 @@ class Products(models.Model):
     name = models.CharField(max_length=200)
     type_prod = models.CharField(max_length=200)
     description = models.TextField()
+    price = models.IntegerField(default=0)
     image_product = models.ImageField(blank=True, null=True)
 
     def __str__(self):
@@ -77,26 +78,26 @@ class Essential_prop(models.Model):
 
 class User_rezult(models.Model):
     user_output = models.ForeignKey(User)
-    question_output = models.ForeignKey(Questions)
-    answer_output = models.ForeignKey(Answer)
+    question_output = models.CharField(max_length=200)
+    # answer_text = models.CharField(max_length=200)
+    answer_output = models.ForeignKey(Answer,blank = True,null = True)
+    type_quest = models.CharField(max_length=200)
     point = models.IntegerField(default=0)
+    money = models.IntegerField(default=0)
     session_output = models.CharField(max_length=36)
     date_create = models.DateTimeField(auto_now=True)
     best_choise = models.CharField(max_length=150)
-    product = models.ForeignKey(Products, blank=True, null=True)
 
     def displaying(self):
         d = {}
         d["user_output"] = self.user_output
-        if self.product:
-            d["question_output"] = self.product
-            d["best_choise"] = ""
-        else:
-            d["question_output"] = self.question_output
-            d["best_choise"] = self.best_choise
+
+        d["question_output"] = self.question_output
+        d["best_choise"] = self.best_choise
 
         d["answer_output"] = self.answer_output
         d["point"] = self.point
+        d["money"] = self.money
         return d
 
     def __unicode__(self):
@@ -104,3 +105,15 @@ class User_rezult(models.Model):
 
     def __str__(self):
         return self.session_output
+
+
+class Tying_products(models.Model):
+    name = models.CharField(max_length=150)
+    price = models.IntegerField(default=0)
+    def __str__(self):
+        return self.name
+
+
+class Relations_tying_products(models.Model):
+    product = models.ForeignKey(Products)
+    tying_product = models.ForeignKey(Tying_products)

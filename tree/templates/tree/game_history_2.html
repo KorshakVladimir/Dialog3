@@ -10,6 +10,7 @@
           <th>Ваши слова</th>
           <th>Лучший ответ</th>
           <th>Очки</th>
+          <th>Деньги</th>
         </tr>
       </thead>
       <tbody>
@@ -20,8 +21,8 @@
           <td>{{ entry.question_output }} </td>
           <td>{{ entry.best_choise }} </td>
           <td>{{ entry.point }} </td>
+          <td>{{ entry.money }} </td>
         </tr>
-
       {%endfor%}
       <tr>
           <th class="invisible">1</th>
@@ -29,13 +30,9 @@
           <td class="invisible">1</td>
           <td ><h4>Итого:</h4> </td>
           <td ><h4>{{ total_point }}</h4> </td>
+          <td ><h4>{{ total_money }}</h4> </td>
         </tr>
-      
-       
       </tbody>
-    </table>
-      
+    </table>      
   </div>
-  
-
 {% endblock %}

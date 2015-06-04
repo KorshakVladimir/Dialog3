@@ -37,9 +37,17 @@ class Property_charAdmin(admin.ModelAdmin):
     pass
 
 
+class Relations_tying_products_Inline(admin.TabularInline):
+
+    model = Relations_tying_products
+
+
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
     pass
+    inlines = [
+        Relations_tying_products_Inline,
+    ]
 
 
 @admin.register(Products_property)
@@ -49,4 +57,10 @@ class Products_propertyAdmin(admin.ModelAdmin):
 
 @admin.register(Essential_prop)
 class Essential_propAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Tying_products)
+class Tying_productsAdmin(admin.ModelAdmin):
+    list_display= ["id","name"]
     pass
