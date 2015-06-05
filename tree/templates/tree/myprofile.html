@@ -1,0 +1,104 @@
+
+{% extends "gameplace.html" %}
+
+{% block game %}
+<div class="raw" >
+    <div class="col-lg-2">
+        <div >
+            <div class="widget lazur-bg no-padding">
+                <div class="p-m">
+                    <h1 class="m-xs"> 36</h1>
+                    <h3 class="font-bold no-margins"> Количество успешных игр </h3>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div >
+            <div class="widget lazur-bg no-padding">
+                <div class="p-m">
+                    <h1 class="m-xs"> 3</h1>
+                    <h3 class="font-bold no-margins"> Место среди игроков по очкам </h3>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div >
+            <div class="widget lazur-bg no-padding">
+                <div class="p-m">
+                    <h1 class="m-xs"> 2</h1>
+                    <h3 class="font-bold no-margins"> Место среди игроков по деньгам </h3>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Процент отработки каждого продукта </h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#">Config option 1</a>
+                        </li>
+                        <li><a href="#">Config option 2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div> 
+                <div class="ibox-content">
+                    <div>
+                        <canvas id="barChart" height="211" width="453" style="width: 453px; height: 211px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+</div>
+
+
+<div class = "row" >
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5> График "паутинка" по этапам продажи </h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#">Config option 1</a>
+                        </li>
+                        <li><a href="#">Config option 2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div> 
+                <div class="ibox-content">
+                    <div>
+                        <canvas id="radarChart" height="211" width="453" style="width: 453px; height: 211px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -6,7 +6,10 @@
 		<title>{% block title %}{% endblock %} | {{ request.user.username }}</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta http-equiv="Cache-Control" content="no-store" />
+		<meta http-equiv="Cache-Control" content="must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
 		{% load staticfiles %}
 		<link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
 	    <link href="{% static "font-awesome/css/font-awesome.css" %}" rel="stylesheet">
@@ -26,6 +29,24 @@
 
 		<!-- Peity -->
 		<script src="{% static "js/plugins/peity/jquery.peity.min.js" %}"></script>
+
+	    <!-- Custom and plugin javascript -->
+
+	    <!-- for profile -->
+		<!-- iCheck -->
+
+		<!-- Flot -->
+		<script src="{% static "js/plugins/flot/jquery.flot.js" %}"></script>
+		<script src="{% static "js/plugins/flot/jquery.flot.tooltip.min.js" %}"></script>
+		<script src="{% static "js/plugins/flot/jquery.flot.resize.js" %}"></script>
+		<script src="{% static "js/plugins/flot/jquery.flot.pie.js" %}"></script>
+		<script src="{% static "js/plugins/flot/jquery.flot.time.js" %}"></script>
+		<!-- Flot demo data -->
+		<script src="{% static "js/demo/Chart.min.js" %}"></script>
+		<script src="{% static "js/demo/chartjs-demo.js" %}"></script>
+		<script src="{% static "js/demo/flot-demo.js" %}"></script>
+		
+			   
 
 		{% block extra_head %}
 		{% endblock %}
@@ -64,7 +85,7 @@
 			</div>
 		</div>
 
-		<!-- iCheck -->
+		
 		<script src="{% static "js/plugins/iCheck/icheck.min.js" %}"></script>
 		<script>
 			$(document).ready(function () {
@@ -74,6 +95,7 @@
 				});
 			});
 		</script>
+
 	</body>
 </html>
 

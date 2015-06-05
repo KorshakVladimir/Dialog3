@@ -117,18 +117,21 @@ MEDIA_URL = '/media/'
 # Absolute path to the media directory
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 
-DATABASES = {
-'default': {
-'ENGINE': 'django.db.backends.sqlite3',
-'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-'USER': 'tj',
-'PASSWORD': 'tj',
-}
-}
+
 
 try:
    from . import local
+
+   DATABASES = {
+    'default': {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'USER': 'tj',
+    'PASSWORD': 'tj',
+    }
+    }
 except:
+   
    DATABASES = {
                 'default': {
                     'ENGINE': 'django.db.backends.mysql',
@@ -149,7 +152,7 @@ except:
 # Static asset configuration
 
     # BASE_DIR = os.path.dirname(os.path.abspath(__file__)
-STATIC_ROOT = 'staticfiles'
+# STATIC_ROOT = 'staticfiles'
     # STATIC_URL = '/static/
 STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),

@@ -6,11 +6,12 @@ from . models import *
 import hashlib
 import random
 
-def make_game(context):
-    context["active_game"] = 'active'
-    context["active_jurnal"] = ''
-    context["active_game_in"] = 'active in'
-    context["active_jurnal_in"] = ''
+def make_game(context,active_tab):
+    context["act_game"] = ''
+    context["act_history"] = ''
+    context["act_profile"] = ''
+    context["act_statistic"] = ''
+    context[active_tab] = 'active'
     return context
 
 
@@ -53,8 +54,6 @@ def tying_product(request,id_tying=0):
     context["bay_quest"] = bay_quest
     context = make_game(context)
 
-    
-    
     if int(id_tying) == 1:
         return game_history(request, request.session.get('GUID'))
     else:
@@ -188,8 +187,7 @@ def index(request, answer_id=1081, id_quest=0):
 
     context = {}
     context = for_game(request, answer_id, id_quest, context)
-    context = for_history(request, context)
-    context = make_game(context)
+    context = make_game(context,'act_game')
     if int(answer_id) == 48:
 
         return game_history(request, request.session.get('GUID'))
@@ -197,23 +195,22 @@ def index(request, answer_id=1081, id_quest=0):
         return render(request, 'gameplace.html', context)
 
 
-# def history(request):
+def profile(request):
+    context = {}
+    context = make_game(context,'act_profile')
+    return render(request, 'tree/myprofile.html', context)
 
-#     dict_sesions = {}
-#     list_sesions = []
-#     result = User_rezult.objects.filter(user_output=request.user)
+def history(request):
+    context = {}
+    context = for_history(request, context)
+    context = make_game(context,'act_history')
+    return render(request, 'tree/history_1.html', context)
 
-#     for i in result:
-#         dict_sesions[i.session_output] = i.date_create
+def statistic(request):
+    context = {}
+    context = make_game(context,'act_statistics')
+    return render(request, 'tree/statistic.html', context)
 
-#     for key_d in dict_sesions:
-#         list_sesions.append(
-#             {'session_output': key_d, 'date_create': dict_sesions[key_d]})
-# import pdb
-# pdb.set_trace()
-#     context = {"list_sesions": list_sesions}
-#     context['count'] = 0
-#     return render(request, 'tree/history.html', context)
 def for_game_history(request, guid, context):
     list_history = []
 
