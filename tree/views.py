@@ -28,6 +28,7 @@ def make_game(context,active_tab):
     context["act_history"] = ''
     context["act_profile"] = ''
     context["act_statistic"] = ''
+    context["act_prod"] = ''
     context[active_tab] = 'active'
     return context
 
@@ -79,7 +80,7 @@ def tying_product(request,id_tying=0):
 def part_prod(request):
     context = {}
     context = get_prod_all(context)
-    context = make_game(context,"act_game") 
+    context = make_game(context,"act_prod") 
     return render(request,"tree/product.html", context)
 
 
