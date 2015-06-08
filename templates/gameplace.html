@@ -8,14 +8,14 @@
 {% endblock %}
 
 {% block parttop %}
-	{% include 'part_top.html' %}
+	
 {% endblock %}
 
 {% block partmiddle %}
 	<div >
 	    <ul class="nav nav-tabs">
-	      	<li role="presentation" class="{{act_game }}"><a href="/tree" >Игра</a></li>
-        	<li role="presentation" class="{{act_history }}"><a href="/tree/history">Журнал</a></li>
+	      	<li role="presentation" class="{{act_game }}"><a href="/tree" ><span class="glyphicon glyphicon-send" ></span> &nbsp Игра</a></li>
+        	<li role="presentation" class="{{act_history }}"><a href="/tree/history">Журнал</a></li>	
         	<li role="presentation" class="{{act_profile }}"><a href="/tree/profile" >Профайл</a></li>
 	      	<li role="presentation" class="{{act_statistic }}"><a href="/tree/statistic"  >Статистика</a></li>
 	    </ul>
@@ -34,17 +34,15 @@
 				 			<img   id ="badge-left" src="{% static "game_01_img/points.png" %}" alt="Очки" > 
 				 			
 					 		<div id= "right-progres-bar" class="  for_progress_bar progress ">
-
-					 				
 								  	<div id = "points" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{ point }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ point }}%">
-								    
 								  	</div>
 							</div>
 							{% endblock %}
 						</div>	
 						
 						<div class="col-md-2">
-								
+							<a href="/tree/part_prod/"> <button type="button" class="btn btn-success" style="margin-top: 25px;background-color: #1F6077;
+  														border-color:#1F6077;" >Товары</button> </a>		
 						</div>
 						
 				 		<div class="col-md-5">
@@ -84,8 +82,7 @@
 					{% block main_bottom %}
 					<div class="row" >
 				 		<div class="col-md-12" >
-				 		<div id = "place-botton" >
-					 		
+					 		<div id = "place-botton" >						 		
 					 			{% for question in questions %}
 									<a id= "menu" class=" btn btn-default btn-lg "   href="/tree/{{ question.question_answer  }}/{{question.id}}" 
 									{% if question.text_questions == 'Предложить товар'  %}
@@ -96,25 +93,22 @@
 										<!-- Modal -->
 
 										<div class="modal fade" id="myProd" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-										  <div id = "modal_dialog" class="modal-dialog ">
+										  <div id = "modal_dialog" class="modal-dialog " style="left: -23%;">
 										    <div class="modal-content_1">
 										    
-										    <div class="modal-header">
-										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										        <h4 class="modal-title">Выберите товар</h4>
-										     </div>
-										     {% include 'tree/part_for_product.html' %}
+											    <div class="modal-header">
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											        <h4 class="modal-title">Выберите товар</h4>
+											    </div>
+										     	{% include 'tree/part_for_product.html' %}
 											    
 										    </div> 
 										  </div>
 										</div>
 									{%endif%}
-								{%endfor%}
-					 		
-				 		</div>
-
-				 		</div>	
-				 		
+								{%endfor%}						 		
+					 		</div>
+				 		</div>					 		
 				 	</div>
 				 	{% endblock %}
 				</div>

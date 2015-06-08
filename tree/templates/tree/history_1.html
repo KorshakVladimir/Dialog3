@@ -1,6 +1,6 @@
 {% extends "gameplace.html" %}
 {% block game %}
-	<div >
+	<div style = "padding: 1%;" >
     <table class="table table-bordered table-bg table-width">
       <thead>
         <tr>
@@ -8,18 +8,19 @@
           <th>Игры</th>
           <th>Очки</th>
           <th>Деньги</th>
+
         </tr>
       </thead>
       <tbody>
 
       {% for el_sesion in list_sesions %}
 		    <tr>
-          <th scope="row">{{ forloop.counter }}</th>
-          <td><a href="/tree/session/{{ el_sesion.session_output }}/">{{el_sesion.date_create }}</a></td>
-          <td>
-          {{el_sesion.date_create }}  
-          </td>
+          <th scope="row" >{{ forloop.counter }}</th>          
+            <td style="text-align:center;"><a href="/tree/session/{{ el_sesion.session_output }}/">{{el_sesion.date_create }}</a> </td>
+            <td style="text-align:right;">  {{ el_sesion.point }}  </td>
+            <td style="text-align:right;">  {{ el_sesion.money }}  </td>
         </tr>
+        
 	  {%endfor%}
        
       </tbody>

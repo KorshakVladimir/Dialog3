@@ -45,7 +45,7 @@
   border: 3px outset rgb(244, 244, 244);
   background-color: rgba(176, 183, 195, 1);
   background: linear-gradient(to bottom, #595A76, #0F101D);
-  height: 44px;
+  height: 32px;
 
 }
 
@@ -65,13 +65,14 @@
 }
 
 .table-bg{
-	background-color: rgba(197, 197, 197, 0.86);
+	/*background-color: rgba(197, 197, 197, 0.86);
 	
   	margin-left: auto;
-  	margin-right: auto;
+  	margin-right: auto;*/
 }
 .table-width{
-	width: 300px;
+	width: 80%;
+  margin-left: 10%  ;
 }
 
 td{
@@ -247,13 +248,13 @@ td{
 .div-name{
   height: 45px;
   margin-left: 15px;
-
+  text-align: center;
 }
 .product_property{
   position: relative;
   top: -204px;
   left: 100px;
-  min-width: 450px;
+  min-width: 600px;
 }
 
 #menu2{
@@ -270,4 +271,25 @@ td{
 }
 #modal_dialog{
   max-width: 429px;
+}
+.img_table{
+  height: 160px;
+}
+.td_img{
+  height: 160px;
+  width: 100px;
+}
+
+.type_select{
+
+  padding: 10%;
+  margin-left: 10%;
+  max-width:80%;
+
+}
+
+.td_img_pos{
+  height: 160px;
+  padding-left: 20%;
+  
 }

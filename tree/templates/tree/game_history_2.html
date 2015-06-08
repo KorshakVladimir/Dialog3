@@ -1,6 +1,6 @@
 {% extends "gameplace.html" %}
 
-{% block game_history %} 
+{% block game %} 
   <div>
     <table class="table table-striped table-bg">
       <thead>
@@ -9,6 +9,7 @@
           <th>Слова покупателя</th>
           <th>Ваши слова</th>
           <th>Лучший ответ</th>
+          <th></th>
           <th>Очки</th>
           <th>Деньги</th>
         </tr>
@@ -19,7 +20,12 @@
           <th scope="row">{{ forloop.counter }}</th>
           <td>{{ entry.answer_output }} </td>
           <td>{{ entry.question_output }} </td>
-          <td>{{ entry.best_choise }} </td>
+          <td> {{ entry.best_choise }} </td>
+          <td style="width:20px;">
+            <button type="button" class="btn btn-default"  data-container="body" data-toggle="popover" data-placement="left" data-content="Здесь обьясняется суть правильного ответа">
+               <span class="glyphicon glyphicon-question-sign" P></span>
+            </button> 
+          </td>
           <td>{{ entry.point }} </td>
           <td>{{ entry.money }} </td>
         </tr>
@@ -35,4 +41,6 @@
       </tbody>
     </table>      
   </div>
+
+
 {% endblock %}

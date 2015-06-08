@@ -5,36 +5,36 @@
     </a>
 
     <div class="div-name" ><h4 >{{product.product.name.name}} </h4></div>
-
-    <a href="/tree/prod/{{product.product.name.id}}/{{question.id}}">
-    	<button type="button" class="btn btn-primary">Предложить</button>
-	</a>  
-  
+    {% if question %}
+	    <a href="/tree/prod/{{product.product.name.id}}/{{question.id}}">
+	    	<button type="button" class="btn btn-primary">Предложить</button>
+		</a>  
+  	{%endif%}
     <div id="menu2" class="dropdown-menu product_property" role="menu" aria-labelledby="{{product.product.product.name.id}}">
     	<div class="row" >
-			<div class="col-md-5" >
-		    <h4>Характеристики устройства</h4>
-		    
-		    <table class="table top_border_table">
-		    	<thead>
-			        <tr>
-			          <th>Свойство</th>
-			          <th>Значение</th>
-			        </tr>
-		        </thead>
-		        <tbody>
-			      	{% for el_prop in product.product.property %}
-			        <tr>
-			         	<td style="text-align: right;">{{ el_prop.name_property.name_property_trans  }} :</td>
-			         	<td>{{ el_prop.value_property }}</td>
-			        </tr>
+			<div class="col-md-4" >
+			    <h4>Характеристики устройства</h4>
+			    
+			    <table class="table top_border_table">
+			    	<thead>
+				        <tr>
+				          <th>Свойство</th>
+				          <th>Значение</th>
+				        </tr>
+			        </thead>
+			        <tbody>
+				      	{% for el_prop in product.product.property %}
+				        <tr>
+				         	<td style="text-align: right;">{{ el_prop.name_property.name_property_trans  }} :</td>
+				         	<td>{{ el_prop.value_property }}</td>
+				        </tr>
 
-					{%endfor%}  
-				</tbody>
-			</table> 
+						{%endfor%}  
+					</tbody>
+				</table> 
 
 			</div>
-			<div  class="col-md-7 descript">
+			<div  class="col-md-8 descript">
 				<h4>Описание</h4>
 				<br>
 

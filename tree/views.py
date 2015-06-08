@@ -6,6 +6,23 @@ from . models import *
 import hashlib
 import random
 
+def get_prod_all(context):
+    product = Products.objects.all()
+    list_product = []
+
+    for el_product in product:
+
+        prop = {}
+        products_property = Products_property.objects.filter(
+            products_id=el_product.id)
+        dict_prod = {'name': el_product,
+                     'description': el_product.description, 'property': products_property}
+
+        list_product.append({"product": dict_prod})
+
+    context['list_product'] = list_product
+    return context
+
 def make_game(context,active_tab):
     context["act_game"] = ''
     context["act_history"] = ''
@@ -59,6 +76,12 @@ def tying_product(request,id_tying=0):
     else:
         return render(request,"tree/tying.html", context)
 
+def part_prod(request):
+    context = {}
+    context = get_prod_all(context)
+    context = make_game(context,"act_game") 
+    return render(request,"tree/product.html", context)
+
 
 def res_product(request, id_prod, id_quest):
     
@@ -102,6 +125,7 @@ def res_product(request, id_prod, id_quest):
 
 
 def for_game(request, answer_id, id_quest, context):
+
     if int(answer_id) == 48:
         return context
 
@@ -109,18 +133,9 @@ def for_game(request, answer_id, id_quest, context):
     questions = Questions.objects.filter(relation_answer_id=answer.id)
 
     question_output = ''
-    product = Products.objects.all()
-
-    list_product = []
-    for el_product in product:
-
-        prop = {}
-        products_property = Products_property.objects.filter(
-            products_id=el_product.id)
-        dict_prod = {'name': el_product,
-                     'description': el_product.description, 'property': products_property}
-
-        list_product.append({"product": dict_prod})
+    
+    
+    context = get_prod_all(context)
 
     if answer_id == 1081:
 
@@ -151,6 +166,8 @@ def for_game(request, answer_id, id_quest, context):
                              best_choise=best_choise.text_questions
                              )
         rezult.save()
+
+
     if question_output:
         point = question_output.point_answer
     else:
@@ -160,7 +177,7 @@ def for_game(request, answer_id, id_quest, context):
     context['emo'] = request.session.get('emo') + point
     context['answer'] = answer
     context['questions'] = questions
-    context['list_product'] = list_product
+ 
 
     return context
 
@@ -169,20 +186,28 @@ def for_history(request, context):
     dict_sesions = {}
     list_sesions = []
     result = User_rezult.objects.filter(user_output=request.user)
-    sum_point = result.aggregate(point = Sum("point"))
-    print(sum_point)
+    
+    
     for i in result:
         dict_sesions[i.session_output] = i.date_create
 
     for key_d in dict_sesions:
+        result_ses = User_rezult.objects.filter(session_output=key_d)
+        sum_point = result_ses.aggregate(point = Sum("point"),money = Sum('money'))
         list_sesions.append(
-            {'session_output': key_d, 'date_create': dict_sesions[key_d], "point":sum_point['point'] })
+            {'session_output': key_d, 'date_create': dict_sesions[key_d], "point":sum_point['point'],
+            'money':sum_point['money'] })
     # import pdb
     # pdb.set_trace()
+
     context["list_sesions"] = list_sesions
     context['count'] = 0
     return context
 
+def select_prof(request):
+
+    context= {}
+    return render(request, 'tree/select_type_person.html', context)
 
 def index(request, answer_id=1081, id_quest=0):
 
@@ -213,6 +238,7 @@ def statistic(request):
     return render(request, 'tree/statistic.html', context)
 
 def for_game_history(request, guid, context):
+
     list_history = []
 
     history_entry = User_rezult.objects.filter(session_output=guid)
@@ -234,20 +260,23 @@ def for_game_history(request, guid, context):
                              "best_choise": best_choise,
                              "point": entry_order_history["point"],
                              "money": entry_order_history["money"],
-                             })
+                            })
     context['history_entry'] = list_history
     context['total_point'] = total_point
     context['total_money'] = total_money
+    context = make_game(context,"act_history")
     return context
 
 
 def game_history(request, guid):
     context = {}
     context = for_game_history(request, guid, context)
-    context = for_game(request, 1081, 0, context)
-    context["active_game"] = ''
-    context["active_jurnal"] = 'active'
-    context["active_game_in"] = ''
-    context["active_jurnal_in"] = 'active in'
+    
+
 
     return render(request, 'tree/game_history_2.html', context)
+
+
+def refer(request):
+
+    return render(request, 'tree/refer.html')

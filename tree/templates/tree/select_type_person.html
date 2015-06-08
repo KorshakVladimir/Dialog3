@@ -1,0 +1,26 @@
+
+{% extends "gameplace.html" %}
+{% load staticfiles %}	
+{% block game %}
+	<div class = "type_select">	
+		<table class="table">
+	      <thead>
+	        <tr>
+	          <th>Персонаж</th>
+	          <th>Описание</th>
+
+	        </tr>
+	      </thead>
+	      <tbody>
+	    	<tr>
+	          <th class="td_img"> <a href="/tree/index"> <img class="td_img_pos" style="padding-left:35%;"  src=" {% static  "game_01_img/women4.png" %}"> </a></th>
+	          <th>Молодая девушка,не очень разбирается в характеристиках телефона, хочет купить самый престижный телефон</th>
+			</tr>
+	        <tr>
+	          <th class="td_img"><a href="/tree/index">  <img class="td_img_pos" src=" {% static  "game_01_img/rand_ava.png" %}"> </a></th>
+	          <th>Персонаж будет выбран случайным образом</th>
+			</tr>
+		  </tbody>
+		 </table>
+	</div>
+{% endblock %}
