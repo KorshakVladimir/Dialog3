@@ -1,6 +1,6 @@
 
 # -*- coding: utf-8 -*-
-
+from django.db.models import Sum
 from django.shortcuts import render
 from . models import *
 import hashlib
@@ -52,7 +52,7 @@ def tying_product(request,id_tying=0):
     context = for_history(request, context)
     bay_quest = Tying_products.objects.get(id = 1)
     context["bay_quest"] = bay_quest
-    context = make_game(context)
+    context = make_game(context,"act_game")
 
     if int(id_tying) == 1:
         return game_history(request, request.session.get('GUID'))
@@ -169,13 +169,14 @@ def for_history(request, context):
     dict_sesions = {}
     list_sesions = []
     result = User_rezult.objects.filter(user_output=request.user)
-
+    sum_point = result.aggregate(point = Sum("point"))
+    print(sum_point)
     for i in result:
         dict_sesions[i.session_output] = i.date_create
 
     for key_d in dict_sesions:
         list_sesions.append(
-            {'session_output': key_d, 'date_create': dict_sesions[key_d]})
+            {'session_output': key_d, 'date_create': dict_sesions[key_d], "point":sum_point['point'] })
     # import pdb
     # pdb.set_trace()
     context["list_sesions"] = list_sesions
