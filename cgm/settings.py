@@ -121,7 +121,7 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 
 try:
    from . import local
-   DEBUG = True
+   DEBUG = False
    DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.sqlite3',
