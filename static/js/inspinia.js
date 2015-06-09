@@ -79,9 +79,10 @@ $(document).ready(function () {
     // Minimalize menu
     $('.navbar-minimalize').click(function () {
         $("body").toggleClass("mini-navbar");
-        SmoothlyMenu();
+         SmoothlyMenu();
 
     });
+
 
 
     // Tooltips demo
@@ -115,6 +116,8 @@ $(document).ready(function () {
 
     // Fixed Sidebar
     $(window).bind("load", function () {
+        
+        
         if ($("body").hasClass('fixed-sidebar')) {
             $('.sidebar-collapse').slimScroll({
                 height: '100%',

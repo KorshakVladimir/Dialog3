@@ -131,7 +131,7 @@ try:
     }
     }
 except:
-   
+   DEBUG = False
    DATABASES = {
                 'default': {
                     'ENGINE': 'django.db.backends.mysql',

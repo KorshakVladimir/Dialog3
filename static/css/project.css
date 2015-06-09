@@ -101,11 +101,19 @@ td{
 	background-size:cover;
 }
 .backg{
- background-color: #fff;
- border-left: 1px solid #fff;
- border-right: 1px solid #fff;
- border-bottom: 1px solid #fff;
-}
+  background-color: #fff;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  width: 1027px;
+  margin-left: auto;
+  margin-right: auto;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+   }
 
 .women{
 	/*background-image: url("/static/game_01_img/women3.png") ;*/
@@ -193,16 +201,9 @@ td{
 }
 #badge-right{
 
-  /*position: absolute;
-  top: 10px;
-  left: 96px;
-  height: 90px;
-  width: 72px;
-*/
   position: absolute;
-  top: 11px;
-  left: 111px;
-  /* height: 90px; */
+  top:   11px;
+  right: 267px;
   width: 72px;
 }
 
@@ -268,20 +269,29 @@ td{
 
 }
 .descript{
+
   text-align: left;
 }
 .top_border_table{
+
   border-top: 1px solid #000;
 }
 #modal_dialog{
+
   max-width: 429px;
+
 }
+
 .img_table{
+
   height: 160px;
+
 }
 .td_img{
+
   height: 160px;
   width: 100px;
+
 }
 
 .type_select{
@@ -293,8 +303,9 @@ td{
 }
 
 .td_img_pos{
+
   height: 160px;
-  padding-left: 20%;
-  
+  padding-left: 20%; 
+
 }
 /*?fdf*/
