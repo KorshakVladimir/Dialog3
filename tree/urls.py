@@ -14,4 +14,6 @@ urlpatterns = [
     url(r'^(?P<answer_id>\d*)/(?P<id_quest>\d*)$', index, name='index'),
     url(r'^prod/(?P<id_prod>\d*)/(?P<id_quest>\d*)$', res_product, name='res_product'),
     url(r'^tying/(?P<id_tying>\d*)$', tying_product, name='tying_product'),
+    url(r'^diagrama/$', diagram, name='diagram'),
+
 ]

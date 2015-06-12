@@ -281,3 +281,7 @@ def game_history(request, guid):
 def refer(request):
 
     return render(request, 'tree/refer.html')
+
+def diagram(request):
+
+    return render(request, 'tree/digrama.html')

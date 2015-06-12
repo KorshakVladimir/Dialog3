@@ -26,7 +26,7 @@ SECRET_KEY = 'g&x3e&dogige0=uuhl%3(%8nmmcy)v(1-o037smy+a5#67f$rt'
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ['46.101.136.125','*', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -121,7 +121,7 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 
 try:
    from . import local
-   DEBUG = False
+   DEBUG = True
    DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.sqlite3',
@@ -132,6 +132,7 @@ try:
     }
 except:
    DEBUG = False
+   
    DATABASES = {
                 'default': {
                     'ENGINE': 'django.db.backends.mysql',
@@ -152,9 +153,10 @@ except:
 # Static asset configuration
 
     # BASE_DIR = os.path.dirname(os.path.abspath(__file__)
-STATIC_ROOT = 'static'
+if not DEBUG :
+    STATIC_ROOT = 'static'  
 
-    # STATIC_URL = '/static/
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),

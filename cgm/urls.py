@@ -34,8 +34,8 @@ handler404='cgm.auth.login'
 urlpatterns += patterns('',
                             (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
                                 'document_root': settings.MEDIA_ROOT}))
-# if settings.DEBUG is False:   #if DEBUG is True it will be served automatically
-urlpatterns += patterns('',
+if settings.DEBUG is False:   #if DEBUG is True it will be served automatically
+    urlpatterns += patterns('',
             url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
     )    
 
