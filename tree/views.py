@@ -4,7 +4,9 @@ from django.db.models import Sum
 from django.shortcuts import render
 from . models import *
 import hashlib
-import random
+import random                                         
+import pdb
+from . forms  import AnswerForm
 
 def get_prod_all(context):
     product = Products.objects.all()
@@ -273,8 +275,6 @@ def game_history(request, guid):
     context = {}
     context = for_game_history(request, guid, context)
     
-
-
     return render(request, 'tree/game_history_2.html', context)
 
 
@@ -283,5 +283,50 @@ def refer(request):
     return render(request, 'tree/refer.html')
 
 def diagram(request):
+    list_all_answer = [Answer.objects.get(id  = 1082)]
 
-    return render(request, 'tree/digrama.html')
+    # print( "len" , len(list(all_answer)))
+    context = {}
+    list_answer = []
+    top = 500
+    left = 5
+    flag_answer = []
+    list_con = []
+    form = ""
+    while True:
+
+        list_quest_answer = []
+        step_top = 230
+        top -= int(len(list_all_answer)*step_top/2)
+        
+        for el_answer  in list_all_answer:
+            form =  AnswerForm()
+
+            # 
+
+            all_quest = Questions.objects.filter(relation_answer_id = el_answer.id)
+            list_answer.append({"el_answer":el_answer,"all_quest":all_quest,"top":top,"left":left})
+            for el_quest in all_quest:
+                # pdb.set_trace()    
+                if el_quest.question_answer:
+                    list_con.append({"source":el_quest.id,"target":el_quest.question_answer})
+                   
+                    answer_instance = Answer.objects.get(id = int(el_quest.question_answer))
+
+                    if not answer_instance in flag_answer:
+
+                        flag_answer.append(answer_instance)
+                        list_quest_answer.append(answer_instance)
+
+            top += step_top       
+        left += 200
+        
+        list_all_answer = list_quest_answer
+
+        if not list_quest_answer:
+            break 
+
+    context['list_answer']  = list_answer  
+    context['list_con']     = list_con  
+    context['form']         = form  
+    return render(request, 'tree/Uml/digrama.html',context)

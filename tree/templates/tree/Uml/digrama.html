@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Diagrama</title>
+    <link href="{% static "font-awesome/css/font-awesome.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">  
+    <link href="{% static "css/uml/demo.css" %}" rel="stylesheet">
+    
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <script src="{% static "js/jquery-2.1.1.js" %}"></script>
+    
+    <!-- Mainly scripts -->
+
+    <!-- ********************************************************  -->
+
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+
+    <!-- ********************************************************  -->
+
+      
+    <script src="{% static "js/uml/jquery-ui.js" %}"></script>
+    <!-- <script src="{% static "js/uml/JuScaling.js" %}"></script>-->
+    </head>
+    
+    <body class="body_style" ca data-demo-id="statemachine" data-library="dom">
+
+    
+        <div id  = "connectors">
+            {% for el_con in list_con %}
+            <div class = 'con hide_el'>
+                <div>{{el_con.source}}</div>
+                <div>{{el_con.target}}</div>    
+            </div> 
+            {% endfor %}
+        </div>    
+        <div id  = "main">
+            <!-- demo -->
+            <div class="demo statemachine-demo" id="statemachine-demo">
+
+                
+                {%for el_list in list_answer%}
+                <div class = "all" id  = "{{ el_list.el_answer.id}}" style="top:{{el_list.top }}px; left:{{el_list.left}}px;">
+                    <div class=" klient_section head_collaps">
+                        {% include 'tree/Uml/public_sub_forms.html' %}
+                        <button class = "button_diag"><i class="fa fa-trash-o"></i></button>
+                        <button class = "button_diag edit_answer"><i class="fa fa-cogs"></i></button>
+
+                        <!-- ***********************************************************-->
+                        <a  child="#{{ el_list.el_answer.id }}t" class="collapsed" >
+                           <span class = "head_section client text_head_client">{{ el_list.el_answer.id}} </span><i class="fa fa-sort-desc"></i>
+                        </a>
+                        <div style="height:2px;"></div>
+                            <!--  <span >  </span>< -->
+                        <div id="{{ el_list.el_answer.id }}t" class="min_text collaps">   
+                            <textarea class="input_text ansewr_back"  placeholder = "Вопрос" >{{ el_list.el_answer.text_answer}}</textarea>     
+                        </div>
+    
+                        <!-- ********************************************************** -->
+
+                        <div class = "head_section consultant">
+                            <div style  = "height:22px;"> Консультант </div>
+                                 <div  id="{{ el_list.el_answer.id}}pan" class = "section_question" >   
+
+                                    {% for el_quest in el_list.all_quest %}
+                                         
+                                        {% include 'tree/Uml/el_question.html' %}
+                              
+                                    {% endfor %}
+                                </div>
+                            <!-- <div style = "height:3px;"></div> -->
+                        </div>    
+                    </div>  
+                </div>
+                {% endfor %}
+                
+            
+            </div>
+            <!-- /demo -->
+        </div>
+    
+    <div id = "new_questions" class="hide_el" >
+        {% include 'tree/Uml/el_question.html' %}
+    </div>
+
+        <script src="{% static "js/uml/dom.jsPlumb-1.7.5-min.js" %}"></script>    
+        <script src="{% static "js/uml/demo.js" %}"></script>
+    </body>
+</html>

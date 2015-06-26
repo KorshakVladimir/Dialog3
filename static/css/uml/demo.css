@@ -1,0 +1,254 @@
+li{
+	position: relative;
+}
+
+.demo {
+	/* for IE10+ touch devices */
+	touch-action:none;
+	background-color:#EAE4E4;
+	z-index: -3;
+}
+
+.w {
+	/*padding: 5px;*/
+	padding-top: 0px;
+	/*position: absolute;*/
+	/*z-index: 4;*/
+	/*border: 1px solid #2e6f9a;*/
+	/*box-shadow: 2px 2px 19px #e0e0e0;*/
+	-o-box-shadow: 2px 2px 19px #e0e0e0;
+	/*-webkit-box-shadow: 2px 2px 19px #e0e0e0;*/
+	-moz-box-shadow: 2px 2px 19px #e0e0e0;
+	-moz-border-radius: 8px;
+	/*border-radius: 8px;*/
+	/*opacity: 0.8;*/
+	/*filter: alpha(opacity=80);*/
+	cursor: move;
+	background-color: white;
+	font-size: 11px;
+	-webkit-transition: background-color 0.25s ease-in;
+	-moz-transition: background-color 0.25s ease-in;
+	transition: background-color 0.25s ease-in;
+	
+}
+.w > a{
+	color: inherit;
+}
+.w > a:hover {
+	background-color: #5c96bc;
+	color: #000;
+
+}
+
+.aLabel {
+	-webkit-transition: background-color 0.25s ease-in;
+	-moz-transition: background-color 0.25s ease-in;
+	transition: background-color 0.25s ease-in;
+}
+
+.aLabel._jsPlumb_hover, ._jsPlumb_source_hover, ._jsPlumb_target_hover {
+	background-color: #1e8151;
+	color: white;
+}
+
+.aLabel {
+	background-color: white;
+	opacity: 0.8;
+	padding: 0.3em;
+	border-radius: 0.5em;
+	border: 1px solid #346789;
+	cursor: pointer;
+}
+
+.ep {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 1em;
+	height: 1em;
+	background-color: rgb(119, 216, 79);
+	border-radius: 20px;
+	cursor: pointer;
+	box-shadow: 0 0 2px black;
+	-webkit-transition: -webkit-box-shadow 0.25s ease-in;
+	-moz-transition: -moz-box-shadow 0.25s ease-in;
+	transition: box-shadow 0.25s ease-in;
+}
+
+.ep:hover {
+	box-shadow: 0px 0px 6px black;
+}
+
+.statemachine-demo ._jsPlumb_endpoint {
+	z-index: -1;
+}
+
+
+
+.dragHover {
+	border: 2px solid orange;
+}
+
+path, ._jsPlumb_endpoint { cursor:pointer; }
+.all{
+	
+	border-bottom: none;
+	width: 150px;
+	position: absolute;
+	border: 3px solid #17A084;
+	border-radius: 15px 15px 15px 15px;
+	color: #fff;
+	/*z-index: 10;*/
+}
+.hide_el{
+	display: none;
+}
+.active_form{
+   display: block !important;
+}
+.for_edit{
+	padding: 10px;
+  position: absolute;
+  top: -34px;
+  left: -15px;
+  /*height: 300px;*/
+  width: 350px;
+  /*border: 1px solid;*/
+  background-color: #fff;
+  z-index: 5	;
+  text-align: right;
+  color: #676A6C;
+  font-weight: 600;
+
+}
+
+
+.klient_section{
+	background: linear-gradient(to top, #17A084, #17A084);
+	font-size: medium;
+	border-radius: 10px 10px 7px 7px;
+  
+}
+.head_section{
+	font-size: 12px;
+	
+	padding-top: 2px;
+	position: relative;
+	
+}
+.text_client{
+	padding: 3px;
+	border-bottom: 1px solid;
+}
+
+.block_answers{
+  margin-left: 5px;
+  position: relative;
+  background: rgb(255, 255, 255);
+  border-radius: 6px 6px 11px 6px;
+  margin-top: 3px;
+  color: rgb(248, 172, 89);
+}
+.answer_section{
+  font-size: 13px;
+  text-align: center;
+  min-height: 45px;
+  padding-left: 10px;
+  
+  float: left;
+}
+
+.button_diag{
+	float: left;
+	border: none;
+	font-size: 16px;
+	background-color: transparent;
+}
+
+.add_button{
+	position: absolute;
+	top: -0px;
+	right: 0px;
+}
+
+.client{
+	padding: 4px;
+		
+}
+
+.text_head_client{
+	width: 42%;
+}
+
+
+.input_text{
+  font-size: 13px;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  resize:none;
+  color: #000;
+  white-space: pre-line;   
+  
+}
+.consultant{
+	min-height: 32px;
+  /* border: 3px solid #00BE4B; */
+	border-radius: 6px 6px 11px 11px;
+	background: rgb(248, 172, 89);
+}
+.ansewr_back{
+	margin-bottom: -4px;
+	background: rgb(251, 251, 251);
+	border-radius: 6px;
+	color: rgb(23, 160, 132);
+}
+.min_text{
+	display: none;
+}
+.min_answer{
+	/*height: 23px;*/
+}
+.panel_demo {
+	margin-bottom: 1px;
+	margin-left: 4px;
+	border-radius: 6px;
+	color: #ACA3A3;
+}
+.panel_demo>a{
+	color: rgb(248, 172, 89);
+}
+.sub_fields{
+	  
+	  text-align: center;
+}
+
+.label_demo{
+  padding-top: 7px;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.body_style{
+	height: auto;
+}
+#main{
+	margin-top: 106px; */
+  font-size: 80%;
+  /* width: 80%; */
+  margin-left: auto;
+  margin-right: auto;
+  /* height: 600px; */
+  text-align: center;
+  position: relative;
+  max-width: 1200px;
+  max-height: 1000px;
+}
+
+a{
+	color: #fff;
+}
+
+.activate{
+	display: block;
+}

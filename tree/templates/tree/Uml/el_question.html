@@ -1,0 +1,44 @@
+<div>
+    <div class="for_edit hide_el">
+
+        <form class="form-horizontal">
+            <p class  = "sub_fields"> Дополнительные поля </p>
+
+            <div class="form-group"><label class="col-lg-6 label_demo">Очки игры</label>
+                <div class="col-lg-6"><input type="text" placeholder="0" value="{{el_quest.point_answer}}"  class="form-control"> 
+                <!-- <span class="help-block m-b-none">Очки ко</span> -->
+                </div>
+            </div>
+
+            <div class="form-group"><label class="col-lg-6 label_demo">Очки емоций</label>
+                <div class="col-lg-6"><input  type="text" placeholder="0" value="{{el_quest.point_emotions}}"  class="form-control"> 
+                <!-- <span class="help-block m-b-none">Очки ко</span> -->
+                </div>
+            </div>
+
+            <div class="form-group"><label class="col-lg-6 label_demo">Ответ клиента</label>
+                <div class="col-lg-6"><input type="text" placeholder="Номер вопроса клиента" value="{{el_quest.question_answer}}"  class="form-control"> 
+                <!-- <span class="help-block m-b-none">Очки ко</span> -->
+                </div>
+            </div>
+           
+        </form>
+    </div>
+
+    <div class="panel panel_demo head_collaps">
+    <!-- <a data-toggle="collapse"  href="#{{ el_quest.id}}ans" aria-expanded="true" class=""> -->
+        <button class = "button_diag"> <i class="fa fa-trash-o"> </i> </button>
+        <button class = "button_diag edit_quest"> <i class="fa fa-cog"> </i> </button>
+        <a  child="#{{ el_quest.id }}ans" class="collapsed">
+            <header class = "head_section client"> 
+                <span class = "text_head_client"> {{ el_quest.id }} <i class="fa fa-sort-desc"></i></span>
+            </header> 
+        </a>       
+        <div id="{{ el_quest.id}}ans" class="collaps min_text">   
+            <textarea class=" input_text input_text_answer "  placeholder = "Вопрос" >
+                {{el_quest.text_questions}}
+            </textarea>
+                
+        </div>   
+    </div> 
+</div>

@@ -5,8 +5,8 @@ $(window).bind("load", function () {
 
     if (!element) {
         
-        $("body").toggleClass("mini-navbar");
-        SmoothlyMenu();
+        // $("body").toggleClass("mini-navbar");
+        
     }
 
 })
@@ -21,7 +21,7 @@ function f_test () {
 	}
 	height_document = doc_el.clientHeight;
 	if (height_document < el_backg.clientHeight){
-		el_backg.style.top = height_document + 15 + "px"
+		el_backg.style.top = height_document + 27 + "px"
 	}
 }
 
