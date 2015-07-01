@@ -107,7 +107,6 @@ path, ._jsPlumb_endpoint { cursor:pointer; }
    display: block !important;
 }
 .for_edit{
-	padding: 10px;
   position: absolute;
   top: -34px;
   left: -15px;
@@ -119,6 +118,7 @@ path, ._jsPlumb_endpoint { cursor:pointer; }
   text-align: right;
   color: #676A6C;
   font-weight: 600;
+  padding: 10px;
 
 }
 
@@ -132,8 +132,8 @@ path, ._jsPlumb_endpoint { cursor:pointer; }
 .head_section{
 	font-size: 12px;
 	
-	padding-top: 2px;
 	position: relative;
+	padding-top: 2px;
 	
 }
 .text_client{
@@ -159,10 +159,10 @@ path, ._jsPlumb_endpoint { cursor:pointer; }
 }
 
 .button_diag{
-	float: left;
-	border: none;
 	font-size: 16px;
 	background-color: transparent;
+	border: none;
+	padding: 2px;
 }
 
 .add_button{
@@ -172,12 +172,14 @@ path, ._jsPlumb_endpoint { cursor:pointer; }
 }
 
 .client{
-	padding: 4px;
+	padding: 4px;;
 		
 }
 
 .text_head_client{
-	width: 42%;
+	float: right;
+	padding-top: 4px;
+	color: #ACA3A3;
 }
 
 
@@ -214,6 +216,7 @@ path, ._jsPlumb_endpoint { cursor:pointer; }
 	margin-left: 4px;
 	border-radius: 6px;
 	color: #ACA3A3;
+	text-align: left;
 }
 .panel_demo>a{
 	color: rgb(248, 172, 89);
@@ -246,9 +249,39 @@ path, ._jsPlumb_endpoint { cursor:pointer; }
 }
 
 a{
-	color: #fff;
 }
 
 .activate{
 	display: block;
+}
+.badge_down{;
+
+}
+.client_group{
+	margin-left: -37px;
+
+}
+.collapsed{
+	color: inherit;
+	margin-right: 6px;;;
+
+}
+
+.pos_head_client{
+	padding: 0px;
+	color: #fff;;;;
+
+}
+
+.test_class{
+	width: 100px;
+	border: 1px solid #000;
+	margin-left: 100px;
+	
+}
+.new_ask{
+	position: fixed;
+	width: 100px;
+	top: 41px;
+	left: 0px;
 }

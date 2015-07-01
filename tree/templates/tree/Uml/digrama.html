@@ -22,8 +22,6 @@
     <script src="{% static "js/bootstrap.min.js" %}"></script>
 
     <!-- ********************************************************  -->
-
-      
     <script src="{% static "js/uml/jquery-ui.js" %}"></script>
     <!-- <script src="{% static "js/uml/JuScaling.js" %}"></script>-->
     </head>
@@ -38,45 +36,19 @@
                 <div>{{el_con.target}}</div>    
             </div> 
             {% endfor %}
-        </div>    
+        </div>   
+   
         <div id  = "main">
             <!-- demo -->
             <div class="demo statemachine-demo" id="statemachine-demo">
-
-                
-                {%for el_list in list_answer%}
-                <div class = "all" id  = "{{ el_list.el_answer.id}}" style="top:{{el_list.top }}px; left:{{el_list.left}}px;">
-                    <div class=" klient_section head_collaps">
-                        {% include 'tree/Uml/public_sub_forms.html' %}
-                        <button class = "button_diag"><i class="fa fa-trash-o"></i></button>
-                        <button class = "button_diag edit_answer"><i class="fa fa-cogs"></i></button>
-
-                        <!-- ***********************************************************-->
-                        <a  child="#{{ el_list.el_answer.id }}t" class="collapsed" >
-                           <span class = "head_section client text_head_client">{{ el_list.el_answer.id}} </span><i class="fa fa-sort-desc"></i>
-                        </a>
-                        <div style="height:2px;"></div>
-                            <!--  <span >  </span>< -->
-                        <div id="{{ el_list.el_answer.id }}t" class="min_text collaps">   
-                            <textarea class="input_text ansewr_back"  placeholder = "Вопрос" >{{ el_list.el_answer.text_answer}}</textarea>     
-                        </div>
-    
-                        <!-- ********************************************************** -->
-
-                        <div class = "head_section consultant">
-                            <div style  = "height:22px;"> Консультант </div>
-                                 <div  id="{{ el_list.el_answer.id}}pan" class = "section_question" >   
-
-                                    {% for el_quest in el_list.all_quest %}
-                                         
-                                        {% include 'tree/Uml/el_question.html' %}
-                              
-                                    {% endfor %}
-                                </div>
-                            <!-- <div style = "height:3px;"></div> -->
-                        </div>    
-                    </div>  
+                <div class="new_ask">
+                <button >
+                    <i class="fa fa-plus-square-o"></i>
+                </button>
                 </div>
+                
+                {% for el_list in list_answer %}
+                    {% include 'tree/Uml/el_ask.html' %}
                 {% endfor %}
                 
             

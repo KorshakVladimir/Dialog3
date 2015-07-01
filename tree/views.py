@@ -330,3 +330,9 @@ def diagram(request):
     context['list_con']     = list_con  
     context['form']         = form  
     return render(request, 'tree/Uml/digrama.html',context)
+
+def new_ask(request):
+    inst_answer = Answer.objects.all().order_by('-id')[0]
+    id = ++inst_answer.id; 
+    context = {"el_list":{"el_answer":{"id":id}}}
+    return render(request, 'tree/Uml/el_ask.html',context)

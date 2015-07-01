@@ -5,6 +5,7 @@ from . views import *
 urlpatterns = [
     url(r'^session/(?P<guid>.*)/$', game_history, name='game_history'),
     url(r'^$', refer, name='refer'),
+    url(r'^new_ask/$', new_ask, name='new_ask'),
     url(r'^part_prod/$', part_prod, name='part_prod'),
     url(r'^select_prof/$', select_prof, name='select_prof'),
     url(r'^history/$', history, name='history'),

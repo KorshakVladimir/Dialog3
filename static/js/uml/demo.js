@@ -60,7 +60,7 @@ jsPlumb.ready(function () {
                 cssClass: "aLabel"
             }]
         ],
-        Container: "statemachine-demo"
+        Container: "flowchart-demo"
     });
 
     var basicType = {
@@ -72,8 +72,8 @@ jsPlumb.ready(function () {
         ]
     };
     instance.registerConnectionType("basic", basicType);
-
     // this is the paint style for the connecting lines..
+   // this is the paint style for the connecting lines..
     var connectorPaintStyle = {
             lineWidth: 4,
             strokeStyle: "#61B7CF",
@@ -102,12 +102,18 @@ jsPlumb.ready(function () {
                 lineWidth: 3
             },
             isSource: true,
-            connector: [ "Flowchart", { stub: [40, 100], gap: 10, cornerRadius: 5, alwaysRespectStubs: true } ],
+            connector: [ "Flowchart", { stub: [40, 60], gap: 10, cornerRadius: 5, alwaysRespectStubs: true } ],
             connectorStyle: connectorPaintStyle,
             hoverPaintStyle: endpointHoverStyle,
             connectorHoverStyle: connectorHoverStyle,
             dragOptions: {},
-            //      
+            // overlays: [
+            //     [ "Label", {
+            //         location: [0.5, 1.5],
+            //         label: "Drag",
+            //         cssClass: "endpointSourceLabel"
+            //     } ]
+            // ]
         },
     // the definition of target endpoints (will appear when the user drags a connection)
         targetEndpoint = {
@@ -124,7 +130,6 @@ jsPlumb.ready(function () {
         init = function (connection) {
             connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
         };
-
     var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
         for (var i = 0; i < sourceAnchors.length; i++) {
             var sourceUUID = toId + sourceAnchors[i];
@@ -148,16 +153,23 @@ jsPlumb.ready(function () {
     var windows = jsPlumb.getSelector(".statemachine-demo .w, .klient_section");
 
 
+
     // initialise draggable elements.
     instance.draggable(main_block);
-     instance.draggable(jsPlumb.getSelector(".statemachine-demo .all")) 
 
+    var draggable_all = function(){
+
+       instance.draggable($(".all")); 
+    };
+    draggable_all();
+    // instance.draggable(jsPlumb.getSelector(".statemachine-demo .window"), { grid: [20, 20] });
     // bind a click listener to each connection; the connection is deleted. you could of course
     // just do this: jsPlumb.bind("click", jsPlumb.detach), but I wanted to make it clear what was
     // happening.
-    instance.bind("click", function (c) {
-        instance.detach(c);
-    });
+    
+    // instance.bind("click", function (c) {
+    //     instance.detach(c);
+    // });
 
     // bind a connection listener. note that the parameter passed to this function contains more than
     // just the new connection - see the documentation for a full list of what is included in 'info'.
@@ -177,13 +189,13 @@ jsPlumb.ready(function () {
 
     
 
-    add_butt = function(parentEl) {
-       var ev_button = document.createElement('button');   
-       ev_button.innerHTML = "<i class=\"fa fa-plus\"></i>";
-       ev_button.setAttribute("class", "add_button button_diag");
+    // add_butt = function(parentEl) {
+    //    var ev_button = document.createElement('button');   
+    //    ev_button.innerHTML = "<i class=\"fa fa-plus\"></i>";
+    //    ev_button.setAttribute("class", "add_button button_diag");
        
-       parentEl.appendChild(ev_button);
-    }
+    //    parentEl.appendChild(ev_button);
+    // }
 
     for_click_rem = function(e){
         e.target.parentElement.remove();
@@ -219,12 +231,14 @@ jsPlumb.ready(function () {
         $(el_edit).toggleClass("active_form");
     }
 
-    var edit_quest_el_s = jsPlumb.getSelector(".edit_quest");
+    // var edit_quest_el_s = jsPlumb.getSelector(".edit_quest");
 
-    for (var i = 0 ; i<edit_quest_el_s.length; i++){
-        var edit_quest_el = edit_quest_el_s[i];
-        edit_quest_el.addEventListener( "click",click_for_edit);
-    }
+    // for (var i = 0 ; i<edit_quest_el_s.length; i++){
+    //     var edit_quest_el = edit_quest_el_s[i];
+    //     edit_quest_el.addEventListener( "click",click_for_edit);
+    // }
+
+    $("body").on("click",".edit_quest",click_for_edit);
 
     // ------------------------------------------------
 
@@ -237,23 +251,28 @@ jsPlumb.ready(function () {
         $(el_edit).toggleClass("active_form");
     }
 
-    var edit_answer_el_s = jsPlumb.getSelector(".edit_answer");
+    // var edit_answer_el_s = jsPlumb.getSelector(".edit_answer");
 
-    for (var i = 0 ; i<edit_answer_el_s.length; i++){
-        var edit_answer_el = edit_answer_el_s[i];
-        edit_answer_el.addEventListener( "click",click_for_edit_all);
-    }
-
+    // for (var i = 0 ; i<edit_answer_el_s.length; i++){
+    //     var edit_answer_el = edit_answer_el_s[i];
+    //     edit_answer_el.addEventListener( "click",click_for_edit_all);
+    // }
+    $("body").on("click",".edit_answer",click_for_edit_all);
     // ------------------------------------------------
 
-    var for_edit_el_s =  jsPlumb.getSelector(".for_edit") ;
+    // var for_edit_el_s =  jsPlumb.getSelector(".for_edit");
 
-    for (var i = 0 ; i<for_edit_el_s.length; i++){
-        var for_edit_el = for_edit_el_s[i];
-        for_edit_el.addEventListener( "click",function(e){
+    // for (var i = 0 ; i<for_edit_el_s.length; i++){
+    //     var for_edit_el = for_edit_el_s[i];
+        // for_edit_el.addEventListener( "click",function(e){
+        //     e.stopPropagation();
+        // });
+    // }
+    $("body").on("click",".for_edit",function(e){
             e.stopPropagation();
-        });
-    }
+        }
+    );
+
 
 
 
@@ -292,12 +311,12 @@ jsPlumb.ready(function () {
     
 
     //initialise el all
-    var el_s_head_client = jsPlumb.getSelector(".consultant");
-    for (var i = 0 ; i<el_s_head_client.length; i++){
-        var el_all = el_s_head_client[i];
-        add_butt(el_all); 
+    // var el_s_head_client = jsPlumb.getSelector(".consultant");
+    // for (var i = 0 ; i<el_s_head_client.length; i++){
+    //     var el_all = el_s_head_client[i];
+    //     add_butt(el_all); 
         
-    };
+    // };
 
     var rem_all_collaps = function(el_col){
         var collapsed_el_s = jsPlumb.getSelector(".collaps");
@@ -313,16 +332,21 @@ jsPlumb.ready(function () {
         var this_col =  e.target.closest(".head_collaps").querySelector(".collaps");
         rem_all_collaps(this_col);
         var id = this.getAttribute("child");
-        var place_holder = document.getElementById(id.slice(1));
+        var $id = $(id); 
+        $(id).toggleClass("activate");
+        $input_text = $id.find(".input_text")
+        resize_text_area.call($input_text[0]);
         // place_holder.setAttribute("style","");
-        $(place_holder).toggleClass("activate");
+        
     };
 
-    collapsed_el_s = jsPlumb.getSelector(".collapsed");
+    // collapsed_el_s = jsPlumb.getSelector(".collapsed");
 
-    for (var i = 0 ; i < collapsed_el_s.length; i++){
-        collapsed_el_s[i].addEventListener( "click",click_collapsed);        
-    };
+    // for (var i = 0 ; i < collapsed_el_s.length; i++){
+    //     collapsed_el_s[i].addEventListener( "click",click_collapsed);        
+    // };
+
+    $('body').on("click",".collapsed", click_collapsed);
 
     for_click_add = function(e){
             
@@ -344,28 +368,40 @@ jsPlumb.ready(function () {
 
         a_el.setAttribute("child",enter_id);
         
-        var el_span = newdiv.querySelector('.text_head_client');
+        var el_span = newdiv.querySelector('.head_section');
+
+        // <a child="#108397002ans" class="collapsed">
+                
+        //     <span class="head_section client "> 108397002 </span>
+        //     <span class="badge_down"> 
+        //         <i class="fa fa-sort-desc"></i>
+        //     </span>
+                 
+        // </a>
         el_span.innerText = id_el;
 
         var el_panel_collapsed = newdiv.querySelector(".collaps");
-        el_panel_collapsed.setAttribute("id",enter_id);
-
+        el_panel_collapsed.setAttribute("id",enter_id.slice(1));
+        rem_all_collaps();
+        $(el_panel_collapsed).addClass('activate');
         parrent_el.appendChild(newdiv, parrent_el.lastElementChild);
 
         windows = document.getElementById(id_el);
         // initialise();
     }
 
-    var button_el_s = jsPlumb.getSelector(".add_button");
+    // var button_el_s = jsPlumb.getSelector(".add_button");
 
-    for (var i = 0 ; i<button_el_s.length; i++){
-        button_el = button_el_s[i];
-        button_el.addEventListener( "click",for_click_add );
-    }   
+    $("body").on("click",".add_button",for_click_add);
 
-    $(function() {
-    $( "#statemachine-demo" ).draggable({ containment: "main" });
-    });
+    // for (var i = 0 ; i<button_el_s.length; i++){
+    //     button_el = button_el_s[i];
+    //     button_el.addEventListener( "click",for_click_add );
+    // }   
+
+    // $(function() {
+    // $( "#statemachine-demo" ).draggable({ containment: "main" });
+    // });
 
     // instance.draggable(main_block);
     var scale = 1;
@@ -393,19 +429,24 @@ jsPlumb.ready(function () {
     // canv.addEventListener( "wheel",change_scale );
     
 
-    function resize_text_area(e) {
-        var cont = e.textContent.trim();
-        $(e).css({'height':'auto','overflow-y':'hidden'}).height( cont.length*1.3);
+    function resize_text_area(el) {
+       
+        var cont = this.value.trim();
+       
+        var need_height = Math.max(10,cont.length)*1.3;
+        $(this).css({'height':'auto','overflow-y':'hidden'}).height(need_height);
     }   
 
-    $('.input_text').each(function () {
-        resize_text_area(this);
-    }
-    ).on('input', function () {
-      resize_text_area(this);
-    });
-
-
+    // $('.input_text').each(function () {
+    //     resize_text_area(this);
+    //     }
+    // ).on('input', function () {
+    //   resize_text_area(this);
+    //     }
+    // );
+        
+    $("body").on("input",".input_text",resize_text_area);
+        
     // function make_con(){
     //    var main_el = jsPlumb.getSelector("#connectors")[0]; 
     //    pair_con_s =  main_el.querySelectorAll(".con");
@@ -418,22 +459,29 @@ jsPlumb.ready(function () {
     //    }
     // }
     // make_con()
-
+    $(".new_ask").on("click",function(e){
+        var newdiv = document.createElement('div');
+        // var newdiv;
+        $(newdiv).load("/tree/new_ask/",draggable_all);
+        $("#statemachine-demo").append(newdiv);
+        
+    });
 
     // suspend drawing and initialise.
     instance.batch(function () {
         var main_el = jsPlumb.getSelector(".all"); 
         for (var i = 0 ; i<main_el.length; i++){
 
-           _addEndpoints(main_el[i].id, [], [[1, 0.5, 0, 0],[0,0.5,0,0]]);
-           // _addEndpoints(main_el[i].id, [], ["RightMiddle"]);
+           // _addEndpoints(main_el[i].id, [], [[1, 0, 0, 0,0,40],[0,0,0,0,0,40]]);
+           // _addEndpoints(main_el[i].id, [], []);
         }
 
-        var main_el_w = jsPlumb.getSelector(".w"); 
-        for (var i = 0 ; i<main_el_w.length; i++){
+        // var main_el_w = jsPlumb.getSelector(".text_head_client"); 
+        var main_el_w = jsPlumb.getSelector(".end_point_relation");
+        for (var i = 0 ; i < main_el_w.length; i++){
 
-        // _addEndpoints(main_el_w[i].id, [[1,0,0,0,-6,13]], []);
-            _addEndpoints(main_el_w[i].id, [[1,0,0,0,-6,13]], []);
+            // _addEndpoints(main_el_w[i].id, [[1,0,0,0,16,15]], []);
+           
         }
         // listen for new connections; initialise them the same way we initialise the connections at startup.
         instance.bind("connection", function (connInfo, originalEvent) {
@@ -441,7 +489,7 @@ jsPlumb.ready(function () {
         });
 
         // make all the window divs draggable
-        instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
+        // instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
         // THIS DEMO ONLY USES getSelector FOR CONVENIENCE. Use your library's appropriate selector
         // method, or document.querySelectorAll:
         //jsPlumb.draggable(document.querySelectorAll(".window"), { grid: [20, 20] });
