@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class Answer(models.Model):
     text_answer = models.CharField(
-        max_length=200, verbose_name=u'Текст ответа')
+        max_length=200, verbose_name=u'Текст ответа', blank = True)
 
     depth = models.IntegerField(default=0)
 

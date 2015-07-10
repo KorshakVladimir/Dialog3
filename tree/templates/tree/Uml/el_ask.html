@@ -1,15 +1,17 @@
+
+
 <div class = "all" id  = "{{ el_list.el_answer.id}}" style="top:{{el_list.top }}px; left:{{el_list.left}}px;">
     <div class=" klient_section head_collaps">
         {% include 'tree/Uml/public_sub_forms.html' %}
         <div class="client_group">
-            <button class = "button_diag">  <i class="fa fa-trash-o"></i></button>
+            <button class = "button_diag dell_all">  <i class="fa fa-trash-o"></i></button>
             <button class = "button_diag edit_answer"><i class="fa fa-cogs"></i></button>
             
             <!-- ***********************************************************-->
             <div class="text_head_client pos_head_client">
                 <a  child="#{{ el_list.el_answer.id }}t" class="collapsed" >
                    <span class = "head_section client ">{{ el_list.el_answer.id}} </span>
-                   <span class = "badge_down"> 
+                   <span class = "badge_down">  
                         <i class="fa fa-sort-desc"></i>
                    </span>     
                 </a>
@@ -24,7 +26,7 @@
         <!-- ********************************************************** -->
 
         <div class = "head_section consultant">
-            <div style  = "height:22px;"> Консультант </div>
+            <div style  = "height:22px; margin-left:5px;"> Консультант </div>
                  <div  id="{{ el_list.el_answer.id}}pan" class = "section_question" >   
 
                     {% for el_quest in el_list.all_quest %}

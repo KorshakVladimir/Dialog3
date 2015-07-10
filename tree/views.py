@@ -1,13 +1,18 @@
 
 # -*- coding: utf-8 -*-
 from django.db.models import Sum
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from . models import *
 import hashlib
 import random                                         
 import pdb
 from . forms  import AnswerForm
+import re
 
+from django.core.context_processors import csrf
+from django.views.decorators.csrf import ensure_csrf_cookie
+import pdb
+import json
 def get_prod_all(context):
     product = Products.objects.all()
     list_product = []
@@ -217,6 +222,7 @@ def index(request, answer_id=1081, id_quest=0):
     context = {}
     context = for_game(request, answer_id, id_quest, context)
     context = make_game(context,'act_game')
+    # context.update(csrf(request))
     if int(answer_id) == 48:
 
         return game_history(request, request.session.get('GUID'))
@@ -283,7 +289,7 @@ def refer(request):
     return render(request, 'tree/refer.html')
 
 def diagram(request):
-    list_all_answer = [Answer.objects.get(id  = 1082)]
+    list_all_answer = [Answer.objects.get(id  = 1081)]
 
     # print( "len" , len(list(all_answer)))
     context = {}
@@ -301,8 +307,6 @@ def diagram(request):
         
         for el_answer  in list_all_answer:
             form =  AnswerForm()
-
-            # 
 
             all_quest = Questions.objects.filter(relation_answer_id = el_answer.id)
             list_answer.append({"el_answer":el_answer,"all_quest":all_quest,"top":top,"left":left})
@@ -332,7 +336,92 @@ def diagram(request):
     return render(request, 'tree/Uml/digrama.html',context)
 
 def new_ask(request):
-    inst_answer = Answer.objects.all().order_by('-id')[0]
-    id = ++inst_answer.id; 
+
+    # pdb.set_trace()
+
+    id = request.session.get('id_ans')
+
+    if not id:
+
+        inst_answer = Answer.objects.all().order_by('-id')[0]
+        id = inst_answer.id
+    else :
+        id  = int(id) 
+
+    id+=1
+
+    request.session["id_ans"] = id
+
+    el_ans = Answer(id)
+    el_ans.save()
+    
+    # pdb.set_trace()
     context = {"el_list":{"el_answer":{"id":id}}}
     return render(request, 'tree/Uml/el_ask.html',context)
+
+
+def load_button(request ):
+    context = {}
+
+    if request.POST:
+        href = request.POST.get("href")
+        
+        p = re.compile(r'^/tree/(?P<answer_id>\d*)/(?P<id_quest>\d*)$')
+        par = p.search(href)
+        
+        answer_id = int(par.group("answer_id"))
+        id_quest = int(par.group("id_quest"))
+
+        
+        context = for_game(request, answer_id, id_quest, context)
+
+    return render(request,'tree/load_button.html',context)
+
+def new_quest(request):
+    import pdb
+    # pdb.set_trace()
+    context = {}
+    if request.POST:
+        max_id = int(request.POST.get("max_id"))
+        max_id+=1
+        context["el_quest"] = {"id":max_id}
+    return render(request, 'tree/Uml/el_question.html',context)
+
+def diagrama_save(request):
+
+    if request.POST:
+        
+        srt_json = request.POST.get("json_str")
+        d = json.loads(srt_json)
+
+        for id_ask in d:
+            # pdb.set_trace()
+            ob_ask, create = Answer.objects.get_or_create(id = id_ask) 
+            ob_ask.text_answer = d[id_ask]['text_answer']
+            # ob_ask.save()
+            print("id_ask",id_ask)
+            if id_ask == "10874":
+                print("yes")
+                pdb.set_trace()
+            for id_quest in d[id_ask]["questions"]:
+
+                # print("id_quest ", id_quest)
+                
+                ob_quest, create = Questions.objects.get_or_create(id = id_quest)
+                d_attr = d[id_ask]["questions"][id_quest]
+                for attr_quest in d_attr:
+                    
+                    setattr(ob_quest, attr_quest, d_attr[attr_quest])
+                    # print(attr_quest, d_attr[attr_quest])
+                ob_quest.save()             
+        # pdb.set_trace()        
+    return HttpResponse("")
+
+def for_edit_new_row(request):
+    context = {}
+    if request.POST:
+        max_id = request.POST.get("max_id")
+        context["el_quest"] = {"id":max_id}
+
+    return render(request, 'tree/Uml/row_all_table.html',context)
+    

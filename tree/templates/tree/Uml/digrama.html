@@ -19,16 +19,20 @@
 
     <!-- ********************************************************  -->
 
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
-
+    
+    <script src="{% static "js/ajax_csrf_token.js" %}"></script>
     <!-- ********************************************************  -->
     <script src="{% static "js/uml/jquery-ui.js" %}"></script>
     <!-- <script src="{% static "js/uml/JuScaling.js" %}"></script>-->
     </head>
     
     <body class="body_style" ca data-demo-id="statemachine" data-library="dom">
+        <form action="" class="hide_el">
+            {% csrf_token %}
+        </form>
+        <button class="new_ask"><i class="fa fa-plus-square-o"></i></button>
+        <button class="save_diagram"><i class="fa fa-save"></i> Save</button>
 
-    
         <div id  = "connectors">
             {% for el_con in list_con %}
             <div class = 'con hide_el'>
@@ -37,18 +41,14 @@
             </div> 
             {% endfor %}
         </div>   
-   
-        <div id  = "main">
+      
+        <div id  = "main1">
             <!-- demo -->
-            <div class="demo statemachine-demo" id="statemachine-demo">
-                <div class="new_ask">
-                <button >
-                    <i class="fa fa-plus-square-o"></i>
-                </button>
-                </div>
-                
-                {% for el_list in list_answer %}
-                    {% include 'tree/Uml/el_ask.html' %}
+            <div class="demo statemachine-demo" id="statemachine-demo" >
+
+               
+                {%for el_list in list_answer%}
+                    {% include 'tree/Uml/el_ask.html' %}  
                 {% endfor %}
                 
             
@@ -56,10 +56,10 @@
             <!-- /demo -->
         </div>
     
-    <div id = "new_questions" class="hide_el" >
-        {% include 'tree/Uml/el_question.html' %}
-    </div>
-
+        <div id="for_ajax" class="hide_el"></div>
+        <div id = "new_questions" class="hide_el" >
+            {% include 'tree/Uml/el_question.html' %}
+        </div>
         <script src="{% static "js/uml/dom.jsPlumb-1.7.5-min.js" %}"></script>    
         <script src="{% static "js/uml/demo.js" %}"></script>
     </body>

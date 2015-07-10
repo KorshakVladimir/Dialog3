@@ -1,5 +1,5 @@
-<div>
-    <div class="for_edit hide_el">
+<div class = "quest_el">
+    <div class="for_edit hide_el  sub_form_quest">
 
         <form class="form-horizontal">
             <p class  = "sub_fields"> Дополнительные поля </p>
@@ -27,7 +27,7 @@
 
     <div class="panel panel_demo head_collaps">
     <!-- <a data-toggle="collapse"  href="#{{ el_quest.id}}ans" aria-expanded="true" class=""> -->
-        <button class = "button_diag"> <i class="fa fa-trash-o"> </i> </button>
+        <button class = "button_diag dell_quest"> <i class="fa fa-trash-o"> </i> </button>
         <button class = "button_diag edit_quest"> <i class="fa fa-cog"> </i> </button>
         <div class="text_head_client end_point_relation" id  = "{{ el_quest.id }}for_dot" >
             <a  child="#{{ el_quest.id }}ans" class="collapsed">
@@ -36,8 +36,10 @@
                 <span class="badge_down"> 
                     <i class="fa fa-sort-desc"></i>
                 </span>
+                
                  
-            </a>  
+            </a> 
+            <div class="ep"></div> 
         </div>     
         <div id="{{ el_quest.id }}ans" class="collaps min_text">   
             <textarea class=" input_text input_text_answer "  placeholder = "Вопрос" >

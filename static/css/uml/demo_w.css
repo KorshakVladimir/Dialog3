@@ -40,6 +40,7 @@ li{
 .w > a:hover {
 	background-color: #5c96bc;
 	color: #000;
+
 }
 
 .aLabel {
@@ -51,8 +52,6 @@ li{
 .aLabel._jsPlumb_hover, ._jsPlumb_source_hover, ._jsPlumb_target_hover {
 	background-color: #1e8151;
 	color: white;
-	border: 2px solid #D71414;
-	border-radius: 10px; 
 }
 
 .aLabel {
@@ -73,7 +72,7 @@ li{
 	background-color: rgb(119, 216, 79);
 	border-radius: 37px;
 	height: 11px;
-	display: inline-block;
+	margin-left: 14px;
 	
 }
 
@@ -124,9 +123,8 @@ path, ._jsPlumb_endpoint { cursor:pointer; }
 
 .klient_section{
 	background: linear-gradient(to top, #17A084, #17A084);
-	border-radius: 10px 10px 10px 10px;
+	border-radius: 10px 10px 7px 7px;
 	color: #fff;
-	padding-bottom: 3px;
   
 }
 .head_section{
@@ -179,17 +177,16 @@ path, ._jsPlumb_endpoint { cursor:pointer; }
 .text_head_client{
 	color: #ACA3A3;
 	padding-top: 5px;
+	margin-left: 36px;
 	margin-top: -26px;
-	padding-bottom: 5px;
 	max-height: 31px;
-	text-align: right;
-	margin-right: 5px;
+	padding-bottom: 5px;
 }
 
 
 .input_text{
   font-size: 13px;
-  width: 96%;
+  width: 100%;
   
   resize:none;
   color: #676A6C;
@@ -201,17 +198,14 @@ path, ._jsPlumb_endpoint { cursor:pointer; }
 .consultant{
 	min-height: 32px;
   /* border: 3px solid #00BE4B; */
-	border-radius: 6px 6px 6px 11px;
+	border-radius: 6px 6px 11px 11px;
 	background: rgb(248, 172, 89);
-	margin-left: 3px;
-	padding-bottom: 3px;
 }
 .ansewr_back{
 	margin-bottom: -4px;
 	background: rgb(251, 251, 251);
 	border-radius: 6px;
 	color: rgb(23, 160, 132);
-	margin-left: 3px;
 }
 .min_text{
 	display: none;
@@ -223,7 +217,7 @@ path, ._jsPlumb_endpoint { cursor:pointer; }
 	margin-left: 4px;
 	color: #ACA3A3;
 	text-align: left;
-	border-radius: 7px;
+	border-radius: 10px;
 	margin-top: 1px;
 	margin-bottom: 0px;
 }
@@ -281,7 +275,7 @@ a{
 	color: #fff;
 	padding: 0px;
 	padding-top: 4px;
-	margin-left: auto;
+	margin-left: 98px;;;;
 
 }
 
@@ -291,7 +285,6 @@ a{
 	top: 41px;
 	left: 61px;
 	font-size: 20px;
-	border-radius: 8px;
 }
 .demo_ibox_content{
 	padding-bottom: 0px !important;
@@ -308,7 +301,6 @@ a{
 
 .cell_input{
 	text-align: right;
-	padding: 0px 1px !important;
 }
 .cell_ask_input{
 	padding: 0px !important;
@@ -324,24 +316,19 @@ a{
 	width: 254px;
 }
 
-.save_diagram{
-	position: fixed;
-	top: 41px;
-	left: 95px;
-	font-size: 20px;
-	border-radius: 8px;
-}
 /*--------------*/
-.test_el{
-  width: 100px;
+
+.all1{
+  border: 1px solid #fff;
   height: 100px;
-  background-color: #fff;
   position: absolute;
+  width: 100px;
+
 }
 
-.save_edit_all{
-	margin-left: 670px;
-}
-.ask_tab_id{
-	width: 50px;
+
+.ep1{
+	height: 10px;
+	width:10px;
+	border: 1px solid #fff;
 }

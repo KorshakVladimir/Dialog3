@@ -1,0 +1,28 @@
+<form id  = "form_buttons" action="" method="POST">
+{% csrf_token %}
+
+{% for question in questions %}
+	<a id= "menu" class=" btn btn-default btn-lg dialog_btn"   href="/tree/{{ question.question_answer  }}/{{question.id}}" 
+	{% if question.text_questions == 'Предложить товар'  %}
+		data-toggle="modal" data-target="#myProd"
+	{%endif%}
+	 > <span id="badge-pos" class=" badge pull-left">{{ forloop.counter }}</span>{{question.text_questions}}</a>
+	{% if question.text_questions == 'Предложить товар'  %}
+		<!-- Modal -->
+
+		<div class="modal fade" id="myProd" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div id = "modal_dialog" class="modal-dialog " style="left: -23%;">
+		    <div class="modal-content_1">
+		    
+			    <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title">Выберите товар</h4>
+			    </div>
+		     	{% include 'tree/part_for_product.html' %}
+			    
+		    </div> 
+		  </div>
+		</div>
+	{%endif%}
+{%endfor%}	
+</form>		

@@ -1,50 +1,32 @@
 <div class="for_edit hide_el">
-    
-    <div class="ibox float-e-margins">
-        <div class="ibox-title">
-            <h5>Вопрос покупателя <small>{{el_list.el_answer.id}}</small></h5>
-        </div>
-        <form role="form">
-            <div class="form-group">
-                
-                <textarea class=" input_text input_text_answer"  placeholder ="Вопрос" >
-                    {{el_list.el_answer.text_answer}}
-                </textarea>  
-            </div>
-        </form>
-        {% for el_quest in el_list.all_quest %}
-           <div class="ibox-content">
-                <div class="row">
-                    <!-- <div class="col-sm-6 b-r"> -->
-                    <div>
-                        <h3 class="m-t-none m-b">Ответ/Вопрос консультанта</h3>
-                        <textarea class=" input_text input_text_answer"  placeholder ="Вопрос" >
-                            {{el_quest.text_questions}}
-                        </textarea>  
-                         <p class  = "sub_fields"> Дополнительные поля </p>
-
-                        <div class="form-group"><label class="col-lg-6 label_demo">Очки игры</label>
-                            <div class="col-lg-6"><input type="text" placeholder="0" value="{{el_quest.point_answer}}"  class="form-control"> 
-                            <!-- <span class="help-block m-b-none">Очки ко</span> -->
-                            </div>
-                        </div>
-
-                        <div class="form-group"><label class="col-lg-6 label_demo">Очки емоций</label>
-                            <div class="col-lg-6"><input  type="text" placeholder="0" value="{{el_quest.point_emotions}}"  class="form-control"> 
-                            <!-- <span class="help-block m-b-none">Очки ко</span> -->
-                            </div>
-                        </div>
-
-                        <div class="form-group"><label class="col-lg-6 label_demo">Ответ клиента</label>
-                            <div class="col-lg-6"><input type="text" placeholder="Номер вопроса клиента" value="{{el_quest.question_answer}}"  class="form-control"> 
-                            <!-- <span class="help-block m-b-none">Очки ко</span> -->
-                            </div>
-                        </div>
-                        
-                    </div>    
-                 </div>       
-           </div>
-        {% endfor %}
+    <div class="media-body ">
+        <small class="pull-right">{{el_list.el_answer.id}}</small>
+        <strong>Вопрос покупателя</strong>
+        
+            <textarea class=" input_text input_text_answer input_text_sub"  placeholder ="Вопрос" >
+                {{el_list.el_answer.text_answer}}
+            </textarea>
+        
     </div>
+    <div class="ibox-content demo_ibox_content" style="display: block;">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="ask_tab_id" >ID</th>
+                <th class="ask_tab" >Ответ/Вопрос консультанта</th>
+                <th class="cell_tab">Очки игры</th>
+                <th class="cell_tab">Очки емоций</th>
+                <th class="cell_tab">Номер вопроса клиента</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for el_quest in el_list.all_quest %}
+                {% include 'tree/Uml/row_all_table.html' %}
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>  
+    <button class="save_edit_all">Save</button>
 </div>
 
