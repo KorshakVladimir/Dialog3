@@ -8,8 +8,8 @@
             <button class = "button_diag edit_answer"><i class="fa fa-cogs"></i></button>
             
             <!-- ***********************************************************-->
-            <div class="text_head_client pos_head_client">
-                <a  child="#{{ el_list.el_answer.id }}t" class="collapsed" >
+            <div   class="text_head_client pos_head_client">
+                <a title="{{ el_list.el_answer.text_answer}}"  child="#{{ el_list.el_answer.id }}t" class="collapsed" >
                    <span class = "head_section client ">{{ el_list.el_answer.id}} </span>
                    <span class = "badge_down">  
                         <i class="fa fa-sort-desc"></i>
@@ -19,9 +19,7 @@
         </div>
         <div style="height:2px;"></div>
             <!--  <span >  </span>< -->
-        <div id="{{ el_list.el_answer.id }}t" class="min_text collaps">   
-            <textarea class="input_text ansewr_back"  placeholder = "Вопрос" >{{ el_list.el_answer.text_answer}}</textarea>     
-        </div>
+
 
         <!-- ********************************************************** -->
 

@@ -398,16 +398,16 @@ def diagrama_save(request):
             # pdb.set_trace()
             ob_ask, create = Answer.objects.get_or_create(id = id_ask) 
             ob_ask.text_answer = d[id_ask]['text_answer']
-            # ob_ask.save()
+            ob_ask.save()
             print("id_ask",id_ask)
-            if id_ask == "10874":
+            if id_ask == "10895":
                 print("yes")
                 pdb.set_trace()
             for id_quest in d[id_ask]["questions"]:
 
                 # print("id_quest ", id_quest)
                 
-                ob_quest, create = Questions.objects.get_or_create(id = id_quest)
+                ob_quest, create = Questions.objects.get_or_create(id = id_quest,relation_answer = ob_ask)
                 d_attr = d[id_ask]["questions"][id_quest]
                 for attr_quest in d_attr:
                     
@@ -421,7 +421,7 @@ def for_edit_new_row(request):
     context = {}
     if request.POST:
         max_id = request.POST.get("max_id")
-        context["el_quest"] = {"id":max_id}
+        context["el_quest"] = {"id":int(max_id)+1}
 
     return render(request, 'tree/Uml/row_all_table.html',context)
     

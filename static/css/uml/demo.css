@@ -51,8 +51,12 @@ li{
 .aLabel._jsPlumb_hover, ._jsPlumb_source_hover, ._jsPlumb_target_hover {
 	background-color: #1e8151;
 	color: white;
-	border: 2px solid #D71414;
+	/*border: 2px solid #D71414;*/
 	border-radius: 10px; 
+	-webkit-transition: -webkit-box-shadow 0.25s ease-in;
+	-moz-transition: -moz-box-shadow 0.25s ease-in;
+	transition: box-shadow 0.25s ease-in;
+	box-shadow: 0 0 2px black;
 }
 
 .aLabel {
@@ -91,7 +95,12 @@ li{
 	border: 2px solid orange;
 }
 
-path, ._jsPlumb_endpoint { cursor:pointer; }
+path,svg{
+	z-index: -10;
+}
+._jsPlumb_endpoint { 
+	z-index:-10; 
+	cursor:pointer; }
 .all{
 	
 	width: 150px;
@@ -191,11 +200,12 @@ path, ._jsPlumb_endpoint { cursor:pointer; }
   font-size: 13px;
   width: 96%;
   
-  resize:none;
+  /*resize:vertical;*/
   color: #676A6C;
   white-space: pre-line;
   padding: 2px;
-  border: none;   
+  border: none;
+  resize: none;   
   
 }
 .consultant{
@@ -207,11 +217,11 @@ path, ._jsPlumb_endpoint { cursor:pointer; }
 	padding-bottom: 3px;
 }
 .ansewr_back{
-	margin-bottom: -4px;
 	background: rgb(251, 251, 251);
 	border-radius: 6px;
 	color: rgb(23, 160, 132);
 	margin-left: 3px;
+	margin-bottom: 0px;
 }
 .min_text{
 	display: none;
@@ -318,6 +328,7 @@ a{
 	border: 1px solid #E5E6E7;
     background-color: rgb(23, 160, 132);
     color: #fff;
+    width: 100%;
 
 }
 .sub_form_quest{
@@ -340,8 +351,27 @@ a{
 }
 
 .save_edit_all{
-	margin-left: 670px;
+	background-color: #F8AC59;
+	color: #fff;
+	margin-left: 90%;
 }
 .ask_tab_id{
 	width: 50px;
 }
+
+.ui-tooltip {
+    width: 210px;
+    background-color: #1ab394;
+    border-radius: 10px;
+    color: #fff;
+    padding: 10px;
+    border: 1px solid;
+
+  }
+
+ .ui-helper-hidden-accessible{
+ 	display: none;
+ 	visibility: hidden;
+ 	z-index: -100;
+ 	height: 0px;
+ }

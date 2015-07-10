@@ -1,7 +1,5 @@
 jsPlumb.ready(function () {
 
-
-    
     // -------------------------
     var main_block = jsPlumb.getSelector(".statemachine-demo .all");
     var windows = jsPlumb.getSelector(".statemachine-demo .end_point_relation");
@@ -10,8 +8,9 @@ jsPlumb.ready(function () {
 
     // setup some defaults for jsPlumb.
     var instance = jsPlumb.getInstance({
-        Endpoint: ["Dot", {radius: 2}],
-        HoverPaintStyle: {strokeStyle: "#1e8151", lineWidth: 2 },
+        Endpoint: ["Dot", {radius: 1}],
+         
+        HoverPaintStyle: {strokeStyle: "#1e8151", lineWidth: 2, zindex:1000000 },
         ConnectionOverlays: [
             [ "Arrow", {
                 location: 1,
@@ -42,13 +41,14 @@ jsPlumb.ready(function () {
 
 
     instance.registerConnectionType("basic", basicType);
-    instance.registerConnectionType("basic", basicType);
+    // instance.registerConnectionType("basic", basicType);
 
 
     instance.init_ep = function () {
         instance.makeSource(windows, {
             filter: ".ep",
-            anchor: "RightMiddle",
+            // anchor: "RightMiddle",
+            anchor:"Continuous",
             connector: [ "Flowchart" ],
             connectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
         });
@@ -108,17 +108,17 @@ jsPlumb.ready(function () {
 
     // ------------------------------------------------
 
-    click_for_edit = function  (e) {
-        remove_all_adit();
-        e.stopPropagation();
-        var el_panel_demo = e.target.closest(".head_section");
-        var el_edit = el_panel_demo.querySelector(".for_edit") ;
+    // click_for_edit = function  (e) {
+    //     remove_all_adit();
+    //     e.stopPropagation();
+    //     var el_panel_demo = e.target.closest(".head_section");
+    //     var el_edit = el_panel_demo.querySelector(".for_edit") ;
         
-        $(el_edit).toggleClass("active_form");
-    }
+    //     $(el_edit).toggleClass("active_form");
+    // }
 
 
-    $("body").on("click",".edit_quest",click_for_edit);
+    // $("body").on("click",".edit_quest",click_for_edit);
 
     // ------------------------------------------------
 
@@ -129,6 +129,8 @@ jsPlumb.ready(function () {
         var el_edit = el_klient_section.querySelector(".for_edit") ;
         
         $(el_edit).toggleClass("active_form");
+        $(el_edit).find("textarea").trigger("resize");
+        // $(el_edit).find("textarea").trigger("autosize");
 
         // var el_all  = e.target.closest(".all");
         // var el_ask = $(el_all).find("collaps");
@@ -165,34 +167,11 @@ jsPlumb.ready(function () {
        parentEl.appendChild(place_edit);
     }
      
-    var rem_all_collaps = function(el_col){
-        var collapsed_el_s = jsPlumb.getSelector(".collaps");
-        for (var i = 0 ; i < collapsed_el_s.length; i++){
-            var el = collapsed_el_s[i]
-            if (el_col != el){
-            $(el).removeClass("activate"); 
-            }
-        };      
-    }
-
-    var click_collapsed = function(e){
-        var this_col =  e.target.closest(".head_collaps").querySelector(".collaps");
-        rem_all_collaps(this_col);
-        var id = this.getAttribute("child");
-        var $id = $(id); 
-        $(id).toggleClass("activate");
-        $input_text = $id.find(".input_text")
-        resize_text_area.call($input_text[0]);
-        
-    };
-
-
-    $('body').on("click",".collapsed", click_collapsed);
 
     for_click_add = function(e){
 
         var parrent_el = e.target.closest(".consultant").querySelector(".section_question"); 
-        // var parrent_el = $(e.target).closest(".section_question");
+        
         var max_id = parseInt($(parrent_el).attr('id') +"00");
         $(parrent_el).find(".end_point_relation").each(function(){
 
@@ -215,7 +194,7 @@ jsPlumb.ready(function () {
                 el_panel_collapsed = $(this).find(".collaps");
                 id_el = $(this).find(".end_point_relation").attr("id");
             });
-            $(el_panel_collapsed).addClass('activate');
+            // $(el_panel_collapsed).addClass('activate');
 
             windows = document.getElementById(id_el);
             instance.makeSource(windows, {
@@ -235,6 +214,7 @@ jsPlumb.ready(function () {
 
         });
 
+        $(el_tbody).find("textarea").autosize();
             
     };
 
@@ -260,24 +240,8 @@ jsPlumb.ready(function () {
         e.preventDefault();
         
     }
-    // canv.addEventListener( "wheel",change_scale );
-    
 
-    function resize_text_area(el) {
-       
-        var cont = this.value.trim();
-        count_symb =this.offsetWidth/7||100; // количество символов которые помещаются в одну строку
-        height_line = 25; // высота строки
-        
-        var need_height = Math.max(25,Math.ceil(cont.length/count_symb)* height_line);
-        
-        $(this).css({'height':'auto','overflow-y':'hidden'}).height(need_height);
-    }   
-
-
-        
-    $("body").on("input",".input_text",resize_text_area);
-        
+    $("textarea").autosize();        
 
     $(".new_ask").on("click",function(e){
         var newdiv = document.createElement('div');
@@ -291,14 +255,15 @@ jsPlumb.ready(function () {
             poz.top = poz.top + 25;
             $div.offset(poz);
             $("#statemachine-demo").append($div);
+            $($div).find("textarea").autosize();
             instance.draggable($div );
             // initialise all '.w' elements as connection targets.
-            instance.makeTarget($div, {
-                dropOptions: { hoverClass: "dragHover" },
-                // anchor: "AutoDefault", 
-                // allowLoopback: true
-                anchor:["Continuous", { faces:[ "right", "left" ] } ],
-                });    
+            // instance.makeTarget($div, {
+            //     dropOptions: { hoverClass: "dragHover" },
+            //     // anchor: "AutoDefault", 
+            //     // allowLoopback: true
+            //     anchor:["Continuous", { faces:[ "right", "left" ] } ],
+            //     });    
         });
 
 
@@ -311,16 +276,22 @@ jsPlumb.ready(function () {
     $('body').on('click','.dell_quest',function(e){
 
         $quest_el = $(e.target).closest('.quest_el');
+        var id_quest = $quest_el.find(".end_point_relation") .attr('id');
         
-        instance.remove($quest_el.find(".end_point_relation") .attr('id'));
         $quest_el.detach();
+        instance.remove(id_quest);
+        // $(e.target).closest(".all").find(".head_collaps>.collaps").each(function(){
+        //     instance.getConnections({source: $(this).attr("id")}).repaint();
+        // });
+        // instance.select().repaint();
+
     })
 
     var get_par_quest = function(inner_html){
        var val,atr,el ;
        el = $(inner_html).find("textarea");
        if (el.val()) {
-          val = $(el).html().trim();
+          val = $(el).val().trim();
           atr = $(el).attr("model_field");
        };
 
@@ -351,9 +322,11 @@ jsPlumb.ready(function () {
             
             var id_quest = $(this).find("tbody>tr>td>p").html();
             var quest_attr =  { };
-            if(id_quest >10875){
-                console.log("dd");
-            }
+            // if (parseInt(id_quest) == 10900) {
+
+            //     console.log(parseInt(id_quest));
+
+            // }
             $(this).find("tbody>tr>td").each(function(){
 
                 var set_dict = get_par_quest(this);
@@ -372,7 +345,7 @@ jsPlumb.ready(function () {
             if (id_quest){
                 dict_quest[id_quest] = quest_attr;
             };
-            var text_answer = $(this).find(".input_text_sub").html().trim();
+            var text_answer = $(this).find(".input_text_sub").val().trim();
             main_s[$(this).attr('id')] = {"text_answer":text_answer, "questions":dict_quest};
 
         
@@ -406,12 +379,39 @@ jsPlumb.ready(function () {
     make_con();
 
     $("body").on("click",".save_edit_all",function(e){
+
         var for_edit = $(e.target).closest(".for_edit");
+
+
+        var text_ask = $(for_edit).find(".media-body>textarea").val().trim();
+
+        var for_edit = $(e.target).closest(".all");
+
+        $(for_edit).find(".pos_head_client>a").attr("title",text_ask);
+
         $(for_edit).find("tbody>tr").each(function(){
-           var text_quest = $(this).find(".cell_ask_input").html();
+           var text_quest = $(this).find(".cell_ask_input>textarea").val().trim();
            var id_quest = $(this).find("td>p").html();
-           $("#"+id_quest+"ans>.input_text_answer").html(text_quest);
+           $("#"+id_quest+"for_dot>a").attr("title",text_quest);
         });
     });
 
+    $( ".collapsed" ).tooltip({
+      position: {
+        // my: "top left ",
+        at: "right+25"
+      },
+      show: {
+        effect: "slideDown",
+        delay: 350
+      }
+      // content: "Awesome title!"
+    });
+
+    $("input").each(function(){
+
+        $(this).attr("value") = $(this).attr("value") .trim();
+    })
+
 });
+    

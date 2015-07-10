@@ -22,8 +22,9 @@
     
     <script src="{% static "js/ajax_csrf_token.js" %}"></script>
     <!-- ********************************************************  -->
+    
+    <script src="{% static "js/uml/jquery.autosize.js" %}"></script>
     <script src="{% static "js/uml/jquery-ui.js" %}"></script>
-    <!-- <script src="{% static "js/uml/JuScaling.js" %}"></script>-->
     </head>
     
     <body class="body_style" ca data-demo-id="statemachine" data-library="dom">
@@ -45,13 +46,9 @@
         <div id  = "main1">
             <!-- demo -->
             <div class="demo statemachine-demo" id="statemachine-demo" >
-
-               
                 {%for el_list in list_answer%}
                     {% include 'tree/Uml/el_ask.html' %}  
                 {% endfor %}
-                
-            
             </div>
             <!-- /demo -->
         </div>
