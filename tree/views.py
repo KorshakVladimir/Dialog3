@@ -356,9 +356,12 @@ def new_ask(request):
     id = request.session.get('id_ans')
 
     if not id:
-
-        inst_answer = Answer.objects.all().order_by('-id')[0]
-        id = inst_answer.id
+        try:
+            
+            inst_answer = Answer.objects.all().order_by('-id')[0]
+            id = inst_answer.id
+        except:
+            id = 0
     else :
         id  = int(id) 
 

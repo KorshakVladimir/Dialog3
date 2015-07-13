@@ -194,7 +194,7 @@ jsPlumb.ready(function () {
         $.post( "/tree/new_quest/",{"max_id":max_id}).done(function( data ) {
 
             $(parrent_el).append($(data));
-            make_collapsed( $(parrent_el).last());
+            // make_collapsed( $(parrent_el).last());
             // rem_all_collaps();
             var el_panel_collapsed;
             var id_el;
@@ -261,7 +261,7 @@ jsPlumb.ready(function () {
             $("#statemachine-demo").append($div);
             $($div).find("textarea").autosize();
             instance.draggable($div );
-            make_collapsed($div);
+            // make_collapsed($div);
             make_Target($div);
             jQuery('html, body').animate({scrollLeft: poz_new + 'px'}, 30);
             
@@ -429,7 +429,7 @@ jsPlumb.ready(function () {
     //     });
     // }
 
-    make_collapsed(".collapsed");
+    // make_collapsed(".collapsed");
 
     $("input").each(function(){
         try{
