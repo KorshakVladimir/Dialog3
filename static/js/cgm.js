@@ -43,32 +43,34 @@ $(window).bind("load", function () {
 
 		    $("#for_ajax").html("");
 		  });
-
+		if (tar_href.indexOf("/0/")!=-1){
+			return true
+		}	  
     	return false;
     });
 
 })
 
-function f_test () {
-	console.log('good');
-	// document.querySelect
-	doc_el = document.documentElement;
-	el_backg =   doc_el.querySelector('.backg');
-	if (!el_backg) {
-		return;
-	}
-	var height_document = doc_el.clientHeight;
-	var height_user_place = el_backg.clientHeight;
-	if (height_document < height_user_place){
-		el_backg.style.top ="40px";
-		}
-		else{
-			el_backg.style.top = (height_document - height_user_place)/2 +"px";
-		}
+// function f_test () {
+// 	console.log('good');
+// 	// document.querySelect
+// 	doc_el = document.documentElement;
+// 	el_backg =   doc_el.querySelector('.backg');
+// 	if (!el_backg) {
+// 		return;
+// 	}
+// 	var height_document = doc_el.clientHeight;
+// 	var height_user_place = el_backg.clientHeight;
+// 	if (height_document < height_user_place){
+// 		el_backg.style.top ="40px";
+// 		}
+// 		else{
+// 			el_backg.style.top = (height_document - height_user_place)/2 +"px";
+// 		}
 	
-}
+// }
 
 
-document.documentElement.addEventListener('onload',f_test());
+// document.documentElement.addEventListener('onload',f_test());
 
 // document.onload = f_test()

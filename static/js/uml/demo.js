@@ -42,24 +42,30 @@ jsPlumb.ready(function () {
 
     instance.registerConnectionType("basic", basicType);
     // instance.registerConnectionType("basic", basicType);
-
-
-    instance.init_ep = function () {
-        instance.makeSource(windows, {
-            filter: ".ep",
-            // anchor: "RightMiddle",
-            anchor:"Continuous",
-            connector: [ "Flowchart" ],
-            connectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
-        });
-
-        // initialise all '.w' elements as connection targets.
-        instance.makeTarget(main_block, {
+    var make_Target  = function(el){
+        instance.makeTarget(el, {
             dropOptions: { hoverClass: "dragHover" },
             // anchor: "AutoDefault", 
             // allowLoopback: true
             anchor:["Continuous", { faces:[ "right", "left" ] } ],
-        });    
+        }); 
+    };
+
+    var make_Source = function(el){
+        instance.makeSource(el, {
+            filter: ".ep",
+            anchor: "RightMiddle",
+            // anchor:"Continuous",
+            connector: [ "Flowchart" ],
+            connectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
+        }); 
+    }
+
+    instance.init_ep = function () {
+        
+        make_Source(windows);
+        
+        make_Target(main_block); 
 
     }
 
@@ -170,9 +176,10 @@ jsPlumb.ready(function () {
 
     for_click_add = function(e){
 
-        var parrent_el = e.target.closest(".consultant").querySelector(".section_question"); 
-        
-        var max_id = parseInt($(parrent_el).attr('id') +"00");
+        var parrent_el = $(e.target).closest(".all").find(".section_question"); 
+        var id = $(parrent_el).attr('id');
+        var clean_id = id.substring(0,id.indexOf("pan"));
+        var max_id = parseInt( clean_id+"00");
         $(parrent_el).find(".end_point_relation").each(function(){
 
             var  id =  $(this).attr("id");
@@ -197,13 +204,8 @@ jsPlumb.ready(function () {
             });
             // $(el_panel_collapsed).addClass('activate');
 
-            windows = document.getElementById(id_el);
-            instance.makeSource(windows, {
-                filter: ".ep",
-                anchor: "RightMiddle",
-                connector: [ "Flowchart" ],
-                connectorStyle: { strokeStyle: "#000", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
-            });
+            var windows = document.getElementById(id_el);
+            make_Source(windows);
         });
 
         var el_all = $(e.target).closest(".all");
@@ -221,7 +223,7 @@ jsPlumb.ready(function () {
     };
 
 
-    $("body").on("click",".add_button",for_click_add);
+    $("body").on("click",".func_add_button",for_click_add);
 
     var scale = 1;
     var prop = 1;
@@ -260,6 +262,7 @@ jsPlumb.ready(function () {
             $($div).find("textarea").autosize();
             instance.draggable($div );
             make_collapsed($div);
+            make_Target($div);
             // initialise all '.w' elements as connection targets.
             // instance.makeTarget($div, {
             //     dropOptions: { hoverClass: "dragHover" },
@@ -323,34 +326,40 @@ jsPlumb.ready(function () {
         // // 'choices[]': [ "Jon", "Susan" ] 
         $(".all").each(function(){
             
-            var id_quest = $(this).find("tbody>tr>td>p").html();
-            var quest_attr =  { };
-            // if (parseInt(id_quest) == 10900) {
-
-            //     console.log(parseInt(id_quest));
-
-            // }
-            $(this).find("tbody>tr>td").each(function(){
-
-                var set_dict = get_par_quest(this);
-                if (set_dict){
-                    quest_attr[set_dict["atr"]] = set_dict["val"];
-                }
-            });
-            
             var  dict_quest = {};
-            var con  = instance.getConnections({source:id_quest+"for_dot"});
+            $(this).find("tbody>tr").each(function(){
 
-            if (con.length){
-                quest_attr.question_answer = con[0].targetId;
+                var id_quest = $(this).find("td>p").html();
+                var quest_attr =  { };
+                // if (parseInt(id_quest) == 10900) {
+
+                //     console.log(parseInt(id_quest));
+
+                // }
+                $(this).find("td").each(function(){
+
+                    var set_dict = get_par_quest(this);
+                    if (set_dict){
+                        quest_attr[set_dict["atr"]] = set_dict["val"];
+                    }
+                });
                 
-            };
-            if (id_quest){
-                dict_quest[id_quest] = quest_attr;
-            };
+                
+                var con  = instance.getConnections({source:id_quest+"for_dot"});
+
+                if (con.length){
+                    quest_attr.question_answer = con[0].targetId;
+                    
+                };
+                if (id_quest){
+                    dict_quest[id_quest] = quest_attr;
+                };
+
+            });
+
             var text_answer = $(this).find(".input_text_sub").val().trim();
             main_s[$(this).attr('id')] = {"text_answer":text_answer, "questions":dict_quest};
-
+                
         
         });
         
@@ -412,13 +421,27 @@ jsPlumb.ready(function () {
 
     make_collapsed(".collapsed");
 
-
-
-
     $("input").each(function(){
+        try{
+            $(this).attr("value") = $(this).attr("value") .trim();
+        } catch(e){
 
-        $(this).attr("value") = $(this).attr("value") .trim();
+        };
     })
+
+    $("body").on("click",".close_sub_form", function(e){
+        
+        remove_all_adit();
+    });
+
+
+    $("body").on("click",".dell_con",function(e){
+        var $end_point_relation = $(e.target).closest(".head_collaps").find(".end_point_relation");
+        var id  = $($end_point_relation).attr("id");
+        var con =  instance.getConnections({source:id});
+
+        instance.detach(con[0]);
+    });
 
 });
     

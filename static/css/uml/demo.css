@@ -10,6 +10,8 @@ li{
 	/* for IE10+ touch devices */
 	background-color:#EAE4E4;
 	z-index: -3;
+	width: 2000px;
+	margin-right: 10px;;
 }
 
 .w {
@@ -176,8 +178,8 @@ path,svg{
 
 .add_button{
 	position: absolute;
-	top: -0px;
 	right: 0px;
+	top: -0px;
 }
 
 .client{
@@ -253,6 +255,8 @@ path,svg{
 
 .body_style{
 	height: auto;
+	width: 20000px;
+	overflow-x: auto;
 }
 #main{
 	margin-top: 106px; */
@@ -338,7 +342,7 @@ a{
 .save_diagram{
 	position: fixed;
 	top: 41px;
-	left: 95px;
+	left: 108px;
 	font-size: 20px;
 	border-radius: 8px;
 }
@@ -374,4 +378,26 @@ a{
  	visibility: hidden;
  	z-index: -100;
  	height: 0px;
+ }
+ .close_sub_form{
+	margin-left: 10px;
+	font-size: 22px;
+	background-color: #DE7373;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	margin-bottom: 5px;
+
+ }
+ .button_close{
+
+ }
+
+ .button_add_sub_form{
+	background-color: #1c84c6;
+	border: none;
+	color: #fff;
+	margin-bottom: 5px;
+	border-radius: 5px;;
+
  }

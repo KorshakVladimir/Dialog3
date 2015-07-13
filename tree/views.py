@@ -13,6 +13,10 @@ from django.core.context_processors import csrf
 from django.views.decorators.csrf import ensure_csrf_cookie
 import pdb
 import json
+from django.core.exceptions import ObjectDoesNotExist
+
+
+
 def get_prod_all(context):
     product = Products.objects.all()
     list_product = []
@@ -52,8 +56,6 @@ def tying_product(request,id_tying=0):
     if s_tyings:
 
         list_tying = list(map(lambda x :int(x),s_tyings.split(",")))
-    # import pdb
-    # pdb.set_trace()
 
     if id_tying in list_tying:
         
@@ -107,8 +109,7 @@ def res_product(request, id_prod, id_quest):
         x.answer_output for x in User_rezult.objects.filter(session_output=guid)]
     proper_s = Essential_prop.objects.filter(relation_answer__in=answers)
 
-    # import pdb
-    # pdb.set_trace()
+  
     count_point =0
     if proper_s:
 
@@ -134,7 +135,7 @@ def res_product(request, id_prod, id_quest):
 
 def for_game(request, answer_id, id_quest, context):
 
-    if int(answer_id) == 48:
+    if int(answer_id) == 0:
         return context
 
     answer = Answer.objects.get(id=answer_id)
@@ -144,9 +145,9 @@ def for_game(request, answer_id, id_quest, context):
     
     
     context = get_prod_all(context)
-
-    if answer_id == 1081:
-
+    # pdb.set_trace()
+    
+    if MIN_ANS == answer_id :
         random_seq = str(random.random()).encode('utf-8')
         salt = hashlib.sha1(random_seq).hexdigest()[:36]
         request.session['GUID'] = salt
@@ -205,8 +206,7 @@ def for_history(request, context):
         list_sesions.append(
             {'session_output': key_d, 'date_create': dict_sesions[key_d], "point":sum_point['point'],
             'money':sum_point['money'] })
-    # import pdb
-    # pdb.set_trace()
+
 
     context["list_sesions"] = list_sesions
     context['count'] = 0
@@ -217,14 +217,23 @@ def select_prof(request):
     context= {}
     return render(request, 'tree/select_type_person.html', context)
 
-def index(request, answer_id=1081, id_quest=0):
-
+def index(request, answer_id=-1, id_quest=0):
+    
     context = {}
-    context = for_game(request, answer_id, id_quest, context)
+    # 
+    global MIN_ANS
+    try:
+        if answer_id == -1:
+            answer_id  = MIN_ANS= Answer.objects.order_by("id")[0].id
+        context = for_game(request, answer_id, id_quest, context)
+
+    except:
+        pass
+ 
     context = make_game(context,'act_game')
     # context.update(csrf(request))
-    if int(answer_id) == 48:
-
+    # pdb.set_trace()
+    if int(answer_id) == 48 or int(answer_id) == 0:
         return game_history(request, request.session.get('GUID'))
     else:
         return render(request, 'gameplace.html', context)
@@ -289,9 +298,13 @@ def refer(request):
     return render(request, 'tree/refer.html')
 
 def diagram(request):
-    list_all_answer = [Answer.objects.get(id  = 1081)]
-
-    # print( "len" , len(list(all_answer)))
+    list_all_answer = []
+    try:
+        firsk_ask = Answer.objects.order_by("id")[0]
+        list_all_answer.append(firsk_ask)
+    except :
+        pass
+    
     context = {}
     list_answer = []
     top = 500
@@ -299,27 +312,29 @@ def diagram(request):
     flag_answer = []
     list_con = []
     form = ""
+    
     while True:
 
         list_quest_answer = []
         step_top = 230
         top -= int(len(list_all_answer)*step_top/2)
         
-        for el_answer  in list_all_answer:
-            form =  AnswerForm()
+        for el_answer in list_all_answer:
 
             all_quest = Questions.objects.filter(relation_answer_id = el_answer.id)
+            
             list_answer.append({"el_answer":el_answer,"all_quest":all_quest,"top":top,"left":left})
-            for el_quest in all_quest:
-                # pdb.set_trace()    
+            flag_answer.append(el_answer.id)
+            for el_quest in all_quest: 
                 if el_quest.question_answer:
+
                     list_con.append({"source":el_quest.id,"target":el_quest.question_answer})
                    
                     answer_instance = Answer.objects.get(id = int(el_quest.question_answer))
 
-                    if not answer_instance in flag_answer:
+                    if not answer_instance.id in flag_answer:
 
-                        flag_answer.append(answer_instance)
+                        flag_answer.append(answer_instance.id)
                         list_quest_answer.append(answer_instance)
 
             top += step_top       
@@ -329,7 +344,7 @@ def diagram(request):
 
         if not list_quest_answer:
             break 
-
+          
     context['list_answer']  = list_answer  
     context['list_con']     = list_con  
     context['form']         = form  
@@ -337,8 +352,7 @@ def diagram(request):
 
 def new_ask(request):
 
-    # pdb.set_trace()
-
+    
     id = request.session.get('id_ans')
 
     if not id:
@@ -355,7 +369,7 @@ def new_ask(request):
     el_ans = Answer(id)
     el_ans.save()
     
-    # pdb.set_trace()
+    
     context = {"el_list":{"el_answer":{"id":id}}}
     return render(request, 'tree/Uml/el_ask.html',context)
 
@@ -378,8 +392,7 @@ def load_button(request ):
     return render(request,'tree/load_button.html',context)
 
 def new_quest(request):
-    import pdb
-    # pdb.set_trace()
+
     context = {}
     if request.POST:
         max_id = int(request.POST.get("max_id"))
@@ -393,28 +406,24 @@ def diagrama_save(request):
         
         srt_json = request.POST.get("json_str")
         d = json.loads(srt_json)
-
+        Answer.objects.all().delete()
+        Questions.objects.all().delete()
         for id_ask in d:
-            # pdb.set_trace()
+           
             ob_ask, create = Answer.objects.get_or_create(id = id_ask) 
             ob_ask.text_answer = d[id_ask]['text_answer']
             ob_ask.save()
-            print("id_ask",id_ask)
-            if id_ask == "10895":
-                print("yes")
-                pdb.set_trace()
+        
             for id_quest in d[id_ask]["questions"]:
-
-                # print("id_quest ", id_quest)
                 
                 ob_quest, create = Questions.objects.get_or_create(id = id_quest,relation_answer = ob_ask)
                 d_attr = d[id_ask]["questions"][id_quest]
                 for attr_quest in d_attr:
                     
                     setattr(ob_quest, attr_quest, d_attr[attr_quest])
-                    # print(attr_quest, d_attr[attr_quest])
+                    
                 ob_quest.save()             
-        # pdb.set_trace()        
+              
     return HttpResponse("")
 
 def for_edit_new_row(request):
