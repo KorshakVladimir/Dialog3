@@ -246,7 +246,7 @@ jsPlumb.ready(function () {
     }
 
     $("textarea").autosize();        
-
+    poz_new = 0;
     $(".new_ask").on("click",function(e){
         var newdiv = document.createElement('div');
 
@@ -255,14 +255,16 @@ jsPlumb.ready(function () {
             $("#for_ajax").html(data);
             var $div = $("#for_ajax").find(".all");
             var poz = $(e.target).offset();
-
-            poz.top = poz.top + 25;
+            poz_new =poz_new +10 ;
+            poz.top = poz.top + 50+poz_new;
             $div.offset(poz);
             $("#statemachine-demo").append($div);
             $($div).find("textarea").autosize();
             instance.draggable($div );
             make_collapsed($div);
             make_Target($div);
+            jQuery('html, body').animate({scrollLeft: poz_new + 'px'}, 30);
+            
             // initialise all '.w' elements as connection targets.
             // instance.makeTarget($div, {
             //     dropOptions: { hoverClass: "dragHover" },
@@ -388,6 +390,12 @@ jsPlumb.ready(function () {
     }
     make_con();
 
+    var trim_count_smb =  function (our_str,count_simb){
+            return our_str.substring(0,count_simb)+ " ..."
+
+
+    }
+
     $("body").on("click",".save_edit_all",function(e){
 
         var for_edit = $(e.target).closest(".for_edit");
@@ -398,26 +406,28 @@ jsPlumb.ready(function () {
         var for_edit = $(e.target).closest(".all");
 
         $(for_edit).find(".pos_head_client>a").attr("title",text_ask);
+        $(for_edit).find(".pos_head_client>a>.head_section").html(trim_count_smb(text_ask,20));
 
         $(for_edit).find("tbody>tr").each(function(){
            var text_quest = $(this).find(".cell_ask_input>textarea").val().trim();
            var id_quest = $(this).find("td>p").html();
            $("#"+id_quest+"for_dot>a").attr("title",text_quest);
+           $("#"+id_quest+"for_dot>a>.head_section").html(trim_count_smb(text_quest,15));
         });
     });
 
-    var make_collapsed  = function(el){$( el ).tooltip({
-      position: {
-            // my: "top left ",
-            at: "right+25"
-          },
-          show: {
-            effect: "slideDown",
-            delay: 350
-          }
-          // content: "Awesome title!"
-        });
-    }
+    // var make_collapsed  = function(el){$( el ).tooltip({
+    //   position: {
+    //         // my: "top left ",
+    //         at: "right+25"
+    //       },
+    //       show: {
+    //         effect: "slideDown",
+    //         delay: 350
+    //       }
+    //       // content: "Awesome title!"
+    //     });
+    // }
 
     make_collapsed(".collapsed");
 

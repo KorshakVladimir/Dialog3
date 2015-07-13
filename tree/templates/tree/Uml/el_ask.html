@@ -10,10 +10,10 @@
             <!-- ***********************************************************-->
             <div   class="text_head_client pos_head_client">
                 <a title="{{ el_list.el_answer.text_answer}}"  child="#{{ el_list.el_answer.id }}t" class="collapsed" >
-                   <span class = "head_section client ">{{ el_list.el_answer.id}} </span>
-                   <span class = "badge_down">  
+                   <span class = "head_section client ">{{ el_list.el_answer.text_answer|truncatechars:18 }} </span>
+                   <!-- <span class = "badge_down">  
                         <i class="fa fa-sort-desc"></i>
-                   </span>     
+                   </span>  -->    
                 </a>
             </div>
         </div>
@@ -24,7 +24,7 @@
         <!-- ********************************************************** -->
 
         <div class = "head_section consultant">
-            <div style  = "height:22px; margin-left:5px;"> Консультант </div>
+            <div style  = "height:22px; margin-left:5px;"> Вопрос\ответ </div>
                  <div  id="{{ el_list.el_answer.id}}pan" class = "section_question" >   
 
                     {% for el_quest in el_list.all_quest %}

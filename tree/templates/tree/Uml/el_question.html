@@ -33,10 +33,10 @@
         <div class="text_head_client end_point_relation" id  = "{{ el_quest.id }}for_dot" >
             <a title="{{el_quest.text_questions}}"  child="#{{ el_quest.id }}ans" class="collapsed">
                 
-                <span class = "head_section client "> {{ el_quest.id }} </span>
-                <span class="badge_down"> 
+                <span class = "head_section client "> {{el_quest.text_questions|truncatechars:15 }} </span>
+                <!-- <span class="badge_down"> 
                     <i class="fa fa-sort-desc"></i>
-                </span>
+                </span> -->
                 
                  
             </a> 
