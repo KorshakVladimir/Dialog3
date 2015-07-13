@@ -131,8 +131,8 @@ jsPlumb.ready(function () {
     click_for_edit_all = function  (e) {
         remove_all_adit();
         e.stopPropagation();
-        var el_klient_section = e.target.closest(".klient_section");
-        var el_edit = el_klient_section.querySelector(".for_edit") ;
+        var el_klient_section = $(e.target).closest(".klient_section");
+        var el_edit = $(el_klient_section).find(".for_edit") ;
         
         $(el_edit).toggleClass("active_form");
         $(el_edit).find("textarea").trigger("resize");
