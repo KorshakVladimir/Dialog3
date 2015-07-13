@@ -178,7 +178,7 @@ jsPlumb.ready(function () {
             var  id =  $(this).attr("id");
             var pos_ind = id.indexOf("for_dot");
             var int_id = parseInt(id.substring(0,pos_ind));
-            if (int_id>max_id){
+            if (int_id > max_id){
                 max_id = int_id;
             }
 
@@ -187,7 +187,8 @@ jsPlumb.ready(function () {
         $.post( "/tree/new_quest/",{"max_id":max_id}).done(function( data ) {
 
             $(parrent_el).append($(data));
-            rem_all_collaps();
+            make_collapsed( $(parrent_el).last());
+            // rem_all_collaps();
             var el_panel_collapsed;
             var id_el;
             $(parrent_el).find(".head_collaps").each(function(){
@@ -215,6 +216,7 @@ jsPlumb.ready(function () {
         });
 
         $(el_tbody).find("textarea").autosize();
+
             
     };
 
@@ -257,6 +259,7 @@ jsPlumb.ready(function () {
             $("#statemachine-demo").append($div);
             $($div).find("textarea").autosize();
             instance.draggable($div );
+            make_collapsed($div);
             // initialise all '.w' elements as connection targets.
             // instance.makeTarget($div, {
             //     dropOptions: { hoverClass: "dragHover" },
@@ -357,8 +360,6 @@ jsPlumb.ready(function () {
     });
 
     instance.bind("click", function (conn, originalEvent) {
-           // if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
-             //   instance.detach(conn);
             conn.toggleType("basic");
         });
 
@@ -396,17 +397,23 @@ jsPlumb.ready(function () {
         });
     });
 
-    $( ".collapsed" ).tooltip({
+    var make_collapsed  = function(el){$( el ).tooltip({
       position: {
-        // my: "top left ",
-        at: "right+25"
-      },
-      show: {
-        effect: "slideDown",
-        delay: 350
-      }
-      // content: "Awesome title!"
-    });
+            // my: "top left ",
+            at: "right+25"
+          },
+          show: {
+            effect: "slideDown",
+            delay: 350
+          }
+          // content: "Awesome title!"
+        });
+    }
+
+    make_collapsed(".collapsed");
+
+
+
 
     $("input").each(function(){
 
