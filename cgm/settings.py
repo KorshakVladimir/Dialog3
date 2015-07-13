@@ -131,7 +131,7 @@ try:
     }
     }
 except:
-   DEBUG = False
+   # DEBUG = False
    
    DATABASES = {
                 'default': {

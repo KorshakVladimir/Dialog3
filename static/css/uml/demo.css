@@ -302,7 +302,7 @@ a{
 
 .new_ask{
 	position: fixed;
-	top: 41px;
+	top: 4px;
 	left: 61px;
 	font-size: 20px;
 	border-radius: 8px;
@@ -341,7 +341,7 @@ a{
 
 .save_diagram{
 	position: fixed;
-	top: 41px;
+	top: 4px;
 	left: 108px;
 	font-size: 20px;
 	border-radius: 8px;
