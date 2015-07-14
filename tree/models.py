@@ -5,11 +5,26 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Answer(models.Model):
-    text_answer = models.CharField(
-        max_length=200, verbose_name=u'Текст ответа', blank = True)
+class Stages(models.Model):
+    name = models.CharField(max_length=150,verbose_name=u'Имя')
+    class Meta:
+        verbose_name = "Этап диалога"
+        verbose_name_plural = "Этапы диалогов"
 
-    depth = models.IntegerField(default=0)
+    def __str__(self):
+        return self.name
+
+
+
+class Answer(models.Model):
+
+    stage = models.ForeignKey(
+        Stages, verbose_name = u'Этап диалога', blank = True, null=True)
+
+    text_answer = models.CharField(
+        max_length=200, verbose_name = u'Текст ответа', blank = True)
+
+    depth = models.IntegerField(default = 0)
 
     class Meta:
         verbose_name = "Ответ пользователя"
@@ -33,7 +48,7 @@ class Questions(models.Model):
         Answer, verbose_name=u'От какого вопроса пришел ответ')
 
     question_answer = models.CharField(
-        verbose_name=u'К какому вопросу приведет ответ', max_length=200)
+        verbose_name=u'К какому вопросу приведет ответ', max_length = 200, blank = True)
 
     class Meta:
         verbose_name = "Ответ консультанта"
@@ -149,3 +164,6 @@ class Relations_tying_products(models.Model):
     class Meta:
         verbose_name = "Сопутствующий товар для основного товара"
         verbose_name_plural = "Сопутствующие товары для основного товара"
+
+
+

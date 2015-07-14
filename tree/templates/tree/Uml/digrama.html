@@ -31,9 +31,16 @@
         <form action="" class="hide_el">
             {% csrf_token %}
         </form>
-        <button class="btn btn-info new_ask"><i class="fa fa-plus-square-o"></i></button>
-        <button class="btn btn-info save_diagram"><i class="fa fa-save"></i> Save</button>
-
+        <button class="btn btn-success return_to_dialog"><i class="fa fa-reply-all"></i></i></button>
+        <button class="btn btn-success new_ask"><i class="fa fa-plus-square-o"></i></button>
+        <button class="btn btn-success save_diagram"><i class="fa fa-save"></i> Save</button>
+        <div class="save_vidget hide_el">
+            <div class="sk-spinner sk-spinner-three-bounce ">
+                <div class="sk-bounce1"></div>
+                <div class="sk-bounce2"></div>
+                <div class="sk-bounce3"></div>
+            </div>
+        </div>
         <div id  = "connectors">
             {% for el_con in list_con %}
             <div class = 'con hide_el'>

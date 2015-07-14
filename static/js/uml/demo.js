@@ -320,11 +320,10 @@ jsPlumb.ready(function () {
        return {"atr":atr,"val":val}
     };
 
-    $('.save_diagram').on('click',function(e){
-        // var cont = {};
-        // main_s = cont["main"] = [];
-        // $.param({"traditional":true});
+
+    var save_diagram = function(){
         main_s = {};
+        
         // // 'choices[]': [ "Jon", "Susan" ] 
         $(".all").each(function(){
             
@@ -367,6 +366,23 @@ jsPlumb.ready(function () {
         
         $.post( "/tree/diagrama_save/",{"json_str":JSON.stringify(main_s)}).done(function( data ) {
         });
+
+    };
+
+    var save_vidget = function(func_ob, e){
+        $(".save_vidget").toggleClass("active_form");
+        func_ob(e);
+        setTimeout(function(){$(".save_vidget").toggleClass("active_form")}, 2000);
+    };
+
+    $('.save_diagram').on('click',function(e){
+        // var cont = {};
+        // main_s = cont["main"] = [];
+        // $.param({"traditional":true});
+       save_vidget(save_diagram, e);   
+        
+        // alert("dd");
+        
         
     });
 
@@ -396,9 +412,8 @@ jsPlumb.ready(function () {
 
     }
 
-    $("body").on("click",".save_edit_all",function(e){
-
-        var for_edit = $(e.target).closest(".for_edit");
+    var  save_edit_all = function(e){
+         var for_edit = $(e.target).closest(".for_edit");
 
 
         var text_ask = $(for_edit).find(".media-body>textarea").val().trim();
@@ -406,14 +421,19 @@ jsPlumb.ready(function () {
         var for_edit = $(e.target).closest(".all");
 
         $(for_edit).find(".pos_head_client>a").attr("title",text_ask);
-        $(for_edit).find(".pos_head_client>a>.head_section").html(trim_count_smb(text_ask,20));
+        $(for_edit).find(".pos_head_client>a>.head_section").html(trim_count_smb(text_ask,15));
 
         $(for_edit).find("tbody>tr").each(function(){
            var text_quest = $(this).find(".cell_ask_input>textarea").val().trim();
            var id_quest = $(this).find("td>p").html();
            $("#"+id_quest+"for_dot>a").attr("title",text_quest);
-           $("#"+id_quest+"for_dot>a>.head_section").html(trim_count_smb(text_quest,15));
+           $("#"+id_quest+"for_dot>a>.head_section").html(trim_count_smb(text_quest,10));
         });
+
+    };
+
+    $("body").on("click",".save_edit_all",function(e){
+        save_vidget(save_edit_all,e);      
     });
 
     // var make_collapsed  = function(el){$( el ).tooltip({
@@ -453,5 +473,10 @@ jsPlumb.ready(function () {
         instance.detach(con[0]);
     });
 
+    $("body").on("click",".return_to_dialog",function(e){
+
+        $(".save_diagram").trigger("click");
+        $("body").load("/tree/index/","body");   
+    })
 });
     
