@@ -3,7 +3,7 @@
     <td class = "cell_ask_input"> 
         <textarea model_field = "text_questions" class=" input_text input_text_answer "  placeholder ="Вопрос" >{{el_quest.text_questions}}</textarea>   
     </td>
-    <td><input  model_field = "point_answer" type="text" placeholder="0" value="{{el_quest.point_answer}}"  class="form-control cell_input"></td>
-    <td><input model_field = "point_emotions" type="text" placeholder="0" value="{{el_quest.point_emotions}}"  class="form-control cell_input"> </td>
-    <td><input model_field = "question_answer" type="text" placeholder="Номер вопроса клиента" value="          {{el_quest.question_answer}}"  class="form-control cell_input"> </td>
+    <td><input  model_field = "point_answer" type="text" placeholder="0" value="{{el_quest.point_answer|default:0}}"  class="form-control cell_input"></td>
+    <td><input model_field = "point_emotions" type="text" placeholder="0" value="{{el_quest.point_emotions|default:0}}"  class="form-control cell_input"> </td>
+    <td><input model_field = "question_answer" type="text" placeholder="Номер вопроса клиента" value="{{el_quest.question_answer|default:0}}"  class="form-control cell_input"> </td>
 </tr>

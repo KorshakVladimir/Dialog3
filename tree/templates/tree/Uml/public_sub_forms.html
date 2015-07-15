@@ -8,6 +8,20 @@
                 </a>
             </div>
          <small class="pull-right">{{el_list.el_answer.id}}</small>
+        <!-- <strong>Этап диалога</strong> -->
+        <fieldset>
+            <label for="stage">Выберите этап</label>
+            <select class = "select_stage" name="stage" id="{{el_list.el_answer.id}}stage">
+                {% for el_stage in stages %}
+                    <option     
+                    {% if  el_stage == el_list.el_answer.stage %}
+                          selected="selected"  
+                    {% endif%}
+                    stage_id = "{{ el_stage.id }}">{{el_stage.name}}</option>
+                {% endfor %}
+                
+            </select>
+        </fieldset>
         <strong>Вопрос покупателя</strong>
         
             <textarea class=" input_text input_text_answer input_text_sub"  placeholder ="Вопрос" >

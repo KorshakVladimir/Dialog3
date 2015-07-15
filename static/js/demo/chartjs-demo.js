@@ -41,6 +41,8 @@ $(function () {
         } catch (err) {
 
         }
+
+
     var radarData = {
         labels: ["Приветствие (Установка контакта)", "Выяснение запросов", "Предложения", "Аргументация", 
         "Работа с возражениями", "Заключение сделки"],
@@ -67,6 +69,11 @@ $(function () {
             }
         ]
     };
+    $.getJSON("/report/radar_chart_game").done(function(data){
+        alert(data);
+
+    });
+
 
     var radarOptions = {
         scaleShowLine: true,

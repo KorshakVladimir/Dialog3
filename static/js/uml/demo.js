@@ -307,7 +307,7 @@ jsPlumb.ready(function () {
        el = $(inner_html).find("input");
        if (el.val()) {
           
-            val = $(el).attr("value").trim();
+            val = parseInt($(el).val());
             atr = $(el).attr("model_field");
        };
          
@@ -326,7 +326,7 @@ jsPlumb.ready(function () {
         
         // // 'choices[]': [ "Jon", "Susan" ] 
         $(".all").each(function(){
-            
+            var dict_ask = {};
             var  dict_quest = {};
             $(this).find("tbody>tr").each(function(){
 
@@ -357,9 +357,12 @@ jsPlumb.ready(function () {
                 };
 
             });
-
             var text_answer = $(this).find(".input_text_sub").val().trim();
-            main_s[$(this).attr('id')] = {"text_answer":text_answer, "questions":dict_quest};
+            
+            dict_ask["text_answer"] = text_answer;
+            dict_ask["stage"] = $(this).find(".select_stage").val(); ;
+            
+            main_s[$(this).attr('id')] = { "ask":dict_ask , "questions":dict_quest};
                 
         
         });
@@ -421,7 +424,7 @@ jsPlumb.ready(function () {
         var for_edit = $(e.target).closest(".all");
 
         $(for_edit).find(".pos_head_client>a").attr("title",text_ask);
-        $(for_edit).find(".pos_head_client>a>.head_section").html(trim_count_smb(text_ask,15));
+        $(for_edit).find(".pos_head_client>a>.head_section").html(trim_count_smb(text_ask,10));
 
         $(for_edit).find("tbody>tr").each(function(){
            var text_quest = $(this).find(".cell_ask_input>textarea").val().trim();

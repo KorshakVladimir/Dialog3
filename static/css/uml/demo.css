@@ -399,9 +399,11 @@ a{
 	color: #fff;
 	margin-bottom: 5px;
 	border-radius: 5px;
-	background-color: #62727D;;
+	background-color: #62727D;
+	padding-bottom: 3px;;
 
  }
+
  .return_to_dialog{
 	position: fixed;
 	top: 4px;
@@ -415,9 +417,15 @@ a{
 	background-color: rgba(255, 255, 255, 1);
 	width: 200px;
 	border-radius: 5px;
-	margin-left: 42%;
-	margin-top: 1%;
+	left: 42%;
+	top: 1%;
 	padding-top: 6px;
 	z-index: 100;
+	position: fixed;
+ 	
+ }
+ .select_stage{
+	min-width: 171px;
+	margin-left: 10px;
  	
  }

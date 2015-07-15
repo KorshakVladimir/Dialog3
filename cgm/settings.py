@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cgm',
     'tree',
+    "report",
 ]
 
 MIDDLEWARE_CLASSES = [

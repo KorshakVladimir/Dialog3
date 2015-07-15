@@ -19,7 +19,7 @@ class Stages(models.Model):
 class Answer(models.Model):
 
     stage = models.ForeignKey(
-        Stages, verbose_name = u'Этап диалога', blank = True, null=True)
+        Stages, verbose_name = u'Этап диалога', blank = True, null = True)
 
     text_answer = models.CharField(
         max_length=200, verbose_name = u'Текст ответа', blank = True)
@@ -38,12 +38,13 @@ class Answer(models.Model):
 
 
 class Questions(models.Model):
-    point_answer = models.IntegerField(default=0, verbose_name=u'Очки ответа')
+    point_answer = models.IntegerField(default=0, verbose_name=u'Очки ответа',blank = True)
     point_emotions = models.IntegerField(
-        default=0, verbose_name=u'Очки емоций')
+        default=0, verbose_name=u'Очки емоций', blank = True)
 
     text_questions = models.CharField(
         max_length=200, verbose_name=u'Текст Вопроса')
+    
     relation_answer = models.ForeignKey(
         Answer, verbose_name=u'От какого вопроса пришел ответ')
 
@@ -116,9 +117,9 @@ class Essential_prop(models.Model):
 
 
 class User_rezult(models.Model):
+
     user_output = models.ForeignKey(User)
-    question_output = models.CharField(max_length=200)
-    # answer_text = models.CharField(max_length=200)
+    question_output = models.CharField(max_length=200)    
     answer_output = models.ForeignKey(Answer,blank = True,null = True)
     type_quest = models.CharField(max_length=200)
     point = models.IntegerField(default=0)

@@ -34,6 +34,12 @@ def get_prod_all(context):
     context['list_product'] = list_product
     return context
 
+def get_stage(context):
+    
+    ob_stages = Stages.objects.all()
+    context["stages"] = ob_stages
+    return context
+
 def make_game(context,active_tab):
     context["act_game"] = ''
     context["act_history"] = ''
@@ -220,8 +226,10 @@ def select_prof(request):
 def index(request, answer_id=-1, id_quest=0):
     
     context = {}
-    # 
+    
+
     global MIN_ANS
+
     try:
         if answer_id == -1:
             answer_id  = MIN_ANS= Answer.objects.order_by("id")[0].id
@@ -231,8 +239,7 @@ def index(request, answer_id=-1, id_quest=0):
         pass
  
     context = make_game(context,'act_game')
-    # context.update(csrf(request))
-    # pdb.set_trace()
+
     if int(answer_id) == 48 or int(answer_id) == 0:
         return game_history(request, request.session.get('GUID'))
     else:
@@ -312,7 +319,7 @@ def diagram(request):
     flag_answer = []
     list_con = []
     form = ""
-    
+    context = get_stage(context)
     while True:
 
         list_quest_answer = []
@@ -329,14 +336,15 @@ def diagram(request):
                 if el_quest.question_answer:
 
                     list_con.append({"source":el_quest.id,"target":el_quest.question_answer})
-                   
-                    answer_instance = Answer.objects.get(id = int(el_quest.question_answer))
+                    try:
+                        answer_instance = Answer.objects.get(id = int(el_quest.question_answer))
 
-                    if not answer_instance.id in flag_answer:
+                        if not answer_instance.id in flag_answer:
 
-                        flag_answer.append(answer_instance.id)
-                        list_quest_answer.append(answer_instance)
-
+                            flag_answer.append(answer_instance.id)
+                            list_quest_answer.append(answer_instance)
+                    except :
+                        pass    
             top += step_top       
         left += 200
         
@@ -362,7 +370,7 @@ def new_ask(request):
             id = inst_answer.id
         except:
             id = 0
-    else :
+    else:
         id  = int(id) 
 
     id+=1
@@ -374,10 +382,11 @@ def new_ask(request):
     
     
     context = {"el_list":{"el_answer":{"id":id}}}
+    context = get_stage(context)
     return render(request, 'tree/Uml/el_ask.html',context)
 
 
-def load_button(request ):
+def load_button(request):
     context = {}
 
     if request.POST:
@@ -412,21 +421,28 @@ def diagrama_save(request):
         Answer.objects.all().delete()
         Questions.objects.all().delete()
         for id_ask in d:
-           
+            
             ob_ask, create = Answer.objects.get_or_create(id = id_ask) 
-            ob_ask.text_answer = d[id_ask]['text_answer']
+            ob_ask.text_answer = d[id_ask]["ask"]['text_answer']
+            tetxt_satge = d[id_ask]["ask"]['stage']
+            ob_stage =  Stages.objects.filter(name = tetxt_satge )
+            if ob_stage:
+
+                ob_ask.stage = ob_stage[0] 
+
             ob_ask.save()
         
             for id_quest in d[id_ask]["questions"]:
                 
-                ob_quest, create = Questions.objects.get_or_create(id = id_quest,relation_answer = ob_ask)
+                ob_quest, create = Questions.objects.get_or_create(id = id_quest,relation_answer = ob_ask, question_answer = "0")
                 d_attr = d[id_ask]["questions"][id_quest]
+                # pdb.set_trace()     
                 for attr_quest in d_attr:
                     
                     setattr(ob_quest, attr_quest, d_attr[attr_quest])
                     
                 ob_quest.save()             
-              
+         
     return HttpResponse("")
 
 def for_edit_new_row(request):
