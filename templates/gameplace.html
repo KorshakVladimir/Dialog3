@@ -12,20 +12,21 @@
 {% endblock %}
 
 {% block partmiddle %}
-	<div >
+<div id="ajax-wrapper">
+	<div>
 	    <ul class="nav nav-tabs">
-	      	<li role="presentation" class="{{act_game }}"><a href="/tree" ><span class="glyphicon glyphicon-send" ></span> &nbsp Игра</a></li>
-        	<li role="presentation" class="{{act_history }}"><a href="/tree/history">Журнал</a></li>	
-        	<li role="presentation" class="{{act_profile }}"><a href="/tree/profile" >Профайл</a></li>
-	      	<li role="presentation" class="{{act_statistic }}"><a href="/tree/statistic"  >Статистика</a></li>
-	      	<li role="presentation" class="{{act_prod }}"><a href="/tree/part_prod"  >Товары</a></li>
+	      	<li role="presentation" class="{{act_game }}"><a class = "ajax_child" href="/tree/index" ><span class="glyphicon glyphicon-send" ></span> &nbsp Игра</a></li>
+        	<li role="presentation" class="{{act_history }}"><a class = "ajax_child" href="/tree/history">Журнал</a></li>	
+        	<li role="presentation" class="{{act_profile }}"><a  class = "ajax_child" href="/tree/profile" >Профайл</a></li>
+	      	<li role="presentation" class="{{act_statistic }}"><a  class = "ajax_child" href="/tree/statistic"  >Статистика</a></li>
+	      	<li role="presentation" class="{{act_prod }}"><a class = "ajax_child" href="/tree/part_prod"  >Товары</a></li>
 	      	<li role="presentation" class=""><a href="/admin">Admin</a></li>
 	      	<li role="presentation" class=""><a href="/tree/diagrama">Diagrama</a></li>
 	    </ul>
 	    <div class = "backg">
-	        
+	        <div class = "backg_child" >
 			{% block game %}
-				<div class = "backg_child" >
+				
 				<div class = "main-div">
 					<div class="row" >
 						 			
@@ -86,12 +87,14 @@
 				 	</div>
 				 	{% endblock %}
 				</div>
-				</div>
+				
 			{% endblock %}
+			</div>
 	    </div>
 	</div>
 <div id="for_ajax" style = "display:none;">
 	
+</div>
 </div>
 {% endblock %}
 

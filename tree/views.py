@@ -232,10 +232,6 @@ def select_prof(request):
 def index(request, answer_id=-1, id_quest=0):
     
     context = {}
-    
-
-    
-
     try:
         if answer_id == -1:
             answer_id  = MIN_ANS= Answer.objects.order_by("id")[0].id
@@ -254,6 +250,7 @@ def index(request, answer_id=-1, id_quest=0):
 
 @login_required(login_url='/login/')
 def profile(request):
+
     context = {}
     context = make_game(context,'act_profile')
     return render(request, 'tree/myprofile.html', context)
@@ -424,10 +421,11 @@ def diagrama_save(request):
         
         srt_json = request.POST.get("json_str")
         d = json.loads(srt_json)
-        Answer.objects.all().delete()
-        Questions.objects.all().delete()
+        # Answer.objects.all().delete()
+        # Questions.objects.all().delete()
+        # pdb.set_trace()
         for id_ask in d:
-            
+
             ob_ask, create = Answer.objects.get_or_create(id = id_ask) 
             ob_ask.text_answer = d[id_ask]["ask"]['text_answer']
             tetxt_satge = d[id_ask]["ask"]['stage']
@@ -440,7 +438,9 @@ def diagrama_save(request):
         
             for id_quest in d[id_ask]["questions"]:
                 
-                ob_quest, create = Questions.objects.get_or_create(id = id_quest,relation_answer = ob_ask, question_answer = "0")
+                ob_quest, create = Questions.objects.get_or_create(id = id_quest)
+                ob_quest.relation_answer = ob_ask
+                ob_quest.question_answer = "0"
                 d_attr = d[id_ask]["questions"][id_quest]
                      
                 for attr_quest in d_attr:

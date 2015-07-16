@@ -73,6 +73,7 @@
 .table-width{
   width: 80%;
   margin-left: 10%  ;
+  background-color: #fff;
 }
 
 td{
@@ -97,18 +98,18 @@ td{
 .main-div{
   background-image: url("/static/game_01_img/location_my.png") ;
 
-  min-height: 600px;
+  min-height: 603px;
   background-size:cover;
   border:1px solid #fff;
 }
 .backg{
-  background-color: #fff;
+  
   width: 1027px;
   margin-left: auto;
   margin-right: auto;
   /*margin: auto;*/
   position: absolute;
-  top: 40px; left: 0; bottom: 0; right: 0;
+  top: 39px; left: 0; bottom: 0; right: 0;
   height: 602px;
   
   /*display: inline-block;
@@ -125,7 +126,7 @@ td{
 
 .women{
   /*background-image: url("/static/game_01_img/women3.png") ;*/
-  width: 487px;
+  width: 488px;
   position: absolute;
   right: -15px;
   top: -18px; 
@@ -313,7 +314,7 @@ td{
 
 .td_img_pos{
 
-  height: 160px;
+  height: 161px;
   padding-left: 20%; 
 
 }
@@ -323,4 +324,9 @@ td{
 /*--------------*/
 .test_el{
   
+}
+.refer{
+    max-width: 1200px;
+    color: #fff;
+
 }

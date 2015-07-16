@@ -46,7 +46,7 @@ class Questions(models.Model):
         max_length=200, verbose_name=u'Текст Вопроса')
     
     relation_answer = models.ForeignKey(
-        Answer, verbose_name=u'От какого вопроса пришел ответ')
+        Answer, verbose_name=u'От какого вопроса пришел ответ', blank = True,null = True)
 
     question_answer = models.CharField(
         verbose_name=u'К какому вопросу приведет ответ', max_length = 200, blank = True)
