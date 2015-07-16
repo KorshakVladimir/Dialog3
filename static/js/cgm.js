@@ -23,7 +23,9 @@ $(window).bind("load", function () {
 
     	
 		// --------------------------------------------------------------------------------------
-		
+		if (tar_href.indexOf("/0/")!=-1){
+			return true
+		}
       	$.post( "/tree/load_button/",{"href":tar_href} )
 		  .done(function( data ) {
 		  	$data = $(data);
@@ -43,9 +45,7 @@ $(window).bind("load", function () {
 
 		    $("#for_ajax").html("");
 		  });
-		if (tar_href.indexOf("/0/")!=-1){
-			return true
-		}	  
+			  
     	return false;
     });
 

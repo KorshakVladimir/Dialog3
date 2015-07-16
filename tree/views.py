@@ -14,6 +14,8 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 import pdb
 import json
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -141,18 +143,11 @@ def res_product(request, id_prod, id_quest):
 
 def for_game(request, answer_id, id_quest, context):
 
-    if int(answer_id) == 0:
-        return context
-
-    answer = Answer.objects.get(id=answer_id)
-    questions = Questions.objects.filter(relation_answer_id=answer.id)
-
     question_output = ''
-    
-    
+        
     context = get_prod_all(context)
-    # pdb.set_trace()
     
+    MIN_ANS = request.session.get('MIN_ANS')
     if MIN_ANS == answer_id :
         random_seq = str(random.random()).encode('utf-8')
         salt = hashlib.sha1(random_seq).hexdigest()[:36]
@@ -182,14 +177,24 @@ def for_game(request, answer_id, id_quest, context):
                              )
         rezult.save()
 
+    if int(answer_id) == 0:
+        return context
 
+    answer = Answer.objects.get(id=answer_id)
+    questions = Questions.objects.filter(relation_answer_id=answer.id)
+        
     if question_output:
         point = question_output.point_answer
     else:
         point = 0
+    current_point = request.session.get('point') + point
+    current_emo = request.session.get('emo') + point
 
-    context['point'] = request.session.get('point') + point
-    context['emo'] = request.session.get('emo') + point
+    request.session['point'] = current_point
+    request.session['emo']    =  current_emo 
+      
+    context['point'] = current_point
+    context['emo'] = current_emo
     context['answer'] = answer
     context['questions'] = questions
  
@@ -211,7 +216,7 @@ def for_history(request, context):
         sum_point = result_ses.aggregate(point = Sum("point"),money = Sum('money'))
         list_sesions.append(
             {'session_output': key_d, 'date_create': dict_sesions[key_d], "point":sum_point['point'],
-            'money':sum_point['money'] })
+            'money':sum_point['money']})
 
 
     context["list_sesions"] = list_sesions
@@ -222,17 +227,19 @@ def select_prof(request):
 
     context= {}
     return render(request, 'tree/select_type_person.html', context)
-
+    
+@login_required(login_url='/login/')
 def index(request, answer_id=-1, id_quest=0):
     
     context = {}
     
 
-    global MIN_ANS
+    
 
     try:
         if answer_id == -1:
             answer_id  = MIN_ANS= Answer.objects.order_by("id")[0].id
+            request.session["MIN_ANS"] = MIN_ANS
         context = for_game(request, answer_id, id_quest, context)
 
     except:
@@ -245,18 +252,18 @@ def index(request, answer_id=-1, id_quest=0):
     else:
         return render(request, 'gameplace.html', context)
 
-
+@login_required(login_url='/login/')
 def profile(request):
     context = {}
     context = make_game(context,'act_profile')
     return render(request, 'tree/myprofile.html', context)
-
+@login_required(login_url='/login/')
 def history(request):
     context = {}
     context = for_history(request, context)
     context = make_game(context,'act_history')
     return render(request, 'tree/history_1.html', context)
-
+@login_required(login_url='/login/')
 def statistic(request):
     context = {}
     context = make_game(context,'act_statistics')
@@ -278,8 +285,7 @@ def for_game_history(request, guid, context):
         total_point += i.point
         total_money += i.money
         entry_order_history = i.displaying()
-        # import pdb
-        # pdb.set_trace()
+
         list_history.append({"answer_output": entry_order_history["answer_output"],
                              "question_output": entry_order_history["question_output"],
                              "best_choise": best_choise,
@@ -292,7 +298,7 @@ def for_game_history(request, guid, context):
     context = make_game(context,"act_history")
     return context
 
-
+@login_required(login_url='/login/')
 def game_history(request, guid):
     context = {}
     context = for_game_history(request, guid, context)
@@ -303,7 +309,7 @@ def game_history(request, guid):
 def refer(request):
 
     return render(request, 'tree/refer.html')
-
+@login_required(login_url='/login/')
 def diagram(request):
     list_all_answer = []
     try:
@@ -314,7 +320,7 @@ def diagram(request):
     
     context = {}
     list_answer = []
-    top = 500
+    top = 200
     left = 5
     flag_answer = []
     list_con = []
@@ -436,7 +442,7 @@ def diagrama_save(request):
                 
                 ob_quest, create = Questions.objects.get_or_create(id = id_quest,relation_answer = ob_ask, question_answer = "0")
                 d_attr = d[id_ask]["questions"][id_quest]
-                # pdb.set_trace()     
+                     
                 for attr_quest in d_attr:
                     
                     setattr(ob_quest, attr_quest, d_attr[attr_quest])

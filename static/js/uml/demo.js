@@ -479,7 +479,9 @@ jsPlumb.ready(function () {
     $("body").on("click",".return_to_dialog",function(e){
 
         $(".save_diagram").trigger("click");
-        $("body").load("/tree/index/","body");   
+        setTimeout( function(){  window.open("/tree/");},2000)
+       // window.open("/tree/");
+         // $("html").load("/tree/");   
     })
 });
     

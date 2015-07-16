@@ -6,29 +6,13 @@
 		<title>{% block title %}{% endblock %} | {{ request.user.username }}</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="Cache-Control" content="no-cache" />
+		<!-- <meta http-equiv="Cache-Control" content="no-cache" />
 		<meta http-equiv="Cache-Control" content="no-store" />
 		<meta http-equiv="Cache-Control" content="must-revalidate" />
-		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Pragma" content="no-cache" /> -->
 		{% load staticfiles %}
-		<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-	    <link href="{% static "font-awesome/css/font-awesome.css" %}" rel="stylesheet">
-
-		<link href="{% static "css/animate.css" %}" rel="stylesheet">
-	    <link href="{% static "css/style.css" %}" rel="stylesheet">
-	    <link href="{% static "css/project.css" %}" rel="stylesheet">
-		<!-- Mainly scripts -->
-		<script src="{% static "js/jquery-2.1.1.js" %}"></script>
-		<script src="{% static "js/bootstrap.min.js" %}"></script>
-		<script src="{% static "js/plugins/metisMenu/jquery.metisMenu.js" %}"></script>
-		<script src="{% static "js/plugins/slimscroll/jquery.slimscroll.min.js" %}"></script>
-
-		<!-- Custom and plugin javascript -->
-		<script src="{% static "js/inspinia.js" %}"></script>
-		<script src="{% static "js/plugins/pace/pace.min.js" %}"></script>
-
-		<!-- Peity -->
-		<script src="{% static "js/plugins/peity/jquery.peity.min.js" %}"></script>
+		
+		
 
 	    <!-- Custom and plugin javascript -->
 
@@ -43,8 +27,7 @@
 		<script src="{% static "js/plugins/flot/jquery.flot.time.js" %}"></script>
 		Flot demo data -->
 
-		<script src="{% static "js/demo/Chart.min.js" %}"></script>
-		<script src="{% static "js/demo/chartjs-demo.js" %}"></script>
+		
 		
 		
 			   
@@ -75,10 +58,30 @@
 				</div>
 			</div>
 		</div>
+		<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+	    <link href="{% static "font-awesome/css/font-awesome.css" %}" rel="stylesheet">
+
+		<link href="{% static "css/animate.css" %}" rel="stylesheet">
+	    <link href="{% static "css/style.min.css" %}" rel="stylesheet">
+	    <link href="{% static "css/project.css" %}" rel="stylesheet">
+		<!-- Mainly scripts -->
+		<script src="{% static "js/jquery-2.1.1.js" %}"></script> 
+		<script src="{% static "js/bootstrap.min.js" %}"></script>
+		<script src="{% static "js/plugins/metisMenu/jquery.metisMenu.js" %}"></script>
+		<script src="{% static "js/plugins/slimscroll/jquery.slimscroll.min.js" %}"></script>
+
+		<!-- Custom and plugin javascript -->
+		<script src="{% static "js/inspinia.js" %}"></script>
+		<script src="{% static "js/plugins/pace/pace.min.js" %}"></script>
+
+		<!-- Peity -->
+		<script src="{% static "js/plugins/peity/jquery.peity.min.js" %}"></script>
 
 		<script src="{% static "js/ajax_csrf_token.js" %}"></script>
 		<script src="{% static "js/plugins/iCheck/icheck.min.js" %}"></script>
 		<script src="{% static "js/cgm.js" %}"></script>
+		<script src="{% static "js/demo/Chart.min.js" %}"></script>
+		<script src="{% static "js/demo/chartjs-demo.js" %}"></script>
 		<script>
 			$(document).ready(function () {
 				$('.i-checks').iCheck({
