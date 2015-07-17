@@ -1,0 +1,22 @@
+<div class = "quest_el">
+   
+    <div class="panel panel_demo head_collaps">
+    <!-- <a data-toggle="collapse"  href="#{{ el_quest.id}}ans" aria-expanded="true" class=""> -->
+        <button class = "button_diag dell_quest"> <i class="fa fa-trash-o"> </i> </button>
+        <!-- <button class = "button_diag edit_quest"> <i class="fa fa-cog"> </i> </button> -->
+        <button class = "button_diag dell_con"> <i class="fa fa-unlink"> </i> </button>
+        <div class="text_head_client end_point_relation" id  = "{{ el_quest.id }}for_dot" >
+            <a title="{{el_quest.text_questions}}"  child="#{{ el_quest.id }}ans" class="collapsed">
+                
+                <span class = "head_section client "> {{el_quest.text_questions|truncatechars:10 }} </span>
+                <!-- <span class="badge_down"> 
+                    <i class="fa fa-sort-desc"></i>
+                </span> -->
+                
+                 
+            </a> 
+            <div class="ep"></div> 
+        </div>     
+  
+    </div> 
+</div>

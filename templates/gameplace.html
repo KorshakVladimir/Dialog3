@@ -12,17 +12,21 @@
 {% endblock %}
 
 {% block partmiddle %}
-	<div >
+<div id="ajax-wrapper">
+	<div>
 	    <ul class="nav nav-tabs">
-	      	<li role="presentation" class="{{act_game }}"><a href="/tree" ><span class="glyphicon glyphicon-send" ></span> &nbsp Игра</a></li>
-        	<li role="presentation" class="{{act_history }}"><a href="/tree/history">Журнал</a></li>	
-        	<li role="presentation" class="{{act_profile }}"><a href="/tree/profile" >Профайл</a></li>
-	      	<li role="presentation" class="{{act_statistic }}"><a href="/tree/statistic"  >Статистика</a></li>
+	      	<li role="presentation" class="{{act_game }}"><a class = "ajax_child" href="/tree/index" ><span class="glyphicon glyphicon-send" ></span> &nbsp Игра</a></li>
+        	<li role="presentation" class="{{act_history }}"><a class = "ajax_child" href="/tree/history">Журнал</a></li>	
+        	<li role="presentation" class="{{act_profile }}"><a  class = "ajax_child" href="/tree/profile" >Профайл</a></li>
+	      	<li role="presentation" class="{{act_statistic }}"><a  class = "ajax_child" href="/tree/statistic"  >Статистика</a></li>
+	      	<li role="presentation" class="{{act_prod }}"><a class = "ajax_child" href="/tree/part_prod"  >Товары</a></li>
+	      	<li role="presentation" class=""><a href="/admin">Admin</a></li>
+	      	<li role="presentation" class=""><a href="/tree/diagrama">Diagrama</a></li>
 	    </ul>
 	    <div class = "backg">
-	        
+	        <div class = "backg_child" >
 			{% block game %}
-				<div >
+				
 				<div class = "main-div">
 					<div class="row" >
 						 			
@@ -33,26 +37,22 @@
 				 			
 				 			<img   id ="badge-left" src="{% static "game_01_img/points.png" %}" alt="Очки" > 
 				 			
-					 		<div id= "right-progres-bar" class="  for_progress_bar progress ">
-								  	<div id = "points" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{ point }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ point }}%">
-								  	</div>
-							</div>
+								{% include 'tree/for_ajax/points.html' %}
+							
 							{% endblock %}
 						</div>	
 						
 						<div class="col-md-2">
-							<a href="/tree/part_prod/"> <button type="button" class="btn btn-success" style="margin-top: 25px;background-color: #1F6077;
-  														border-color:#1F6077;" >Товары</button> </a>		
+							<!-- <a href="/tree/part_prod/"> <button type="button" class="btn btn-success" style="margin-top: 25px;background-color: #1F6077;
+  														border-color:#1F6077;" >Товары</button> </a> -->		
 						</div>
 						
 				 		<div class="col-md-5">
 				 			{% block progres_bar_right %}
 				 			{# <p class="budge-right">Емоции</p> #}
 				 			<img   id ="badge-right" src="{% static "game_01_img/emotions_3.png" %}" alt="эмоции" > 
-				 			<div class="pull-right for_progress_bar progress">
-								  <div id="emotions" class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ emo }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ emo }}%">
-								   
-								  </div>
+				 			<div id  = "right_progres_bar" class="pull-right for_progress_bar progress">
+								  {% include 'tree/for_ajax/emotions.html' %}
 							</div>
 							{% endblock %}	
 				 		</div>
@@ -64,9 +64,7 @@
 							<div id ="main_pop"  class="display_main_popover popover left" >
 				  				<div id = "arrow_left" class="arrow"></div>
 				  
-				  					<div class="popover-content">
-				   						<p style="margin-bottom: 10px;margin-top: 10px;">{{answer.text_answer}}</p>
-				  					</div>
+				  					{% include 'tree/for_ajax/popover_content.html' %}
 							
 							</div>
 						</div>
@@ -83,43 +81,21 @@
 					<div class="row" >
 				 		<div class="col-md-12" >
 					 		<div id = "place-botton" >						 		
-					 			{% for question in questions %}
-									<a id= "menu" class=" btn btn-default btn-lg "   href="/tree/{{ question.question_answer  }}/{{question.id}}" 
-									{% if question.text_questions == 'Предложить товар'  %}
-										data-toggle="modal" data-target="#myProd"
-									{%endif%}
-									 > <span id="badge-pos" class=" badge pull-left">{{ forloop.counter }}</span>{{question.text_questions}}</a>
-									{% if question.text_questions == 'Предложить товар'  %}
-										<!-- Modal -->
-
-										<div class="modal fade" id="myProd" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-										  <div id = "modal_dialog" class="modal-dialog " style="left: -23%;">
-										    <div class="modal-content_1">
-										    
-											    <div class="modal-header">
-											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											        <h4 class="modal-title">Выберите товар</h4>
-											    </div>
-										     	{% include 'tree/part_for_product.html' %}
-											    
-										    </div> 
-										  </div>
-										</div>
-									{%endif%}
-								{%endfor%}						 		
+					 			{% include 'tree/for_place_button.html' %}			 		
 					 		</div>
 				 		</div>					 		
 				 	</div>
 				 	{% endblock %}
 				</div>
-				</div>
+				
 			{% endblock %}
-
-	      
-	      
+			</div>
 	    </div>
 	</div>
-
+<div id="for_ajax" style = "display:none;">
+	
+</div>
+</div>
 {% endblock %}
 
 

@@ -9,7 +9,7 @@ class QuestionsInline(admin.TabularInline):
 
 
 class AnswerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'text_answer')
+    list_display = ( 'stage','id', 'text_answer')
     inlines = [
         QuestionsInline,
     ]
@@ -17,7 +17,7 @@ class AnswerAdmin(admin.ModelAdmin):
 
 class User_rezultAdmin(admin.ModelAdmin):
     list_display = (
-        'session_output', 'user_output', 'answer_output', 'date_create')
+       'session_output', 'user_output', 'answer_output', 'date_create')
 
 
 class QuestionsAdmin(admin.ModelAdmin):
@@ -44,7 +44,7 @@ class Relations_tying_products_Inline(admin.TabularInline):
 
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
-    pass
+    
     inlines = [
         Relations_tying_products_Inline,
     ]
@@ -52,7 +52,7 @@ class ProductsAdmin(admin.ModelAdmin):
 
 @admin.register(Products_property)
 class Products_propertyAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('products','name_property', 'value_property')
 
 
 @admin.register(Essential_prop)
@@ -62,5 +62,11 @@ class Essential_propAdmin(admin.ModelAdmin):
 
 @admin.register(Tying_products)
 class Tying_productsAdmin(admin.ModelAdmin):
+    list_display= ["id","name"]
+    pass
+
+
+@admin.register(Stages)
+class StagesAdmin(admin.ModelAdmin):
     list_display= ["id","name"]
     pass

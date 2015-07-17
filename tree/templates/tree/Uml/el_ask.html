@@ -1,0 +1,40 @@
+
+
+<div class = "all" id  = "{{ el_list.el_answer.id}}" style="top:{{el_list.top }}px; left:{{el_list.left}}px;">
+    <div class=" klient_section head_collaps">
+        {% include 'tree/Uml/public_sub_forms.html' %}
+        <div class="client_group">
+            <button class = "button_diag dell_all">  <i class="fa fa-trash-o"></i></button>
+            <button class = "button_diag edit_answer"><i class="fa fa-cogs"></i></button>
+            
+            <!-- ***********************************************************-->
+            <div   class="text_head_client pos_head_client">
+                <a title="{{ el_list.el_answer.text_answer}}"  child="#{{ el_list.el_answer.id }}t" class="collapsed" >
+                   <span class = "head_section client ">{{ el_list.el_answer.text_answer|truncatechars:15 }} </span>
+                   <!-- <span class = "badge_down">  
+                        <i class="fa fa-sort-desc"></i>
+                   </span>  -->    
+                </a>
+            </div>
+        </div>
+        <div style="height:2px;"></div>
+            <!--  <span >  </span>< -->
+
+
+        <!-- ********************************************************** -->
+
+        <div class = "head_section consultant">
+            <div class = "edit_answer" style  = "height:22px; margin-left:5px;"> Вопрос\ответ </div>
+                 <div  id="{{ el_list.el_answer.id}}pan" class = "section_question" >   
+
+                    {% for el_quest in el_list.all_quest %}
+                         
+                        {% include 'tree/Uml/el_question.html' %}
+              
+                    {% endfor %}
+                </div>
+                <button class="add_button button_diag func_add_button"><i class="fa fa-plus"></i></button>
+            <!-- <div style = "height:3px;"></div> -->
+        </div>    
+    </div>  
+</div>

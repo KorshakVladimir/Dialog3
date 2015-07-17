@@ -1,0 +1,54 @@
+<div class="for_edit hide_el">
+    <div class="media-body ">
+         <!-- <button class = "close_sub_form pull-right" ><i class="fa fa-times-circle-o"></i></button> -->
+            <div class="ibox-tools">
+                               
+                <a class="close-link close_sub_form">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+         <small class="pull-right">{{el_list.el_answer.id}}</small>
+        <!-- <strong>Этап диалога</strong> -->
+        <fieldset>
+            <label for="stage">Выберите этап</label>
+            <select class = "select_stage" name="stage" id="{{el_list.el_answer.id}}stage">
+                {% for el_stage in stages %}
+                    <option     
+                    {% if  el_stage == el_list.el_answer.stage %}
+                          selected="selected"  
+                    {% endif%}
+                    stage_id = "{{ el_stage.id }}">{{el_stage.name}}</option>
+                {% endfor %}
+                
+            </select>
+        </fieldset>
+        <strong>Вопрос покупателя</strong>
+        
+            <textarea class=" input_text input_text_answer input_text_sub"  placeholder ="Вопрос" >
+                {{el_list.el_answer.text_answer}}
+            </textarea>
+        
+    </div>
+    <div class="ibox-content demo_ibox_content" style="display: block;">
+     <button class = "pull-left func_add_button button_add_sub_form"><i class="fa fa-plus"></i>&nbspДобавить</button>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="ask_tab_id" >ID</th>
+                <th class="ask_tab" >Ответ/Вопрос консультанта</th>
+                <th class="cell_tab">Очки игры</th>
+                <th class="cell_tab">Очки емоций</th>
+                <th class="cell_tab">Номер вопроса клиента</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for el_quest in el_list.all_quest %}
+                {% include 'tree/Uml/row_all_table.html' %}
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>  
+    <button class="btn save_edit_all">Save</button>
+</div>
+

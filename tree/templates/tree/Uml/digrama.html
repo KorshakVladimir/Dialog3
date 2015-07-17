@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Diagrama</title>
+    <link href="{% static "font-awesome/css/font-awesome.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">  
+    <link href="{% static "css/uml/demo.css" %}" rel="stylesheet">
+    
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <script src="{% static "js/jquery-2.1.1.js" %}"></script>
+    
+    <!-- Mainly scripts -->
+
+    <!-- ********************************************************  -->
+
+    
+    <script src="{% static "js/ajax_csrf_token.js" %}"></script>
+    <!-- ********************************************************  -->
+    
+    <script src="{% static "js/uml/jquery.autosize.js" %}"></script>
+    <script src="{% static "js/uml/jquery-ui.js" %}"></script>
+    </head>
+    
+    <body class="body_style" ca data-demo-id="statemachine" data-library="dom">
+        <form action="" class="hide_el">
+            {% csrf_token %}
+        </form>
+        <a href = "/tree/index/"> <button class="btn btn-success return_to_dialog"><i class="fa fa-reply-all"></i></i></button></a>
+        <button class="btn btn-success new_ask"><i class="fa fa-plus-square-o"></i></button>
+        <button class="btn btn-success save_diagram"><i class="fa fa-save"></i> Save</button>
+        <div class="save_vidget hide_el">
+            <div class="sk-spinner sk-spinner-three-bounce ">
+                <div class="sk-bounce1"></div>
+                <div class="sk-bounce2"></div>
+                <div class="sk-bounce3"></div>
+            </div>
+        </div>
+        <div id  = "connectors">
+            {% for el_con in list_con %}
+            <div class = 'con hide_el'>
+                <div>{{el_con.source}}</div>
+                <div>{{el_con.target}}</div>    
+            </div> 
+            {% endfor %}
+        </div>   
+      
+        <div id  = "main1">
+            <!-- demo -->
+            <div class="demo statemachine-demo" id="statemachine-demo" >
+                {%for el_list in list_answer%}
+                    {% include 'tree/Uml/el_ask.html' %}  
+                {% endfor %}
+            </div>
+            <!-- /demo -->
+        </div>
+    
+        <div id="for_ajax" class="hide_el"></div>
+        <div id = "new_questions" class="hide_el" >
+            {% include 'tree/Uml/el_question.html' %}
+        </div>
+        <script src="{% static "js/uml/dom.jsPlumb-1.7.5-min.js" %}"></script>    
+        <script src="{% static "js/uml/demo.js" %}"></script>
+    </body>
+</html>

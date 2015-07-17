@@ -1,4 +1,4 @@
-$(function () {
+$(refrech_radar =  function () {
 
     var barData = {
         labels: ["Телефоны", "Телевизоры", "Наушники", "Ноутбуки", "Планшеты", "Мониторы", "Фотоапараты"],
@@ -41,6 +41,8 @@ $(function () {
         } catch (err) {
 
         }
+
+
     var radarData = {
         labels: ["Приветствие (Установка контакта)", "Выяснение запросов", "Предложения", "Аргументация", 
         "Работа с возражениями", "Заключение сделки"],
@@ -67,6 +69,31 @@ $(function () {
             }
         ]
     };
+    
+
+
+    var get_radar_data = function(){
+            
+            $.getJSON("/report/radar_chart_game").done(function(data){
+            // alert( data.something[1]);
+            radarData.labels = data["label"];
+            // radarData.labels = ["dsdzs","dsdsc"]
+            
+            radarData.datasets[0].data = data["max_point"];
+            // radarData.datasets[0].data = [10,10,40];
+            // radarData.datasets[1].data = [40,50,40];
+            radarData.datasets[1].data = data["user_point"];
+            try {
+                var ctx = document.getElementById("radarChart").getContext("2d");
+                var myNewChart = new Chart(ctx).Radar(radarData, radarOptions);
+                } 
+            catch (err) {
+            }
+
+        });
+
+ 
+    };
 
     var radarOptions = {
         scaleShowLine: true,
@@ -89,13 +116,7 @@ $(function () {
         responsive: true,
     }
 
-    try {
-    var ctx = document.getElementById("radarChart").getContext("2d");
-    var myNewChart = new Chart(ctx).Radar(radarData, radarOptions);
-        } catch (err) {
-
-        }
-
+    get_radar_data();
     //-------------------------------------- 
     var barData_all = {
         labels: ["Тел", "ТВ", "Нет", "ibox", "PSP", "IP", "Foto"],
