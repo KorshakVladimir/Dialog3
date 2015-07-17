@@ -109,7 +109,7 @@ td{
   margin-right: auto;
   /*margin: auto;*/
   position: absolute;
-  top: 39px; left: 0; bottom: 0; right: 0;
+  top: 40px; left: 0; bottom: 0; right: 0;
   height: 602px;
   
   /*display: inline-block;
@@ -329,4 +329,7 @@ td{
     max-width: 1200px;
     color: #fff;
 
+}
+#ajax-wrapper{
+  color:#fff;
 }
