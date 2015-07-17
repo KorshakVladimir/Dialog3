@@ -60,8 +60,19 @@ $(window).bind("load", function () {
 		$("#page-wrapper").load(href+ " #ajax-wrapper");
 		return false;
 	});
+	
+	var refresh_menu = function(tar){
+		$("[role=presentation]").each(function(){
+			$(this).removeClass("active");
+		});
+		$(tar).closest("li").addClass("active");
 
+	};
+	// $("body").on("click","[data-target =#myProd]",function(e){
+	// 	$("[data-target =#myProd]").modal("toggle")
+	// 	});
 	$("body").on("click",".ajax_child",function(e){
+		
 		var a_href;
 		if (e.target.tagName != "A"){
 			a_href = $(e.target).closest("a");
@@ -69,10 +80,20 @@ $(window).bind("load", function () {
 			a_href = e.target;
 		}
 		var href = $(a_href).attr("href");
+		if (href.indexOf("prod")!=-1){
+			$("#offer_prod").modal("hide");
+		};
 		$(".backg").load(href+ " .backg_child");
-		refrech_radar();
+		if (href.indexOf("myprofile")!=-1){
+			refrech_radar();
+		};
+		refresh_menu();
 		return false;
 	});
+
+	
+		
+	
 
 })
 

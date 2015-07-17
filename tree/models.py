@@ -38,6 +38,7 @@ class Answer(models.Model):
 
 
 class Questions(models.Model):
+    
     point_answer = models.IntegerField(default=0, verbose_name=u'Очки ответа',blank = True)
     point_emotions = models.IntegerField(
         default=0, verbose_name=u'Очки емоций', blank = True)
@@ -80,7 +81,7 @@ class Products(models.Model):
     description = models.TextField(verbose_name=u'Описание')
     price = models.IntegerField(default=0,verbose_name=u'Цена')
     image_product = models.ImageField(blank=True, null=True,verbose_name=u'изображение')
-
+    full_image = models.ImageField(blank=True, null=True,verbose_name=u'изображение')
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
