@@ -17,7 +17,7 @@ class Stages(models.Model):
 
 
 class Answer(models.Model):
-
+    media_file = models.FileField(upload_to='Answer_media', blank = True)
     stage = models.ForeignKey(
         Stages, verbose_name = u'Этап диалога', blank = True, null = True)
 
@@ -38,6 +38,7 @@ class Answer(models.Model):
 
 
 class Questions(models.Model):
+    media_file = models.FileField(upload_to='Questions_media', blank = True)
     point_answer = models.IntegerField(default=0, verbose_name=u'Очки ответа',blank = True)
     point_emotions = models.IntegerField(
         default=0, verbose_name=u'Очки емоций', blank = True)

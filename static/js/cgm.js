@@ -12,15 +12,17 @@ $(window).bind("load", function () {
     $("body").on("click",".dialog_btn",function(e){
     	var target = e.target;
     	var tar_href = target.getAttribute("href");
-    	// $("#place-botton").load("/tree/load_button/",{"href":tar_href});
-    	// $("#place-botton").load("/tree/load_button/");
-    	// var posting = $.post("/tree/load_button/",{"2":3});
+    	$().jPlayer( {
+		    ready: function () {
 
-    // 	$.get( "/tree/load_button/", { name: "John", time: "2pm" } )
-		  // .done(function( data ) {
-		  //   alert( "Data Loaded: " + data );
-		  // });
+		      $(this).jPlayer("setMedia", {
+		        mp3: $(this).attr("sound_quest") 
+		      }).jPlayer("play");
+		    }
+		  });
 
+
+    	// var file_sound = $(target).attr("sound_quest");
     	
 		// --------------------------------------------------------------------------------------
 		if (tar_href.indexOf("/0/")!=-1){
@@ -61,6 +63,14 @@ $(window).bind("load", function () {
 		return false;
 	});
 
+	var refresh_menu = function(tar){
+		$("[role=presentation]").each(function(){
+			$(this).removeClass("active");
+		});
+		$(tar).closest("li").addClass("active");
+
+	};
+
 	$("body").on("click",".ajax_child",function(e){
 		var a_href;
 		if (e.target.tagName != "A"){
@@ -69,8 +79,15 @@ $(window).bind("load", function () {
 			a_href = e.target;
 		}
 		var href = $(a_href).attr("href");
+
+		if (href.indexOf("prod")!=-1){
+			$("#offer_prod").modal("hide");
+		};
 		$(".backg").load(href+ " .backg_child");
-		refrech_radar();
+		if (href.indexOf("myprofile")!=-1){
+			refrech_radar();
+		};
+		refresh_menu();
 		return false;
 	});
 
