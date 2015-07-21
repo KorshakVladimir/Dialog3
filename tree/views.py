@@ -53,6 +53,7 @@ def make_game(context,active_tab):
 
 
 def tying_product(request,id_tying=0):
+    return game_history(request, request.session.get('GUID'))
     context = {}
     context['point'] = request.session.get('point')
     context['emo'] = request.session.get('emo')
@@ -101,43 +102,50 @@ def part_prod(request):
     return render(request,"tree/product.html", context)
 
 
-def res_product(request, id_prod, id_quest):
+def res_product(request, id_prod):
     
-    questions = Questions.objects.get(id =id_quest)
-    answer = Answer.objects.get(id = int(questions.question_answer))
-    prod = Products.objects.get(id=id_prod)
-    tyings = Relations_tying_products.objects.filter(product = prod)
-    list_id = [str(x.tying_product.id) for x in tyings]
-    s_tyings = ",".join(list_id)
+    # questions = Questions.objects.get(id =id_quest)
+    # id_ans = int(questions.question_answer)
+    # if id_ans==0:
+    #    ob_ans = Answer.objects.get(id  = questions.relation_answer.id)
+    #    id_ans =  ob_ans.id
+    # answer = Answer.objects.get(id = id_ans)
+    # prod = Products.objects.get(id=id_prod)
+    # tyings = Relations_tying_products.objects.filter(product = prod)
+    # list_id = [str(x.tying_product.id) for x in tyings]
+    # s_tyings = ",".join(list_id)
     
-    request.session["s_tyings"] = s_tyings
+    # request.session["s_tyings"] = s_tyings
     
-    guid = request.session.get('GUID')
-    answers = [
-        x.answer_output for x in User_rezult.objects.filter(session_output=guid)]
-    proper_s = Essential_prop.objects.filter(relation_answer__in=answers)
+    # guid = request.session.get('GUID')
+    # answers = [
+    #     x.answer_output for x in User_rezult.objects.filter(session_output=guid)]
+    # proper_s = Essential_prop.objects.filter(relation_answer__in=answers)
 
   
-    count_point =0
-    if proper_s:
+    # count_point =0
+    # if proper_s:
 
-        count_prop = 100 // len(proper_s)
-        count_point = 0
-        for i in proper_s:
-            req_prop = Products_property.objects.filter(
-                products=prod, name_property=i.name_property)
-            if req_prop:
-                if req_prop[0].value_property == i.value_property:
-                    count_point += count_prop
-
-    rezult = User_rezult(session_output=request.session.get('GUID'),
-                             user_output=request.user,
-                             point=count_point,
-                             question_output=prod.name,
-                             money = prod.price,
-                             answer_output = answer,
-                             )
-    rezult.save()
+    #     count_prop = 100 // len(proper_s)
+    #     count_point = 0
+    #     for i in proper_s:
+    #         req_prop = Products_property.objects.filter(
+    #             products=prod, name_property=i.name_property)
+    #         if req_prop:
+    #             if req_prop[0].value_property == i.value_property:
+    #                 count_point += count_prop
+    # try:
+    #     rezult = User_rezult(session_output=request.session.get('GUID'),
+    #                              user_output=request.user,
+    #                              point=count_point,
+    #                              question_output=prod.name,
+    #                              money = prod.price,
+    #                              answer_output = answer,
+    #                              )
+    #     rezult.save()
+    # except:
+    #     pass
+        
     return tying_product(request)
 
 

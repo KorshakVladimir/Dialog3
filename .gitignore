@@ -9,7 +9,7 @@ __pycache__/
 *$py.class
 
 #sqlite
-*.sqlite3
+
 *.pyc
 *$py.class
 cgm/local.py
