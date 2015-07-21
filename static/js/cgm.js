@@ -80,14 +80,19 @@ $(window).bind("load", function () {
 			a_href = e.target;
 		}
 		var href = $(a_href).attr("href");
+		var load_button = function(){
+			$(".backg").load(href+ " .backg_child");
+			if (href.indexOf("myprofile")!=-1){
+			refrech_radar();
+			};
+			refresh_menu();
+		};
 		if (href.indexOf("prod")!=-1){
 			$("#offer_prod").modal("hide");
-		};
-		$(".backg").load(href+ " .backg_child");
-		if (href.indexOf("myprofile")!=-1){
-			refrech_radar();
-		};
-		refresh_menu();
+			setTimeout(load_button,500);
+			} else {
+			load_button();
+				};		
 		return false;
 	});
 
