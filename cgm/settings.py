@@ -120,10 +120,9 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 
 
 
-try:
-   from . import local
-   DEBUG = True
-   DATABASES = {
+
+DEBUG = True
+DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.sqlite3',
     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -131,19 +130,6 @@ try:
     'PASSWORD': 'tj',
     }
     }
-except:
-   DEBUG = True
-   
-   DATABASES = {
-                'default': {
-                    'ENGINE': 'django.db.backends.mysql',
-                    'NAME': 'cgm_db',
-                    'USER': 'cgm_usr',
-                    'PASSWORD': '54321',
-                    'HOST': '127.0.0.1',
-                    'PORT': '3306',
-                }
-            }
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 #    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
