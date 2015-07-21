@@ -1,6 +1,8 @@
 #project
 tree/__pycache__/
 cgm/__pycache__/
+cgm/migrations/__pycache__/
+tree/migrations/__pycache__/
 *~
 # Byte-compiled / optimized / DLL files
 __pycache__/
