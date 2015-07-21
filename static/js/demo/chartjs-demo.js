@@ -1,4 +1,4 @@
-$(refrech_radar =  function () {
+refrech_radar =  function () {
 
     var barData = {
         labels: ["Телефоны", "Телевизоры", "Наушники", "Ноутбуки", "Планшеты", "Мониторы", "Фотоапараты"],
@@ -215,4 +215,4 @@ $(refrech_radar =  function () {
 
         }
 
-});
+};
