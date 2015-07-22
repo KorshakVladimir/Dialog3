@@ -9,7 +9,7 @@ class QuestionsInline(admin.TabularInline):
 
 
 class AnswerAdmin(admin.ModelAdmin):
-    fields = ('stage', 'media_file', 'text_answer', 'depth')
+    fields = ("game",'stage', 'media_file', 'text_answer', 'depth')
     list_display = ( 'stage','id', 'text_answer')
     inlines = [
         QuestionsInline,

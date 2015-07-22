@@ -4,6 +4,8 @@ cgm/__pycache__/
 *~
 # Byte-compiled / optimized / DLL files
 .idea/
+/.idea
+.idea
 __pycache__/
 *.py[cod]
 *$py.class

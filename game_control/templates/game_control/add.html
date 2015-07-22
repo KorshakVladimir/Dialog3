@@ -1,0 +1,7 @@
+<div id="ajax-wrapper">
+	<form action="/game/add_game/" method="post">
+	    {% csrf_token %}
+	    {{ form }}
+	    <input type="submit" value="Submit" />
+	</form>
+</div>

@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^gameplace/$', 'cgm.views.gameplace'),
     url(r'^tree/', include('tree.urls')),
     url(r'^report/', include('report.urls')),
+    url(r'^game/', include('game_control.urls')),
 ]
 
 handler404='cgm.auth.login'
