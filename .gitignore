@@ -3,14 +3,15 @@ tree/__pycache__/
 cgm/__pycache__/
 *~
 # Byte-compiled / optimized / DLL files
+.idea/
 __pycache__/
-
 *.py[cod]
 *$py.class
 
 #sqlite
-.idea/
+
 *.pyc
+cgm/local.py
 # C extensions
 *.so
 

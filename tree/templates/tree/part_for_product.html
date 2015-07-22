@@ -5,10 +5,10 @@
     </a>
 
     <div class="div-name" ><h4 >{{product.product.name.name}} </h4>
-    <h4>{{product.product.name.price}} грн.</h4>
+    
     </div>
     {% if questions %}
-	    <a href="/tree/prod/{{product.product.name.id}}/{{question.id}}">
+	    <a class = "ajax_child" href="/tree/prod/{{product.product.name.id}}">
 	    	<button type="button" class="btn btn-primary">Предложить</button>
 		</a>  
   	{%endif%}
