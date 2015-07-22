@@ -42,16 +42,6 @@ def get_stage(context):
     context["stages"] = ob_stages
     return context
 
-def make_game(context,active_tab):
-    context["act_game"] = ''
-    context["act_history"] = ''
-    context["act_profile"] = ''
-    context["act_statistic"] = ''
-    context["act_prod"] = ''
-    context[active_tab] = 'active'
-    return context
-
-
 def tying_product(request,id_tying=0):
     return game_history(request, request.session.get('GUID'))
     context = {}
@@ -88,7 +78,6 @@ def tying_product(request,id_tying=0):
     context = for_history(request, context)
     bay_quest = Tying_products.objects.get(id = 1)
     context["bay_quest"] = bay_quest
-    context = make_game(context,"act_game")
 
     if int(id_tying) == 1:
         return game_history(request, request.session.get('GUID'))
@@ -98,9 +87,7 @@ def tying_product(request,id_tying=0):
 def part_prod(request):
     context = {}
     context = get_prod_all(context)
-    context = make_game(context,"act_prod") 
     return render(request,"tree/product.html", context)
-
 
 def res_product(request, id_prod):
     
@@ -187,10 +174,14 @@ def for_game(request, answer_id, id_quest, context):
 
     if int(answer_id) == 0:
         return context
-
-    answer = Answer.objects.get(id=answer_id)
-    questions = Questions.objects.filter(relation_answer_id=answer.id)
-        
+    try:
+        answer = Answer.objects.get(id=answer_id)
+        questions = Questions.objects.filter(relation_answer_id=answer.id)
+    except :
+        answer = ''
+        questions = ''
+        pass    
+ 
     if question_output:
         point = question_output.point_answer
     else:
@@ -199,7 +190,7 @@ def for_game(request, answer_id, id_quest, context):
     current_emo = request.session.get('emo') + point
 
     request.session['point'] = current_point
-    request.session['emo']    =  current_emo 
+    request.session['emo'] = current_emo
       
     context['point'] = current_point
     context['emo'] = current_emo
@@ -235,6 +226,8 @@ def select_prof(request):
 
     context= {}
     return render(request, 'tree/select_type_person.html', context)
+
+
     
 @login_required(login_url='/login/')
 def index(request, answer_id=-1, id_quest=0):
@@ -248,10 +241,8 @@ def index(request, answer_id=-1, id_quest=0):
 
     except:
         pass
- 
-    context = make_game(context,'act_game')
 
-    if int(answer_id) == 48 or int(answer_id) == 0:
+    if not context["answer"]:
         return game_history(request, request.session.get('GUID'))
     else:
         return render(request, 'gameplace.html', context)
@@ -260,18 +251,18 @@ def index(request, answer_id=-1, id_quest=0):
 def profile(request):
 
     context = {}
-    context = make_game(context,'act_profile')
+   
     return render(request, 'tree/myprofile.html', context)
 @login_required(login_url='/login/')
 def history(request):
     context = {}
     context = for_history(request, context)
-    context = make_game(context,'act_history')
+    
     return render(request, 'tree/history_1.html', context)
 @login_required(login_url='/login/')
 def statistic(request):
     context = {}
-    context = make_game(context,'act_statistics')
+    
     return render(request, 'tree/statistic.html', context)
 
 def for_game_history(request, guid, context):
@@ -300,7 +291,7 @@ def for_game_history(request, guid, context):
     context['history_entry'] = list_history
     context['total_point'] = total_point
     context['total_money'] = total_money
-    context = make_game(context,"act_history")
+    
     return context
 
 @login_required(login_url='/login/')
@@ -382,7 +373,7 @@ def new_ask(request):
         except:
             id = 0
     else:
-        id  = int(id) 
+        id = int(id) 
 
     id+=1
 
@@ -408,11 +399,10 @@ def load_button(request):
         
         answer_id = int(par.group("answer_id"))
         id_quest = int(par.group("id_quest"))
-
-        
+   
         context = for_game(request, answer_id, id_quest, context)
 
-    return render(request,'tree/load_button.html',context)
+        return render(request,'tree/load_button.html',context)
 
 def new_quest(request):
 

@@ -25,9 +25,10 @@ $(window).bind("load", function () {
     	// var file_sound = $(target).attr("sound_quest");
     	
 		// --------------------------------------------------------------------------------------
-		if (tar_href.indexOf("/0/")!=-1){
-			return true
+		if ((tar_href.indexOf("/0/")!=-1) || (tar_href.indexOf("/48/")!=-1)) {
+			return ajax_child(e);
 		}
+
       	$.post( "/tree/load_button/",{"href":tar_href} )
 		  .done(function( data ) {
 		  	$data = $(data);
@@ -71,7 +72,7 @@ $(window).bind("load", function () {
 
 	};
 
-	$("body").on("click",".ajax_child",function(e){
+	var ajax_child = function(e){
 		var a_href;
 		if (e.target.tagName != "A"){
 			a_href = $(e.target).closest("a");
@@ -93,6 +94,10 @@ $(window).bind("load", function () {
 			load_button();
 				};		
 		return false;
+	}
+
+	$("body").on("click",".ajax_child",function(e){
+		return ajax_child(e);
 	});
 
 	
