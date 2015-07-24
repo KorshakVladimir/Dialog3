@@ -60,7 +60,7 @@ $(window).bind("load", function () {
 			a_href = e.target;
 		}
 		var href = $(a_href).attr("href");
-		$("#page-wrapper").load(href+ " #ajax-wrapper");
+		$("#page-wrapper").load(href + " #ajax-wrapper");
 		return false;
 	});
 	

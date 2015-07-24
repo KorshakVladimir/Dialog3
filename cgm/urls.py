@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^$', 'cgm.views.index'),
     url(r'^login/', 'cgm.auth.login'),
     url(r'^logout/', 'cgm.auth.logout'),
-    url(r'^gameplace/$', 'cgm.views.gameplace'),
+    # url(r'^gameplace/$', 'cgm.views.gameplace'),
     url(r'^tree/', include('tree.urls')),
     url(r'^report/', include('report.urls')),
     url(r'^game/', include('game_control.urls')),

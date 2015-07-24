@@ -1,7 +1,54 @@
+
 <div id="ajax-wrapper">
-	<form action="/game/add_game/" method="post">
-	    {% csrf_token %}
-	    {{ form }}
-	    <input type="submit" value="Submit" />
-	</form>
+	<div class="add_game_place">
+	<div class="row">
+		<div class="ibox-title">
+            <h5>Создание новой игры <small>Заполните форму для создания</small></h5>
+            <div class="ibox-tools">
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        
+        
+        <div class="ibox-content">
+	        <div class="form-group">
+				<form id = "foorm_add_game" class = "uniForm" action="/game/add_game/" method="post">
+					
+					    {% csrf_token %}
+					    {% if form.non_field_errors %}
+						    <ul>
+						      {% for error in form.non_field_errors %}
+						        <li>{{ error }}</li>
+						      {% endfor %}
+						    </ul>
+						{% endif %}
+						{% for field in form %}
+							<div class="row">
+							  <div id="{{ field.auto_id }}_container">
+							    {{ field.help_text }}
+
+							    <label class="col-sm-2 control-label">{{ field.label }}</label> 
+							    <div class="col-sm-10"> {{ field }} </div>
+							    <div id="{{ field.auto_id }}_errors" class = "has-error">
+							    	<div class="col-sm-offset-2 control-label">
+							      		{{ field.errors }}
+							      	</div>
+							    </div>
+							  </div>
+							  </div>
+						{% endfor %}
+					<div class="hr-line-dashed"></div>
+					<div class="row ">
+					    <div class="col-sm-4 col-sm-offset-2">
+	                        <button class="btn btn-white " id = "cancel-buttom" type="">Отмена</button>
+	                        <button class="btn btn-primary" id = "new_form" type="submit">Создать</button>
+	                    </div>
+	               </div>    
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
 </div>

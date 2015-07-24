@@ -233,9 +233,10 @@ def select_prof(request):
 def index(request, answer_id=-1, id_quest=0):
     
     context = {}
+    game_id = request.session.get("game_id")
     try:
         if answer_id == -1:
-            answer_id  = MIN_ANS= Answer.objects.order_by("id")[0].id
+            answer_id  = MIN_ANS= Answer.objects.fillter(game_id = game_id).order_by("id")[0].id
             request.session["MIN_ANS"] = MIN_ANS
         context = for_game(request, answer_id, id_quest, context)
 

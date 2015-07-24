@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'cgm',
     'tree',
     "report",
+    
 ]
 
 MIDDLEWARE_CLASSES = [
