@@ -80,11 +80,12 @@ $(window).bind("load", function () {
 		var href = $(a_href).attr("href");
 		var load_button = function(){
 			$(".backg").load(href+ " .backg_child");
-			if (href.indexOf("myprofile")!=-1){
+			if (href.indexOf("profile")!=-1){
 			refrech_radar();
 			};
 			refresh_menu();
 		};
+
 		if (href.indexOf("prod")!=-1){
 			$("#offer_prod").modal("hide");
 			setTimeout(load_button,500);
