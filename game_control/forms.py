@@ -17,8 +17,5 @@ class GameForm(forms.ModelForm):
         data = self.cleaned_data['name']
         unic_name = Game.objects.filter(name = data)
         if unic_name :
-
             raise forms.ValidationError("Игра \" %s \" уже существует" % data )
-
-
         return data 

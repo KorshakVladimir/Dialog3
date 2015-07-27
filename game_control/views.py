@@ -42,6 +42,13 @@ def all_games(context):
     context["games"] = Game.objects.all()
     return context
 
+def all_game_menu(request):
+    
+    context = {}
+    context = all_games(context)
+
+    return render(request, "stub.html",context)
+
 def gameplace(request):
     context = {}
     context = all_games(context)
@@ -49,4 +56,4 @@ def gameplace(request):
 
 def run_game(request,game_id ):
     request.session["game_id"] = game_id
-    return index()
+    return index(request)

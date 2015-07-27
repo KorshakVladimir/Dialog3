@@ -15,7 +15,7 @@ class Stages(models.Model):
         return self.name
 
 class Answer(models.Model):
-    stage = models.ForeignKey(
+    game = models.ForeignKey(
         Game, verbose_name = u'Игра', blank = True, null = True)
     media_file = models.FileField(upload_to='Answer_media', blank = True)
     stage = models.ForeignKey(
