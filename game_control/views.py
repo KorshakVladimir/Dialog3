@@ -47,7 +47,7 @@ def all_game_menu(request):
     context = {}
     context = all_games(context)
 
-    return render(request, "stub.html",context)
+    return render(request, "game_control/for_ajax/all_game.html",context)
 
 def gameplace(request):
     context = {}

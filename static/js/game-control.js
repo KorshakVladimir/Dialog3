@@ -1,12 +1,17 @@
 $( function(){
 
+	var refresh_game = function(){
+		$("#game_list").load("/game/refresh_game/ li")
+	}
+
 	$("body").on("click","#new_form", function(){
 
 		$.post( "/game/add_game/",$("#foorm_add_game").serialize() )
 		  .done(function( data ) {
-		  	$data = $(data);
-		    $("#page-wrapper").html($data);
+		  		$data = $(data);
+		    	$("#page-wrapper").html($data);
 		  });
+		refresh_game();
 		return false;
 	});
 
@@ -21,7 +26,7 @@ $( function(){
 		$.post("/game/del_game/",{"game_id":game_id})
 		
 		$("#"+game_id).remove();
-
+		refresh_game();
 	});
 
 });

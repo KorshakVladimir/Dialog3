@@ -115,9 +115,9 @@ path,svg{
    display: block !important;
 }
 .for_edit{
-  position: absolute;
-  top: -34px;
-  left: -15px;
+  position: fixed;
+  top: 10%;
+  left: 20%;
   /*height: 300px;*/
   width: 735px;
   /*border: 1px solid;*/

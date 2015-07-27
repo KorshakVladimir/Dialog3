@@ -242,7 +242,7 @@ def index(request, answer_id=-1, id_quest=0):
     try:
         context["answer"] = -1
         if answer_id == -1:
-            answer_id  = MIN_ANS= Answer.objects.fillter(game_id = game_id).order_by("id")[0].id
+            answer_id  = MIN_ANS= Answer.objects.filter(game_id = game_id).order_by("id")[0].id
             request.session["MIN_ANS"] = MIN_ANS
         context = for_game(request, answer_id, id_quest, context)
 
@@ -318,7 +318,7 @@ def diagram(request):
     game_id = request.session.get("game_id")
     list_all_answer = []
     try:
-        firsk_ask = Answer.objects.fillter(game_id =game_id ).order_by("id")[0]
+        firsk_ask = Answer.objects.filter(game_id =game_id ).order_by("id")[0]
         list_all_answer.append(firsk_ask)
     except :
         pass
@@ -433,7 +433,8 @@ def diagrama_save(request):
 
         for id_ask in d:
 
-            ob_ask, create = Answer.objects.get_or_create(id = id_ask,game_id = game_id) 
+            ob_ask, create = Answer.objects.get_or_create(id = id_ask)
+            ob_ask.game_id = game_id
             ob_ask.text_answer = d[id_ask]["ask"]['text_answer']
             tetxt_satge = d[id_ask]["ask"]['stage']
             ob_stage =  Stages.objects.filter(name = tetxt_satge )
