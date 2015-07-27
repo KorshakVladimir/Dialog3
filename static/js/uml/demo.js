@@ -479,8 +479,8 @@ jsPlumb.ready(function () {
     $("body").on("click",".return_to_dialog",function(e){
 
         $(".save_diagram").trigger("click");
-        
-         
+
+      
     })
 });
     

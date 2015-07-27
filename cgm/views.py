@@ -17,7 +17,7 @@ import datetime
 
 def index(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/gameplace')
+        return HttpResponseRedirect('/game/gameplace')
     else:
         return HttpResponseRedirect('/login')
 
@@ -28,60 +28,6 @@ def gameplace(request):
     week = datetime.timedelta(days=7)
     last_week = now - week
     user = request.user
-
-    #updates = []
-    # Add user's status updates and comments from friends to user
-    #my_comments = user.get_profile().comments.filter(sent__gte=last_week)
-    #up = []
-    # for c in my_comments:
-    #    up.append(c)
-    #me = GroupUpdates()
-    #me.name = 'Me'
-    #me.updates = up
-    # updates.append(me)
-
-    # Add user's friends' status updates
-    #friends = list(user.get_profile().friends.all())
-    #subs = list(user.get_profile().subscriptions.all())
-    #groups = user.get_profile().groups.all()
-    # for g in groups:
-    #    up = []
-    #    members = g.members.all()
-    #    for f in members:
-    #        us = f.get_profile().comments.filter(author=f, sent__gte=last_week)
-    #        for u in us:
-    #            up.append(u)
-    #        f = User.objects.get(username=f)
-    # Remove f from list, so they don't end up in uncategorized
-    #        friends.remove(f)
-    #    up.sort(key=lambda x: x.sent, reverse=True)
-    #    gu = GroupUpdates()
-    #    gu.name = g
-    #    gu.updates = up
-    #    updates.append(gu)
-
-    # reset up in case friends is empty
-    #up = []
-    # for f in friends:
-    #    comments = f.get_profile().comments.filter(sent__gte=last_week)
-    #    for c in comments:
-    #        up.append(c)
-    # ungrouped subscriptions
-    # for s in subs:
-    # make sure public=True, we don't want to leak private updates.
-    #    comments = s.get_profile().comments.filter(public=True, sent__gte=last_week)
-    #    for c in comments:
-    #        up.append(c)
-
-    #up.sort(key=lambda x: x.sent, reverse=True)
-    #ng = GroupUpdates()
-    #ng.name = 'No Group'
-    #ng.updates = up
-    # updates.append(ng)
-
-    #form = myforms.CommentForm()
-    # return render_to_response('dashboard.html', {'updates': updates, 'form':
-    # form},
     return render_to_response('stub.html', {}, context_instance=RequestContext(request))
 
 

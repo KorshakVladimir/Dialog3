@@ -42,16 +42,6 @@ def get_stage(context):
     context["stages"] = ob_stages
     return context
 
-def make_game(context,active_tab):
-    context["act_game"] = ''
-    context["act_history"] = ''
-    context["act_profile"] = ''
-    context["act_statistic"] = ''
-    context["act_prod"] = ''
-    context[active_tab] = 'active'
-    return context
-
-
 def tying_product(request,id_tying=0):
     return game_history(request, request.session.get('GUID'))
     context = {}
@@ -88,7 +78,6 @@ def tying_product(request,id_tying=0):
     context = for_history(request, context)
     bay_quest = Tying_products.objects.get(id = 1)
     context["bay_quest"] = bay_quest
-    context = make_game(context,"act_game")
 
     if int(id_tying) == 1:
         return game_history(request, request.session.get('GUID'))
@@ -98,9 +87,7 @@ def tying_product(request,id_tying=0):
 def part_prod(request):
     context = {}
     context = get_prod_all(context)
-    context = make_game(context,"act_prod") 
     return render(request,"tree/product.html", context)
-
 
 def res_product(request, id_prod):
     
@@ -187,10 +174,14 @@ def for_game(request, answer_id, id_quest, context):
 
     if int(answer_id) == 0:
         return context
-
-    answer = Answer.objects.get(id=answer_id)
-    questions = Questions.objects.filter(relation_answer_id=answer.id)
-        
+    try:
+        answer = Answer.objects.get(id=answer_id)
+        questions = Questions.objects.filter(relation_answer_id=answer.id)
+    except :
+        answer = ''
+        questions = ''
+        pass    
+ 
     if question_output:
         point = question_output.point_answer
     else:
@@ -199,7 +190,7 @@ def for_game(request, answer_id, id_quest, context):
     current_emo = request.session.get('emo') + point
 
     request.session['point'] = current_point
-    request.session['emo']    =  current_emo 
+    request.session['emo'] = current_emo
       
     context['point'] = current_point
     context['emo'] = current_emo
@@ -210,21 +201,26 @@ def for_game(request, answer_id, id_quest, context):
     return context
 
 
-def for_history(request, context):
+def for_history(request, context,game_id):
     dict_sesions = {}
     list_sesions = []
-    result = User_rezult.objects.filter(user_output=request.user)
-    
-    
-    for i in result:
-        dict_sesions[i.session_output] = i.date_create
 
-    for key_d in dict_sesions:
-        result_ses = User_rezult.objects.filter(session_output=key_d)
-        sum_point = result_ses.aggregate(point = Sum("point"),money = Sum('money'))
+    query_text = r'''SELECT 
+        session_output AS session_output,
+        max(date_create) AS date_create,
+        sum(point) AS point,
+        sum(money) AS money
+     
+        FROM   tree_user_rezult AS rez
+        LEFT JOIN  tree_answer AS  ans ON rez.answer_output_id = ans.id
+        GROUP by session_output
+        ORDER by  max(date_create)
+        WHERE user_output_id = %s AND game_id = %s '''
+
+    for rez in User_rezult.objects.raw(query_text, [request.user.id,game_id]):
         list_sesions.append(
-            {'session_output': key_d, 'date_create': dict_sesions[key_d], "point":sum_point['point'],
-            'money':sum_point['money']})
+            {'session_output': rez.session_output, 'date_create': rez.date_create, "point":rez.point,
+            'money':rez.money})
 
 
     context["list_sesions"] = list_sesions
@@ -235,23 +231,25 @@ def select_prof(request):
 
     context= {}
     return render(request, 'tree/select_type_person.html', context)
+
+
     
 @login_required(login_url='/login/')
 def index(request, answer_id=-1, id_quest=0):
     
     context = {}
+    game_id = request.session.get("game_id")
     try:
+        context["answer"] = -1
         if answer_id == -1:
-            answer_id  = MIN_ANS= Answer.objects.order_by("id")[0].id
+            answer_id  = MIN_ANS= Answer.objects.filter(game_id = game_id).order_by("id")[0].id
             request.session["MIN_ANS"] = MIN_ANS
         context = for_game(request, answer_id, id_quest, context)
 
     except:
         pass
- 
-    context = make_game(context,'act_game')
 
-    if int(answer_id) == 48 or int(answer_id) == 0:
+    if not context["answer"]:
         return game_history(request, request.session.get('GUID'))
     else:
         return render(request, 'gameplace.html', context)
@@ -260,18 +258,19 @@ def index(request, answer_id=-1, id_quest=0):
 def profile(request):
 
     context = {}
-    context = make_game(context,'act_profile')
+   
     return render(request, 'tree/myprofile.html', context)
 @login_required(login_url='/login/')
 def history(request):
     context = {}
-    context = for_history(request, context)
-    context = make_game(context,'act_history')
+    game_id = request.session.get("game_id")
+    context = for_history(request, context,game_id)
+    
     return render(request, 'tree/history_1.html', context)
 @login_required(login_url='/login/')
 def statistic(request):
     context = {}
-    context = make_game(context,'act_statistics')
+    
     return render(request, 'tree/statistic.html', context)
 
 def for_game_history(request, guid, context):
@@ -300,7 +299,7 @@ def for_game_history(request, guid, context):
     context['history_entry'] = list_history
     context['total_point'] = total_point
     context['total_money'] = total_money
-    context = make_game(context,"act_history")
+    
     return context
 
 @login_required(login_url='/login/')
@@ -316,9 +315,10 @@ def refer(request):
     return render(request, 'tree/refer.html')
 @login_required(login_url='/login/')
 def diagram(request):
+    game_id = request.session.get("game_id")
     list_all_answer = []
     try:
-        firsk_ask = Answer.objects.order_by("id")[0]
+        firsk_ask = Answer.objects.filter(game_id =game_id ).order_by("id")[0]
         list_all_answer.append(firsk_ask)
     except :
         pass
@@ -382,7 +382,7 @@ def new_ask(request):
         except:
             id = 0
     else:
-        id  = int(id) 
+        id = int(id) 
 
     id+=1
 
@@ -408,11 +408,10 @@ def load_button(request):
         
         answer_id = int(par.group("answer_id"))
         id_quest = int(par.group("id_quest"))
-
-        
+   
         context = for_game(request, answer_id, id_quest, context)
 
-    return render(request,'tree/load_button.html',context)
+        return render(request,'tree/load_button.html',context)
 
 def new_quest(request):
 
@@ -425,16 +424,17 @@ def new_quest(request):
 
 def diagrama_save(request):
 
+    game_id = request.session.get("game_id")
+
     if request.POST:
         
         srt_json = request.POST.get("json_str")
         d = json.loads(srt_json)
-        # Answer.objects.all().delete()
-        # Questions.objects.all().delete()
-        # pdb.set_trace()
+
         for id_ask in d:
 
-            ob_ask, create = Answer.objects.get_or_create(id = id_ask) 
+            ob_ask, create = Answer.objects.get_or_create(id = id_ask)
+            ob_ask.game_id = game_id
             ob_ask.text_answer = d[id_ask]["ask"]['text_answer']
             tetxt_satge = d[id_ask]["ask"]['stage']
             ob_stage =  Stages.objects.filter(name = tetxt_satge )

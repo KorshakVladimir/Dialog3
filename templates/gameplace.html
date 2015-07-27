@@ -27,6 +27,11 @@
 	        <div class = "backg_child" >
 			{% block game %}
 				
+				<audio autoplay="autoplay">
+					{%  if answer.media_file %}
+					<source src="{{answer.media_file.url}}" type="audio/mpeg">
+					{% endif %}
+				</audio>
 				<div class = "main-div">
 					<div class="row" >
 						 			
@@ -59,7 +64,7 @@
 				 	</div>
 
 					<div class="row">
-						<div class="col-md-2"> 
+						<div class="col-md-2">
 							<a class="btn btn-success offer_product" href="#" data-toggle="modal" data-target="#offer_prod">
 								<i class="fa fa-money"> </i><small>Предложить услугу</small>
 							</a>

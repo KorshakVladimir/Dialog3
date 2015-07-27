@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'game_control',
     'cgm',
     'tree',
     "report",
+    
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -120,9 +122,10 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 
 
 
-
-DEBUG = True
-DATABASES = {
+try:
+   from . import local
+   DEBUG = True
+   DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.sqlite3',
     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -130,6 +133,21 @@ DATABASES = {
     'PASSWORD': 'tj',
     }
     }
+except:
+   import pymysql
+   pymysql.install_as_MySQLdb()
+   DEBUG = False
+   
+   DATABASES = {
+                'default': {
+                    'ENGINE': 'django.db.backends.mysql',
+                    'NAME': 'cgm_db',
+                    'USER': 'cgm_usr',
+                    'PASSWORD': '54321',
+                    'HOST': '127.0.0.1',
+                    'PORT': '3306',
+                }
+            }
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 #    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

@@ -11,7 +11,10 @@
 		<meta http-equiv="Cache-Control" content="must-revalidate" />
 		<meta http-equiv="Pragma" content="no-cache" /> -->
 		{% load staticfiles %}
-
+		<link href="{% static "css/project.css" %}" rel="stylesheet">
+	    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+	    <link href="{% static "css/animate.css" %}" rel="stylesheet">
+	    <link href="{% static "css/style.min.css" %}" rel="stylesheet">
 		{% block extra_head %}
 		{% endblock %}
 	</head>
@@ -39,12 +42,18 @@
 			</div>
 		</div>
 		<script src="{% static "js/jquery-2.1.1.js" %}"></script> 
+<<<<<<< HEAD
 		<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
 	    <!-- <link href="{% static "font-awesome/css/font-awesome.css" %}" rel="stylesheet"> -->
+=======
+		<script src="{% static "js/ajax_csrf_token.js" %}"></script>
+		<script src="{% static "js/cgm.js" %}"></script>
+		
+>>>>>>> origin/myNew
 
-		<link href="{% static "css/animate.css" %}" rel="stylesheet">
-	    <link href="{% static "css/style.min.css" %}" rel="stylesheet">
-	    <link href="{% static "css/project.css" %}" rel="stylesheet">
+	    <link href="{% static "font-awesome/css/font-awesome.css" %}" rel="stylesheet">
+
+		
 		<!-- Mainly scripts -->
 		
 		<script src="{% static "js/bootstrap.min.js" %}"></script>
@@ -58,17 +67,23 @@
 		<!-- Peity -->
 		<script src="{% static "js/plugins/peity/jquery.peity.min.js" %}"></script>
 
-		<script src="{% static "js/ajax_csrf_token.js" %}"></script>
+		
+		
+
+
 		<script src="{% static "js/plugins/iCheck/icheck.min.js" %}"></script>
-		<script src="{% static "js/cgm.js" %}"></script>
+		<!-- game control -->
+
+		<link href  = "{% static "css/game-control.css" %}" rel="stylesheet">
+		<script src = "{% static "js/game-control.js" %}"></script>
+		<!-- game control -->
+		
 		<script src="{% static "js/demo/Chart.min.js" %}"></script>
 		<script src="{% static "js/demo/chartjs-demo.js" %}"></script>
 		<link href="{% static "css/uml/demo.css" %}" rel="stylesheet">
 		<script src="{% static "js/uml/jquery.autosize.js" %}"></script>
     	<script src="{% static "js/uml/jquery-ui.js" %}"></script>
-
-    	  
-        
+		<script src="{% static "js/jquery.jplayer.min.js" %}"></script>
         <script src="{% static "js/uml/dom.jsPlumb-1.7.5-min.js" %}"></script>  
         <script src="{% static "js/uml/demo.js" %}"></script>
 		<script>

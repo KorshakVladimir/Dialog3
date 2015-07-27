@@ -3,9 +3,18 @@
 
 {% for question in questions %}
 	<a id= "menu" class=" btn btn-default btn-lg dialog_btn"   href="/tree/{{ question.question_answer|default:0  }}/{{question.id}}" 
+
+	{% if  question.media_file   %}
+		 sound_quest = "{{ question.media_file.url }}"
+	{%else %}
+		 sound_quest = ""	
+	{% endif %}
+	
+
 	{% if question.text_questions == 'Предложить услугу'  %}
 		data-toggle="modal" data-target="#offer_prod"
 	{%endif%}
+
 	 > <span id="badge-pos" class=" badge pull-left">{{ forloop.counter }}</span>{{question.text_questions}}</a>
 {%endfor%}	
 </form>		

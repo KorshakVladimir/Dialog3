@@ -3,7 +3,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
-
+from game_control.models import Game
 
 class Stages(models.Model):
     name = models.CharField(max_length=150,verbose_name=u'Имя')
@@ -14,10 +14,10 @@ class Stages(models.Model):
     def __str__(self):
         return self.name
 
-
-
 class Answer(models.Model):
-
+    game = models.ForeignKey(
+        Game, verbose_name = u'Игра', blank = True, null = True)
+    media_file = models.FileField(upload_to='Answer_media', blank = True)
     stage = models.ForeignKey(
         Stages, verbose_name = u'Этап диалога', blank = True, null = True)
 
@@ -38,7 +38,7 @@ class Answer(models.Model):
 
 
 class Questions(models.Model):
-    
+    media_file = models.FileField(upload_to='Questions_media', blank = True)
     point_answer = models.IntegerField(default=0, verbose_name=u'Очки ответа',blank = True)
     point_emotions = models.IntegerField(
         default=0, verbose_name=u'Очки емоций', blank = True)
@@ -81,7 +81,7 @@ class Products(models.Model):
     description = models.TextField(verbose_name=u'Описание')
     price = models.IntegerField(default=0,verbose_name=u'Цена')
     image_product = models.ImageField(blank=True, null=True,verbose_name=u'изображение')
-    full_image = models.ImageField(blank=True, null=True,verbose_name=u'изображение')
+
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"

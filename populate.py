@@ -218,15 +218,15 @@ def my_parse():
     el_quest.text_questions = "Предложить товар"
     el_quest.save()
 
-    mod_ans = models.Answer(id=48, text_answer="Выход")
-    mod_ans.save()
-    mod_ans = models.Answer(id=47, text_answer="Что вы мне хотите предложить?")
-    mod_ans.save()
+    # mod_ans = models.Answer(id=48, text_answer="Выход")
+    # mod_ans.save()
+    # mod_ans = models.Answer(id=47, text_answer="Что вы мне хотите предложить?")
+    # mod_ans.save()
     # mod_bay = models.Answer(id=47, text_answer="Попрощаться")
     # mod_bay.save()
 
     
-
+    
     return True
 
 if __name__ == "__main__":

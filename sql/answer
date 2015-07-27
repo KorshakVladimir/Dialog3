@@ -1,0 +1,3 @@
+SELECT  id 
+FROM tree_answer
+WHERE game_id = 1

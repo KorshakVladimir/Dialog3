@@ -12,20 +12,23 @@ $(window).bind("load", function () {
     $("body").on("click",".dialog_btn",function(e){
     	var target = e.target;
     	var tar_href = target.getAttribute("href");
-    	// $("#place-botton").load("/tree/load_button/",{"href":tar_href});
-    	// $("#place-botton").load("/tree/load_button/");
-    	// var posting = $.post("/tree/load_button/",{"2":3});
+    	$().jPlayer( {
+		    ready: function () {
 
-    // 	$.get( "/tree/load_button/", { name: "John", time: "2pm" } )
-		  // .done(function( data ) {
-		  //   alert( "Data Loaded: " + data );
-		  // });
+		      $(this).jPlayer("setMedia", {
+		        mp3: $(this).attr("sound_quest") 
+		      }).jPlayer("play");
+		    }
+		  });
 
+
+    	// var file_sound = $(target).attr("sound_quest");
     	
 		// --------------------------------------------------------------------------------------
-		if (tar_href.indexOf("/0/")!=-1){
-			return true
+		if ((tar_href.indexOf("/0/")!=-1) || (tar_href.indexOf("/48/")!=-1)) {
+			return ajax_child(e);
 		}
+
       	$.post( "/tree/load_button/",{"href":tar_href} )
 		  .done(function( data ) {
 		  	$data = $(data);
@@ -57,10 +60,10 @@ $(window).bind("load", function () {
 			a_href = e.target;
 		}
 		var href = $(a_href).attr("href");
-		$("#page-wrapper").load(href+ " #ajax-wrapper");
+		$("#page-wrapper").load(href + " #ajax-wrapper");
 		return false;
 	});
-
+	
 	var refresh_menu = function(tar){
 		$("[role=presentation]").each(function(){
 			$(this).removeClass("active");
@@ -69,8 +72,12 @@ $(window).bind("load", function () {
 
 	};
 
+<<<<<<< HEAD
 	$("body").on("click",".ajax_child",function(e){
 		
+=======
+	var ajax_child = function(e){
+>>>>>>> origin/myNew
 		var a_href;
 		if (e.target.tagName != "A"){
 			a_href = $(e.target).closest("a");
@@ -80,12 +87,19 @@ $(window).bind("load", function () {
 		var href = $(a_href).attr("href");
 		var load_button = function(){
 			$(".backg").load(href+ " .backg_child");
+<<<<<<< HEAD
 			if (href.indexOf("profile")!=-1){
+=======
+			if (href.indexOf("myprofile")!=-1){
+>>>>>>> origin/myNew
 			refrech_radar();
 			};
 			refresh_menu();
 		};
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/myNew
 		if (href.indexOf("prod")!=-1){
 			$("#offer_prod").modal("hide");
 			setTimeout(load_button,500);
@@ -93,7 +107,15 @@ $(window).bind("load", function () {
 			load_button();
 				};		
 		return false;
+	}
+
+	$("body").on("click",".ajax_child",function(e){
+		return ajax_child(e);
 	});
+
+	
+		
+	
 
 })
 
