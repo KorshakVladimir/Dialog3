@@ -33,6 +33,7 @@
 					{% endif %}
 				</audio>
 				<div class = "main-div">
+				<img class  = "main_loc" src="{% static "game_01_img/location_my.jpg" %}" alt="">
 					<div class="row" >
 						 			
 				 		<div class="col-md-5">
@@ -56,7 +57,7 @@
 				 			{% block progres_bar_right %}
 				 			{# <p class="budge-right">Емоции</p> #}
 				 			<img   id ="badge-right" src="{% static "game_01_img/emotions_3.png" %}" alt="эмоции" > 
-				 			<div id  = "right_progres_bar" class="pull-right for_progress_bar progress">
+				 			<div id  = "right_progres_bar" class="pull-right  progress for_progress_bar">
 								  {% include 'tree/for_ajax/emotions.html' %}
 							</div>
 							{% endblock %}	

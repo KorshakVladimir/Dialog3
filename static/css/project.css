@@ -18,9 +18,9 @@
   margin-left: auto;
   max-width: 100%;
   font-size: 23px;
-  border: 3px solid #322F2F;
-   background: linear-gradient(to bottom, #A34B44, #9C3C33);
-  color: #fff;
+   background: linear-gradient(to bottom, #FFF9F8, #EAC9C6);
+  color: #2C3D3C;
+  border: 2px solid #275179;
 }
 
 #img_customer{
@@ -44,8 +44,8 @@
   margin-left: 82px;
   border: 3px outset rgb(244, 244, 244);
   background-color: rgba(176, 183, 195, 1);
-  background: linear-gradient(to bottom, #595A76, #0F101D);
-  height: 32px;
+  background: linear-gradient(0deg, rgb(234, 182, 73), rgb(234, 219, 180) 45%, rgb(227, 178, 72));
+  height: 32px !important;
 
 }
 
@@ -96,17 +96,11 @@ td{
 }
 
 .main-div{
-  background-image: url("/static/game_01_img/location_my.png") ;
 
-  min-height: 603px;
-  background-size:cover;
-  border:1px solid #fff;
 }
 .backg{
   
   width: 1027px;
-  margin-left: auto;
-  margin-right: auto;
   /*margin: auto;*/
   position: absolute;
   top: 40px; left: 0; bottom: 0; right: 0;
@@ -126,7 +120,7 @@ td{
 
 .women{
   /*background-image: url("/static/game_01_img/women3.png") ;*/
-  width: 488px;
+  width: 279px;
   position: absolute;
   right: -15px;
   top: -18px; 
@@ -144,25 +138,26 @@ td{
   /*background: linear-gradient(to top, #fefcea, #E4E2E1);*/
 }
 #menu{
-  background-color: rgba(0, 132, 87, 1);
-  background: linear-gradient(to bottom, #07743B, #074F2E);
-  margin-right: 1%;
+  background-color: rgba(222, 165, 80, 1);
   
-  border-radius: 39px;
-  text-align: center;
   display: block;
   margin-bottom: 2px
-  /*overflow-x: auto;*/
+  /*overflow-x: auto;*/;
+  border-radius: 7px;
+  border: none;
+  margin-right: 1%;
+  text-align: center;
+  white-space: normal;
 
 }
 #emotions{
   background-color: #EDE545;
-  background: linear-gradient(to bottom, #EFE411, #C3A406);
+  background: linear-gradient( 0deg, rgb(236, 66, 155), rgb(232, 180, 224) 45%, rgb(227, 72, 146));
 }
 #place-botton{
   max-height: 190px;
   overflow-y: auto;
-  margin-right: 13%;
+  margin-right: -1%;
   margin-left: 11%;
   margin-top: 45px;
 }
@@ -204,21 +199,21 @@ td{
 #badge-left{
 
   position: absolute;
-  top: 12px;
-  left: 38px;
+  top: -10px;
+  left: 12px;
   /* height: 90px; */
-  width: 72px;
+  width: 108px;
 }
 #badge-right{
 
   position: absolute;
-  top:   11px;
-  right: 267px;
-  width: 72px;
+  top:   -3px;
+  right: 255px;
+  width: 107px;
 }
 
 #points{
-  background: linear-gradient(to bottom, #3192EB, #1C67BE); 
+  background: linear-gradient(0deg, rgb(75, 66, 236), rgb(196, 190, 218) 45%, rgb(66, 81, 226)); 
 }
 
 /* Let's get this party started */
@@ -247,7 +242,7 @@ td{
 }
 
 #arrow_left:after {
-  border-left-color: #322F2F;
+  border-left-color: #275179;
   }
 #product-img{
   width: 79px;
@@ -332,4 +327,30 @@ td{
 
 }
 #ajax-wrapper{
+}
+.main_loc{
+  position: absolute;
+  width: 1204px;
+  
+}
+.ibox_projecct_color{
+  background-color: #8FA7EE;
+  color: #1D2796;
+
+}
+
+.form-group_projecct_color{
+  background-color: #594ECE;
+  color: #F2CF3F;
+
+}
+.btn_cancel{
+  color: #130F50 !important;
+  background-color: #4A44A6;
+
+}
+
+.offer_product{
+  margin-top: 248px;;
+  
 }

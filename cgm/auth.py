@@ -23,7 +23,7 @@ def login(request):
                 user = auth.authenticate(username=e, password=p)
                 if user is not None:
                     auth.login(request, user)
-                    return HttpResponseRedirect('/gameplace/')
+                    return HttpResponseRedirect('/game/gameplace/')
                 else:
                     obj = {'type': 'show'}
                     return render_to_response('login.html', {'form': form, 'obj_as_json': mark_safe(json.dumps(obj))}, context_instance=RequestContext(request)) #HttpResponse('fail')

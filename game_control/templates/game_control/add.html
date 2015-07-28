@@ -2,18 +2,18 @@
 <div id="ajax-wrapper">
 	<div class="add_game_place">
 	<div class="row">
-		<div class="ibox-title">
-            <h5>Создание новой игры <small>Заполните форму для создания</small></h5>
-            <div class="ibox-tools">
-                <a class="close-link">
-                    <i class="fa fa-times"></i>
+		<div class="ibox-title ibox_projecct_color">
+            <h5>Создание новой игры <small class = "ibox_projecct_color">Заполните форму для создания</small></h5>
+            <div class="ibox-tools ">
+                <a class="close-link" id = "cancel-buttom">
+                    <i class="fa fa-times ibox_projecct_color"></i>
                 </a>
             </div>
         </div>
         
         
-        <div class="ibox-content">
-	        <div class="form-group">
+        <div class="ibox-content form-group_projecct_color">
+	        <div class="form-group " >
 				<form id = "foorm_add_game" class = "uniForm" action="/game/add_game/" method="post">
 					
 					    {% csrf_token %}
@@ -42,7 +42,7 @@
 					<div class="hr-line-dashed"></div>
 					<div class="row ">
 					    <div class="col-sm-4 col-sm-offset-2">
-	                        <button class="btn btn-white " id = "cancel-buttom" type="">Отмена</button>
+	                        <button class="btn btn_cancel " id = "cancel-buttom" type="">Отмена</button>
 	                        <button class="btn btn-primary" id = "new_form" type="submit">Создать</button>
 	                    </div>
 	               </div>    

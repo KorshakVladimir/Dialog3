@@ -11,9 +11,52 @@
 }
 .button_del_game{	
 	position: absolute;
-	top: 10px;
-	right: 23px;
-	font-size: 33px;
-	color: #fff;
+	top: 3px;
+	right: 2px;
+	font-size: 20px;
+	color: #F2EBE3;
+	background-color: rgb(112, 140, 164);
+	border-radius: 30px;
+	height: 28px;
+	padding: 0px !important;
+	width: 27px;
+	z-index: 10;
 
 }
+
+.window_game{
+	display: block;
+	margin: 10px;
+	background-color: #63BBD5;
+	color: rgb(245, 245, 245);
+	text-align: center;
+	height: 200px;
+	border-radius: 10px;
+	position: relative;
+
+}
+
+.game_name{
+	background-color: rgb(208, 135, 239);
+	color: #fff;
+	border-radius: 10px;
+	padding: 4px;
+	text-align: center;
+	margin-top: 99px;
+	position: absolute;
+	width: 134px;
+	bottom: 0px;
+	height: 50px;
+
+}
+.ava{
+	background-color: #fff;
+	position: absolute;
+	height: 135px;
+	top: 7px;
+	left: 5%;
+	border-radius: 5px;
+	width: 90%;;
+
+}
+

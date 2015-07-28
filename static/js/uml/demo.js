@@ -277,15 +277,15 @@ jsPlumb.ready(function () {
 
     });
 
-    $('body').on('click','.dell_all',function(e){
+    $('body').on('click','.dell_all', function(e){
 
         instance.remove($(e.target).closest('.all').attr('id'));
     })
-    $('body').on('click','.dell_quest',function(e){
+    $('body').on('click','.dell_quest', function(e){
 
         $quest_el = $(e.target).closest('.quest_el');
         var id_quest = $quest_el.find(".end_point_relation") .attr('id');
-        
+        $('[ quest_id = '+ id_quest +' ]').detach();
         $quest_el.detach();
         instance.remove(id_quest);
         // $(e.target).closest(".all").find(".head_collaps>.collaps").each(function(){
