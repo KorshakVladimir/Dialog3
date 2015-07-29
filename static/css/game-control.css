@@ -13,13 +13,12 @@
 	position: absolute;
 	top: 3px;
 	right: 2px;
-	font-size: 20px;
+	font-size: 14px;
 	color: #F2EBE3;
-	background-color: rgb(112, 140, 164);
-	border-radius: 30px;
-	height: 28px;
+	background-color: rgb(63, 136, 58);
+	height: 21px;
 	padding: 0px !important;
-	width: 27px;
+	width: 24px;
 	z-index: 10;
 
 }
@@ -31,22 +30,21 @@
 	color: rgb(245, 245, 245);
 	text-align: center;
 	height: 200px;
-	border-radius: 10px;
 	position: relative;
 
 }
 
 .game_name{
-	background-color: rgb(208, 135, 239);
+	background-color: rgb(99, 78, 191);
 	color: #fff;
-	border-radius: 10px;
 	padding: 4px;
 	text-align: center;
 	margin-top: 99px;
 	position: absolute;
-	width: 134px;
+	width: 108%;
 	bottom: 0px;
 	height: 50px;
+	left: -4%;
 
 }
 .ava{

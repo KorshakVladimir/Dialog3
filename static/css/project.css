@@ -199,7 +199,7 @@ td{
 #badge-left{
 
   position: absolute;
-  top: -10px;
+  top: -7px;
   left: 12px;
   /* height: 90px; */
   width: 108px;
@@ -334,19 +334,19 @@ td{
   
 }
 .ibox_projecct_color{
-  background-color: #8FA7EE;
+  background-color: #E6E8EB;
   color: #1D2796;
 
 }
 
 .form-group_projecct_color{
-  background-color: #594ECE;
-  color: #F2CF3F;
+  background-color: #262531;
+  color: #B6A8A8;
 
 }
 .btn_cancel{
-  color: #130F50 !important;
-  background-color: #4A44A6;
+  color: #232323 !important;
+  background-color: #ACA9CE;
 
 }
 
