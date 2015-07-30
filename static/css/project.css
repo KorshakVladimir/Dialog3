@@ -44,7 +44,7 @@
   margin-left: 82px;
   border: 3px outset rgb(244, 244, 244);
   background-color: rgba(176, 183, 195, 1);
-  background: linear-gradient(0deg, rgb(234, 182, 73), rgb(234, 219, 180) 45%, rgb(227, 178, 72));
+  background: linear-gradient(0deg, rgb(37, 63, 78), rgb(35, 62, 79) 0%, rgb(58, 116, 130));
   height: 32px !important;
 
 }
@@ -138,7 +138,7 @@ td{
   /*background: linear-gradient(to top, #fefcea, #E4E2E1);*/
 }
 #menu{
-  background-color: rgba(222, 165, 80, 1);
+  background-color: rgba(69, 55, 50, 1);
   
   display: block;
   margin-bottom: 2px
@@ -152,7 +152,7 @@ td{
 }
 #emotions{
   background-color: #EDE545;
-  background: linear-gradient( 0deg, rgb(236, 66, 155), rgb(232, 180, 224) 45%, rgb(227, 72, 146));
+  background: linear-gradient( 0deg, rgb(142, 38, 117), rgb(232, 180, 224) 45%, rgb(161, 38, 147));
 }
 #place-botton{
   max-height: 190px;
