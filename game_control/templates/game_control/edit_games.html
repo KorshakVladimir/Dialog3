@@ -1,3 +1,4 @@
+{% load staticfiles%}
 <div id="ajax-wrapper">
 	{% for game in games %}
 	
@@ -12,7 +13,7 @@
 			    <i class="fa fa-times"></i>
 			</a>
 
-			<div class="ava"></div>
+			<div class="ava">	<img src="{% static "game_01_img/icon_game.jpg" %}" alt=""></div>
 			<a class = "ajax_config_game" href="/game/config_game/{{ game.id }}/">
 		    <div class = "game_name"> 	
 		     	<h3 class="font-bold no-margins">
