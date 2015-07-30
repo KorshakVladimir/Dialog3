@@ -207,21 +207,27 @@ def for_history(request, context,game_id):
 
     query_text = r'''SELECT 
         session_output AS session_output,
-        max(date_create) AS date_create,
-        sum(point) AS point,
-        sum(money) AS money
+        MAX(date_create) AS date_create,
+        SUM(point) AS point,
+        SUM(money) AS money
      
         FROM   tree_user_rezult AS rez
         LEFT JOIN  tree_answer AS  ans ON rez.answer_output_id = ans.id
         GROUP by session_output
-        ORDER by  max(date_create)
+        ORDER by  MAX(date_create)
         WHERE user_output_id = %s AND game_id = %s '''
+    # for rez in User_rezult.objects.raw(te, [request.user.id, int(game_id)]):
 
-    for rez in User_rezult.objects.raw(query_text, [request.user.id,game_id]):
+    te = r''' SELECT * FROM tree_user_rezult '''
+
+    query_text = r'''SELECT
+        session_output AS session_output
+        FROM   tree_user_rezult
+        '''
+    for rez in User_rezult.objects.raw(query_text):
         list_sesions.append(
             {'session_output': rez.session_output, 'date_create': rez.date_create, "point":rez.point,
             'money':rez.money})
-
 
     context["list_sesions"] = list_sesions
     context['count'] = 0
@@ -249,7 +255,7 @@ def index(request, answer_id=-1, id_quest=0):
     except:
         pass
 
-    if not context["answer"]:
+    if context["answer"] == -1:
         return game_history(request, request.session.get('GUID'))
     else:
         return render(request, 'gameplace.html', context)

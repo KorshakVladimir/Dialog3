@@ -54,6 +54,22 @@ def gameplace(request):
     context = all_games(context)
     return render(request, "stub.html",context)
 
-def run_game(request,game_id ):
+def run_game(request, game_id ):
     request.session["game_id"] = game_id
     return index(request)
+
+def config_game(request, game_id = 0 ):
+    
+    el_Game  = Game.objects.get(id = game_id)
+
+    if request.method == 'POST':
+        form = GameForm(request.POST, instance = el_Game)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponse('done')
+    else:
+        
+        form = GameForm(instance=el_Game)
+        
+    return render(request, 'game_control/game_config.html', {'form': form,"game_id":game_id})

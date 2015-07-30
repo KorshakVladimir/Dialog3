@@ -1,0 +1,53 @@
+<div id="ajax-wrapper">
+	<div class="add_game_place">
+	<div class="row">
+		<div class="ibox-title ibox_projecct_color">
+            <h5>Настройки игры <small class = "ibox_projecct_color">Редактирование настроек</small></h5>
+            <div class="ibox-tools ">
+                <a class="close-link" id = "cancel-buttom">
+                    <i class="fa fa-times ibox_projecct_color"></i>
+                </a>
+            </div>
+        </div>
+        
+        
+        <div class="ibox-content form-group_projecct_color">
+	        <div class="form-group " >
+				<form id = "foorm_save_game" class = "uniForm" action="/game/config_game/{{ game_id }}/" method="post">
+					
+					    {% csrf_token %}
+					    {% if form.non_field_errors %}
+						    <ul>
+						      {% for error in form.non_field_errors %}
+						        <li>{{ error }}</li>
+						      {% endfor %}
+						    </ul>
+						{% endif %}
+						{% for field in form %}
+							<div class="row">
+							  <div id="{{ field.auto_id }}_container">
+							    {{ field.help_text }}
+
+							    <label class="col-sm-2 control-label">{{ field.label }}</label> 
+							    <div class="col-sm-10"> {{ field }} </div>
+							    <div id="{{ field.auto_id }}_errors" class = "has-error">
+							    	<div class="col-sm-offset-2 control-label">
+							      		{{ field.errors }}
+							      	</div>
+							    </div>
+							  </div>
+							  </div>
+						{% endfor %}
+					<div class="hr-line-dashed"></div>
+					<div class="row ">
+					    <div class="col-sm-6 col-sm-offset-2">
+	                        <button class="btn btn_cancel " id = "cancel-buttom" type="">Отмена</button>
+	                        <button class="btn btn-primary" id = "save_config" type="submit">Сохранить</button>
+	                    </div>
+	               </div>    
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>

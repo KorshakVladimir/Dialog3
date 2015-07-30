@@ -14,8 +14,13 @@ class GameForm(forms.ModelForm):
         }
 
     def clean_name(self):
+        # import pdb
+        # pdb.set_trace()
+
         data = self.cleaned_data['name']
         unic_name = Game.objects.filter(name = data)
         if unic_name :
+            if self.instance.id == unic_name[0].id :
+                return data
             raise forms.ValidationError("Игра \" %s \" уже существует" % data )
         return data 

@@ -15,6 +15,18 @@ $( function(){
 		return false;
 	});
 
+
+	$("body").on("click","#save_config", function(){
+		var form = $("#foorm_save_game");
+		$.post( form.attr("action"),form.serialize() )
+		  .done(function( data ) {
+		  		$data = $(data);
+		    	$("#page-wrapper").html($data);
+		  });
+		refresh_game();
+		return false;
+	});
+
 	$("body").on("click","#cancel-buttom", function(){
 		
 		$("#page-wrapper").load("/ #ajax-wrapper");
@@ -27,6 +39,12 @@ $( function(){
 		
 		$("#"+game_id).remove();
 		refresh_game();
+	});
+
+	$("body").on("click",".ajax_config_game",function(e){
+		var href = _$.get_href_a(e);
+		$("#page-wrapper").load(href+ " #ajax-wrapper");
+		return false;
 	});
 
 });

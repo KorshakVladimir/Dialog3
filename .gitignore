@@ -6,6 +6,7 @@ cgm/__pycache__/
 .idea/
 /.idea
 .idea
+*.xml
 __pycache__/
 *.py[cod]
 *$py.class
