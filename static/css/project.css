@@ -331,6 +331,7 @@ td{
 .main_loc{
   position: absolute;
   width: 1204px;
+  top:-1px;
   
 }
 .ibox_projecct_color{
