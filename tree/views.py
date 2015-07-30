@@ -205,26 +205,21 @@ def for_history(request, context,game_id):
     dict_sesions = {}
     list_sesions = []
 
-    query_text = r'''SELECT 
-        session_output AS session_output,
-        MAX(date_create) AS date_create,
-        SUM(point) AS point,
-        SUM(money) AS money
-     
-        FROM   tree_user_rezult AS rez
-        LEFT JOIN  tree_answer AS  ans ON rez.answer_output_id = ans.id
-        GROUP by session_output
-        ORDER by  MAX(date_create)
-        WHERE user_output_id = %s AND game_id = %s '''
-    # for rez in User_rezult.objects.raw(te, [request.user.id, int(game_id)]):
+    query_text = r'''SELECT rez.id as id,
+                    session_output AS session_output,
+                    MAX(date_create) AS date_create,
+                    SUM(point) AS point,
+                    SUM(money) AS money
+                    FROM   tree_user_rezult AS rez
 
-    te = r''' SELECT * FROM tree_user_rezult '''
+                    LEFT JOIN  tree_answer AS  ans ON rez.answer_output_id = ans.id
 
-    query_text = r'''SELECT
-        session_output AS session_output
-        FROM   tree_user_rezult
-        '''
-    for rez in User_rezult.objects.raw(query_text):
+                    WHERE rez.user_output_id = %s AND ans.game_id = %s 
+
+                    GROUP by session_output
+
+                    ORDER by  MAX(date_create)'''
+    for rez in User_rezult.objects.raw(query_text,[request.user.id, int(game_id)]):
         list_sesions.append(
             {'session_output': rez.session_output, 'date_create': rez.date_create, "point":rez.point,
             'money':rez.money})
@@ -255,6 +250,8 @@ def index(request, answer_id=-1, id_quest=0):
     except:
         pass
 
+    context["game"] = Game.objects.get(id = game_id)
+        
     if context["answer"] == -1:
         return game_history(request, request.session.get('GUID'))
     else:

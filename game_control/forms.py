@@ -8,7 +8,7 @@ class GameForm(forms.ModelForm):
     class Meta:
         
         model = Game
-        fields = ('name',)
+        fields = ('name', 'location','person')
         widgets = {
             'name': forms.TextInput(attrs={'class': 'add_game_form, form-control'}),
         }

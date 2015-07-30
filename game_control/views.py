@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from . forms import GameForm
 from . models import Game
@@ -8,11 +8,11 @@ from tree.views import index
 def add_game(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = GameForm(request.POST)
+        form = GameForm(request.POST,request.FILES)
         # check whether it's valid:
         if form.is_valid():
             form.save()
-            return HttpResponse('done')
+            return redirect(edit_game)
     else:
         form = GameForm()
 
@@ -63,11 +63,12 @@ def config_game(request, game_id = 0 ):
     el_Game  = Game.objects.get(id = game_id)
 
     if request.method == 'POST':
-        form = GameForm(request.POST, instance = el_Game)
+        form = GameForm(request.POST,request.FILES, instance = el_Game)
 
         if form.is_valid():
+
             form.save()
-            return HttpResponse('done')
+            return redirect(edit_game)
     else:
         
         form = GameForm(instance=el_Game)

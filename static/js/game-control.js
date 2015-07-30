@@ -4,26 +4,47 @@ $( function(){
 		$("#game_list").load("/game/refresh_game/ li")
 	}
 
-	$("body").on("click","#new_form", function(){
-
-		$.post( "/game/add_game/",$("#foorm_add_game").serialize() )
-		  .done(function( data ) {
-		  		$data = $(data);
+	var save_form_config  = function(href,data){
+		$.ajax({
+		    url: href,
+		    type: "POST",
+		    data: data,
+		    cache: false,
+		    processData: false,
+		    contentType: false,
+		    success: function(data) {
+		        $data = $(data);
 		    	$("#page-wrapper").html($data);
-		  });
-		refresh_game();
+
+		    }
+		});
+	}
+
+	$("body").on("click","#new_form", function(e){
+
+		// $.post( "/game/add_game/",$("#foorm_add_game").serialize() )
+		//   .done(function( data ) {
+		//   		$data = $(data);
+		//     	$("#page-wrapper").html($data);
+		//   });
+
+		e.preventDefault();
+		var data = new FormData($('#foorm_add_game').get(0));
+		
+		save_form_config("/game/add_game/",data);
+		setTimeout(refresh_game,1000);
 		return false;
 	});
 
 
-	$("body").on("click","#save_config", function(){
+	$("body").on("click","#save_config", function(e){
 		var form = $("#foorm_save_game");
-		$.post( form.attr("action"),form.serialize() )
-		  .done(function( data ) {
-		  		$data = $(data);
-		    	$("#page-wrapper").html($data);
-		  });
-		refresh_game();
+		e.preventDefault();
+		var data = new FormData($('#foorm_save_game').get(0));
+
+		save_form_config(form.attr("action"),data);
+	
+		setTimeout(refresh_game,1000);
 		return false;
 	});
 

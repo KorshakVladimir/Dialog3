@@ -33,7 +33,7 @@
 					{% endif %}
 				</audio>
 				<div class = "main-div">
-				<img class  = "main_loc" src="{% static "game_01_img/location_my.jpg" %}" alt="">
+				<img class  = "main_loc" src="{{ game.location.url }}" alt="">
 					<div class="row" >
 						 			
 				 		<div class="col-md-5">
@@ -92,7 +92,7 @@
 						</div>
 						<div class="col-md-3">
 							<div style="height: 302px;" >
-							<img class="women" src="/static/game_01_img/women3.png">
+							<img class="women" src="{{ game.person.url }}">
 							</div>
 						</div>
 

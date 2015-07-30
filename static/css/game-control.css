@@ -11,11 +11,10 @@
 }
 .button_del_game{	
 	position: absolute;
-	top: 3px;
-	right: 2px;
-	font-size: 14px;
-	color: #F2EBE3;
-	background-color: rgb(63, 136, 58);
+	top: -1px;
+	right: 5px;
+	font-size: 22px;
+	color: #5B5957;
 	height: 21px;
 	padding: 0px !important;
 	width: 24px;
@@ -32,6 +31,7 @@
 	text-align: center;
 	height: 200px;
 	position: relative;
+	border-radius: 2px;
 
 }
 
@@ -47,6 +47,7 @@
 	height: 50px;
 	left: -4%;
 	padding-top: 14px;
+	border-radius: 2px;
 
 }
 .ava{

@@ -13,7 +13,7 @@
         
         <div class="ibox-content form-group_projecct_color">
 	        <div class="form-group " >
-				<form id = "foorm_save_game" class = "uniForm" action="/game/config_game/{{ game_id }}/" method="post">
+				<form id = "foorm_save_game" class = "uniForm" action="/game/config_game/{{ game_id }}/" method="post" enctype='multipart/form-data'>
 					
 					    {% csrf_token %}
 					    {% if form.non_field_errors %}

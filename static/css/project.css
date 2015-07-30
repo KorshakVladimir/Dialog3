@@ -331,6 +331,7 @@ td{
 .main_loc{
   position: absolute;
   width: 1204px;
+  top: -1px;
   
 }
 .ibox_projecct_color{
@@ -351,6 +352,8 @@ td{
 }
 
 .offer_product{
-  margin-top: 248px;;
+  margin-top: 257px;
+  margin-left: 116px;
+  font-size: 19px;;
   
 }
