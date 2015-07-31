@@ -1,10 +1,29 @@
 jsPlumb.ready(function () {
+    var list_undo =[];
+    var restore_answer  = function(){
+        el = this;
+        var div = $("<div></div>");
+        $(div).attr
 
+        $('#statemachine-demo').append(el.html);
+        $("#"+el.id).offset(el.position);
+        var arr = el.connection;
+        arr.forEach(function(item, i, arr) {
+            instance.connect({source:item.source, target:item.target
+                ,anchors:["Right", "Left"],
+                // connectorStyle: { strokeStyle: "#000"},
+               });
+        })
+       
+    }
+
+    $('body').on('click','.undo',function(){
+        var el = list_undo.pop();
+        el.func();
+    });
     // -------------------------
     var main_block = jsPlumb.getSelector(".statemachine-demo .all");
     var windows = jsPlumb.getSelector(".statemachine-demo .end_point_relation");
-
-    
 
     // setup some defaults for jsPlumb.
     var instance = jsPlumb.getInstance({
@@ -55,9 +74,13 @@ jsPlumb.ready(function () {
         instance.makeSource(el, {
             filter: ".ep",
             anchor: "RightMiddle",
+            maxConnections:1,
             // anchor:"Continuous",
             connector: [ "Flowchart" ],
             connectorStyle: { strokeStyle: "#5c96bc", lineWidth: 2, outlineColor: "transparent", outlineWidth: 4 },
+            onMaxConnections:function(info, originalEvent) {
+                console.log("element is ", info.element, "maxConnections is", info.maxConnections); 
+              },
         }); 
     }
 
@@ -77,12 +100,12 @@ jsPlumb.ready(function () {
     
     window.jsp = instance;
 
-    
-
-
-    // instance.bind("connection", function (info) {
-    //     info.connection.getOverlay("label").setLabel(info.connection.id);
-    // });
+    instance.bind("connection", function (info) {
+        var con =  instance.getConnections({source:info.sourceId});
+        if (con.length == 2){
+            instance.detach(con[0]);
+        }
+    });
 
 
     var countid = 10; 
@@ -117,7 +140,7 @@ jsPlumb.ready(function () {
     // click_for_edit = function  (e) {
     //     remove_all_adit();
     //     e.stopPropagation();
-    //     var el_panel_demo = e.target.closest(".head_section");
+    //     var el_panel_demo = e.targestrokeStylet.closest(".head_section");
     //     var el_edit = el_panel_demo.querySelector(".for_edit") ;
         
     //     $(el_edit).toggleClass("active_form");
@@ -276,10 +299,37 @@ jsPlumb.ready(function () {
 
 
     });
+    var make__for_undo  = function(class_all){
+        var el = {};
+        arr_prop = []
+        el.id = class_all.attr('id');
+        el.class = class_all.attr('class');
+        el.style = class_all.attr('style');
+        el.html = class_all.html();
+        // arr_prop.push({id:class_all.attr('id')});
+        var conn_s = [];
+        class_all.find(".end_point_relation").each(function(){
+            var sourceId  = $(this).attr('id');
+            $(instance.getConnections({source:sourceId})).each(function(){
+                conn_s.push({source:sourceId,target:this.targetId});
+            });
+
+        });
+
+        $(instance.getConnections({target:el.id})).each(function(){
+                conn_s.push({source:this.sourceId,target:el.id});
+            });
+        el.connection = conn_s;
+        el.func = restore_answer;
+        list_undo.push(el)  
+    }
 
     $('body').on('click','.dell_all', function(e){
+        var class_all = $(e.target).closest('.all');
 
-        instance.remove($(e.target).closest('.all').attr('id'));
+        make__for_undo(class_all);
+        instance.remove(class_all.attr('id'));
+
     })
     $('body').on('click','.dell_quest', function(e){
 
@@ -411,14 +461,10 @@ jsPlumb.ready(function () {
 
     var trim_count_smb =  function (our_str,count_simb){
             return our_str.substring(0,count_simb)+ " ..."
-
-
     }
 
     var  save_edit_all = function(e){
-         var for_edit = $(e.target).closest(".for_edit");
-
-
+        var for_edit = $(e.target).closest(".for_edit");
         var text_ask = $(for_edit).find(".media-body>textarea").val().trim();
 
         var for_edit = $(e.target).closest(".all");

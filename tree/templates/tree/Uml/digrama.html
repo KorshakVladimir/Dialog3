@@ -31,9 +31,10 @@
         <form action="" class="hide_el">
             {% csrf_token %}
         </form>
-        <a href = "/tree/index/"> <button class="btn btn-success return_to_dialog"><i class="fa fa-reply-all"></i> Вернуться к игре </button></a>
+        <a href = "/tree/index/"> <button class="btn btn-success return_to_dialog"><i class="fa fa-sign-out"></i> Вернуться к игре </button></a>
         <button class="btn btn-success new_ask"><i class="fa fa-plus-square-o"></i> Создать блок</button>
         <button class="btn btn-success save_diagram"><i class="fa fa-save"></i> Сохранить</button>
+        <button class="btn btn-success undo"><i class="fa fa-reply"></i> Назад</button>
         <div class="save_vidget hide_el">
             <div class="sk-spinner sk-spinner-three-bounce ">
                 <div class="sk-bounce1"></div>
@@ -64,7 +65,7 @@
         <div id = "new_questions" class="hide_el" >
             {% include 'tree/Uml/el_question.html' %}
         </div>
-        <script src="{% static "js/uml/dom.jsPlumb-1.7.5-min.js" %}"></script>    
+        <script src="{% static "js/uml/dom.jsPlumb-1.7.5.js" %}"></script>    
         <script src="{% static "js/uml/demo.js" %}"></script>
     </body>
 </html>
